@@ -8,6 +8,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import nutricorp.Entidades.Paciente;
 /**
@@ -32,7 +34,7 @@ public class PacienteData extends Paciente{
             // Primera posición corresponde al primer símbolo y así sucesivamente, la contabilización arranca desde 1
             ps.setString(1, paciente.getNombre());
             ps.setInt(2, paciente.getDni());
-            ps.setString(3, paciente.getDominicilio());
+            ps.setString(3, paciente.getDomicilio());
             ps.setString(4, paciente.getTelefono());    
             ps.executeUpdate();
             // Cerrar la consulta y otros recursos si es necesario
@@ -43,5 +45,26 @@ public class PacienteData extends Paciente{
             // Coloca esto aquí
             System.out.println("Error al cargar los datos del Pacientealumno: " + e.getMessage());
         }
+    }
+    public List<Paciente> listarPaciente() {
+        List<Paciente> pacientes = new ArrayList<>();
+        try {
+             sql = "SELECT * FROM paciente WHERE estado = 1 ";
+             rs = ps.executeQuery();
+            while (rs.next()) {
+                Paciente paciente = new Paciente();
+
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setDni(rs.getInt("dni"));
+                paciente.setDomicilio(rs.getString("domicilio"));
+                paciente.setTelefono(rs.getString("telefono"));
+                
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Alumno " + ex.getMessage());
+        }
+        return pacientes;
     }
 }
