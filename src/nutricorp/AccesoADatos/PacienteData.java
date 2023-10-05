@@ -21,12 +21,15 @@ public class PacienteData extends Paciente{
     ResultSet rs;
     String sql = "";
     
+    
+    //listo
    public void insertarPaciente(Paciente paciente) {
         try {
             // Establecer la conexión antes de la preparación de la sentencia SQL
             connection = CConection.getConexion();
 
-            sql = "INSERT INTO `nutricorp`( `Nombre`, `DNI`,`Apellido`, `Domicilio`, `Telefono`) VALUES (?,?,?,?);";
+            sql = "INSERT INTO `paciente`( `Nombre`, `DNI`,`Apellido`, `Domicilio`, `Telefono`) VALUES (?,?,?,?,?);";
+            connection = CConection.getConexion();
             ps = connection.prepareStatement(sql);
 
             // Completar los campos con símbolos por las variables
@@ -34,7 +37,9 @@ public class PacienteData extends Paciente{
             ps.setString(1, paciente.getNombre());
             ps.setInt(2, paciente.getDni());
             ps.setString(3, paciente.getDomicilio());
-            ps.setString(4, paciente.getTelefono());    
+            ps.setString(4, paciente.getTelefono()); 
+            ps.setString(5, paciente.getApellido()); 
+            
             ps.executeUpdate();
             // Cerrar la consulta y otros recursos si es necesario
             System.out.println("Paciente cargado correctamente ");
@@ -42,9 +47,11 @@ public class PacienteData extends Paciente{
 
         } catch (SQLException | NumberFormatException e) { // Coloca esto aquí
             // Coloca esto aquí
-            System.out.println("Error al cargar los datos del Pacientealumno: " + e.getMessage());
+            System.out.println("Error al cargar los datos del Paciente: " + e.getMessage());
         }
     }
+   
+   //listo
     public Paciente buscarPacientePorDni(int dni) {
         sql = "SELECT Nombre, DNI , Domicilio, Telefono FROM paciente WHERE dni =? ";
         Paciente paciente = null;
@@ -71,6 +78,8 @@ public class PacienteData extends Paciente{
         return paciente;
     }
    
+    
+    
     public void modificadorPaciente(Paciente paciente) {
         sql = "UPDATE paciente SET  nombre=?,dni=?,domicilio=?,telefono=? WHERE dni=?";
         try {

@@ -88,6 +88,11 @@ public class AltaCliente extends javax.swing.JInternalFrame {
         });
 
         ButtonModificar.setText("Modificar");
+        ButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonModificarActionPerformed(evt);
+            }
+        });
 
         ButtonEliminar.setText("Eliminar");
 
@@ -207,9 +212,9 @@ public class AltaCliente extends javax.swing.JInternalFrame {
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
 
         int DNI =  Integer.parseInt(TFDNI.getText());
-        
-        PacienteData pacidata = new PacienteData();
         Paciente paci = new Paciente();
+        PacienteData pacidata = new PacienteData();
+        
         
         paci = pacidata.buscarPacientePorDni(DNI);
         
@@ -229,6 +234,16 @@ public class AltaCliente extends javax.swing.JInternalFrame {
 
        
     }//GEN-LAST:event_ButtonBuscarActionPerformed
+
+    private void ButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonModificarActionPerformed
+
+        
+
+
+
+
+
+    }//GEN-LAST:event_ButtonModificarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
