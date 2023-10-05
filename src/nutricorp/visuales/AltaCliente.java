@@ -81,6 +81,11 @@ public class AltaCliente extends javax.swing.JInternalFrame {
         });
 
         ButtonBuscar.setText("Buscar");
+        ButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBuscarActionPerformed(evt);
+            }
+        });
 
         ButtonModificar.setText("Modificar");
 
@@ -184,11 +189,10 @@ public class AltaCliente extends javax.swing.JInternalFrame {
     private void ButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAgregarActionPerformed
 
         Paciente paciente = new Paciente();
-        
-        
+              
          paciente.setApellido(TFApellido.getText());
         paciente.setDni(Integer.parseInt(TFDNI.getText()));
-        paciente.setDominicilio(TFDomicilio.getText());
+        paciente.setDomicilio(TFDomicilio.getText());
         paciente.setNombre(TFNombre.getText());
         paciente.setTelefono(TFTelefono.getText());
         
@@ -196,20 +200,34 @@ public class AltaCliente extends javax.swing.JInternalFrame {
         pacienteDate.insertarPaciente(paciente);
         
         System.out.println("hola");
-       
         
 
-
-
-
-
-
-
-
-
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_ButtonAgregarActionPerformed
+
+    private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
+
+        int DNI =  Integer.parseInt(TFDNI.getText());
+        
+        PacienteData pacidata = new PacienteData();
+        pacidata.buscarPacientePorDni(DNI);
+        
+//         paciente = new Paciente();
+//                paciente.setNombre(rs.getString("nombre"));
+//                paciente.setDni(rs.getInt("dni"));
+//                paciente.setDomicilio(rs.getString("domicilio"));
+//                paciente.setTelefono(rs.getString("telefono"));        
+        
+        
+    
+
+
+
+
+
+
+
+       
+    }//GEN-LAST:event_ButtonBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
