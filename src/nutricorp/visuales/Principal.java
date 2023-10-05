@@ -34,6 +34,37 @@ public class Principal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1360, 768));
+
+        escritorio.setBackground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
+        escritorio.setLayout(escritorioLayout);
+        escritorioLayout.setHorizontalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        escritorioLayout.setVerticalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 279, Short.MAX_VALUE)
+        );
+
+        MenuPacientes.setText("Pacientes");
+
+        MenuIPacientes.setText("Pacientes");
+        MenuIPacientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuIPacientesActionPerformed(evt);
+            }
+        });
+        MenuPacientes.add(MenuIPacientes);
+
+        BarraMenu.add(MenuPacientes);
+
+        jMenu2.setText("Edit");
+        BarraMenu.add(jMenu2);
+
+        setJMenuBar(BarraMenu);
 
         escritorio.setBackground(new java.awt.Color(204, 204, 204));
 
