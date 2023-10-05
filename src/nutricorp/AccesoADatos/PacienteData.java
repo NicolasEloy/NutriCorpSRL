@@ -46,7 +46,7 @@ public class PacienteData extends Paciente{
         }
     }
     public Paciente buscarPacientePorDni(int dni) {
-        sql = "SELECT nombre, dni , domicilio, telefono FROM paciente WHERE dni =? AND estado=1";
+        sql = "SELECT Nombre, DNI , Domicilio, Telefono FROM paciente WHERE dni =? ";
         Paciente paciente = null;
         try {
             connection = CConection.getConexion();
