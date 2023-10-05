@@ -195,6 +195,7 @@ public class AltaCliente extends javax.swing.JInternalFrame {
         PacienteData pacienteDate = new PacienteData();
         pacienteDate.insertarPaciente(paciente);
         
+        System.out.println("hola");
        
         
 
