@@ -5,6 +5,12 @@
  */
 package nutricorp.visuales;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import nutricorp.AccesoADatos.PacienteData;
+import nutricorp.Entidades.Paciente;
+
 /**
  *
  * @author gg
@@ -14,9 +20,18 @@ public class AltaCliente extends javax.swing.JInternalFrame {
     /**
      * Creates new form AltaCliente
      */
+    Connection connection;
+    PreparedStatement ps;
+    ResultSet rs;
+    String sql = "";
+    
+    
     public AltaCliente() {
         initComponents();
     }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -167,6 +182,31 @@ public class AltaCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAgregarActionPerformed
+
+        Paciente paciente = new Paciente();
+        
+        
+         paciente.setApellido(TFApellido.getText());
+        paciente.setDni(Integer.parseInt(TFDNI.getText()));
+        paciente.setDominicilio(TFDomicilio.getText());
+        paciente.setNombre(TFNombre.getText());
+        paciente.setTelefono(TFTelefono.getText());
+        
+        PacienteData pacienteDate = new PacienteData();
+        pacienteDate.insertarPaciente(paciente);
+        
+       
+        
+
+
+
+
+
+
+
+
+
+
         // TODO add your handling code here:
     }//GEN-LAST:event_ButtonAgregarActionPerformed
 

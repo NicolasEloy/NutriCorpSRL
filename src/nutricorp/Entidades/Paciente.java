@@ -13,6 +13,15 @@ public class Paciente {
     private String dominicilio;
     private String telefono;
     private int idPaciente;
+    private String apellido;
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
     public String getNombre() {
         return nombre;
@@ -57,11 +66,34 @@ public class Paciente {
     public Paciente() {
     }
 
+    public Paciente(String nombre, int dni, String dominicilio, String telefono, int idPaciente, String apellido) {
+        this.nombre = nombre;
+        this.dni = dni;
+        this.dominicilio = dominicilio;
+        this.telefono = telefono;
+        this.idPaciente = idPaciente;
+        this.apellido = apellido;
+    }
+    
+    
+
     public Paciente(String nombre, int dni, String dominicilio, String telefono) {
         this.nombre = nombre;
         this.dni = dni;
         this.dominicilio = dominicilio;
         this.telefono = telefono;
+    }
+
+    public void getApellido(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void getDni(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void getDominicilio(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
