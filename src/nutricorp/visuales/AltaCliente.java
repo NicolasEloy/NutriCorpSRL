@@ -209,7 +209,9 @@ public class AltaCliente extends javax.swing.JInternalFrame {
         int DNI =  Integer.parseInt(TFDNI.getText());
         
         PacienteData pacidata = new PacienteData();
-        pacidata.buscarPacientePorDni(DNI);
+        Paciente paci = new Paciente();
+        
+        paci = pacidata.buscarPacientePorDni(DNI);
         
 //         paciente = new Paciente();
 //                paciente.setNombre(rs.getString("nombre"));
@@ -218,12 +220,11 @@ public class AltaCliente extends javax.swing.JInternalFrame {
 //                paciente.setTelefono(rs.getString("telefono"));        
         
         
-    
 
-
-
-
-
+        TFApellido.setText(paci.getApellido());
+        TFDomicilio.setText(paci.getDomicilio());
+        TFNombre.setText(paci.getNombre());
+        TFTelefono.setText(paci.getTelefono());
 
 
        
