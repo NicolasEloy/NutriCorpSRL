@@ -205,7 +205,7 @@ public class AltaCliente extends javax.swing.JInternalFrame {
         pacienteDate.insertarPaciente(paciente);
         
         System.out.println("hola");
-        
+        //listo y funcionando
 
     }//GEN-LAST:event_ButtonAgregarActionPerformed
 
@@ -224,12 +224,15 @@ public class AltaCliente extends javax.swing.JInternalFrame {
 //                paciente.setDomicilio(rs.getString("domicilio"));
 //                paciente.setTelefono(rs.getString("telefono"));        
         
-        
 
         TFApellido.setText(paci.getApellido());
         TFDomicilio.setText(paci.getDomicilio());
         TFNombre.setText(paci.getNombre());
         TFTelefono.setText(paci.getTelefono());
+      
+        ///listo y funcionando
+        
+        
 
 
        

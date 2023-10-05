@@ -22,7 +22,7 @@ public class PacienteData extends Paciente{
     String sql = "";
     
     
-    //listo
+    //funcionando
    public void insertarPaciente(Paciente paciente) {
         try {
             // Establecer la conexión antes de la preparación de la sentencia SQL
@@ -53,7 +53,7 @@ public class PacienteData extends Paciente{
    
    //listo
     public Paciente buscarPacientePorDni(int dni) {
-        sql = "SELECT Nombre, DNI , Domicilio, Telefono FROM paciente WHERE dni =? ";
+        sql = "SELECT Nombre, DNI , Domicilio,Apellido, Telefono FROM paciente WHERE dni =? ";
         Paciente paciente = null;
         try {
             connection = CConection.getConexion();
@@ -67,6 +67,8 @@ public class PacienteData extends Paciente{
                 paciente.setDni(rs.getInt("dni"));
                 paciente.setDomicilio(rs.getString("domicilio"));
                 paciente.setTelefono(rs.getString("telefono"));
+                paciente.setApellido(rs.getString("apellido"));
+                
                 //paciente.setEstado(true);       
             } else {
                 JOptionPane.showMessageDialog(null, "No existe ese Paciente");
