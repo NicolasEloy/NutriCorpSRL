@@ -10,7 +10,7 @@ package nutricorp.Entidades;
 public class Paciente {
     private String nombre;
     private int dni;
-    private String dominicilio;
+    private String domicilio;
     private String telefono;
     private int idPaciente;
     private String apellido;
@@ -39,12 +39,12 @@ public class Paciente {
         this.dni = dni;
     }
 
-    public String getDominicilio() {
-        return dominicilio;
+    public String getDomicilio() {
+        return domicilio;
     }
 
-    public void setDominicilio(String dominicilio) {
-        this.dominicilio = dominicilio;
+    public void setDomicilio(String domicilio) {
+        this.domicilio = domicilio;
     }
 
     public String getTelefono() {
@@ -66,10 +66,10 @@ public class Paciente {
     public Paciente() {
     }
 
-    public Paciente(String nombre, int dni, String dominicilio, String telefono, int idPaciente, String apellido) {
+    public Paciente(String nombre, int dni, String domicilio, String telefono, int idPaciente, String apellido) {
         this.nombre = nombre;
         this.dni = dni;
-        this.dominicilio = dominicilio;
+        this.domicilio = domicilio;
         this.telefono = telefono;
         this.idPaciente = idPaciente;
         this.apellido = apellido;
@@ -77,10 +77,10 @@ public class Paciente {
     
     
 
-    public Paciente(String nombre, int dni, String dominicilio, String telefono) {
+    public Paciente(String nombre, int dni, String domicilio, String telefono) {
         this.nombre = nombre;
         this.dni = dni;
-        this.dominicilio = dominicilio;
+        this.domicilio = domicilio;
         this.telefono = telefono;
     }
 
