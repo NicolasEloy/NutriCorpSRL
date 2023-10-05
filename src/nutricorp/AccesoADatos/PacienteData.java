@@ -4,10 +4,11 @@
 package nutricorp.AccesoADatos;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import nutricorp.Entidades.Paciente;
 /**
@@ -20,7 +21,7 @@ public class PacienteData extends Paciente{
     ResultSet rs;
     String sql = "";
     
-    public void insertarPaciente(Paciente paciente) {
+   public void insertarPaciente(Paciente paciente) {
         try {
             // Establecer la conexión antes de la preparación de la sentencia SQL
             connection = CConection.getConexion();
@@ -32,7 +33,7 @@ public class PacienteData extends Paciente{
             // Primera posición corresponde al primer símbolo y así sucesivamente, la contabilización arranca desde 1
             ps.setString(1, paciente.getNombre());
             ps.setInt(2, paciente.getDni());
-            ps.setString(3, paciente.getDominicilio());
+            ps.setString(3, paciente.getDomicilio());
             ps.setString(4, paciente.getTelefono());    
             ps.executeUpdate();
             // Cerrar la consulta y otros recursos si es necesario
@@ -44,4 +45,90 @@ public class PacienteData extends Paciente{
             System.out.println("Error al cargar los datos del Pacientealumno: " + e.getMessage());
         }
     }
+    public Paciente buscarPacientePorDni(int dni) {
+        sql = "SELECT nombre, dni , domicilio, telefono FROM paciente WHERE dni =? AND estado=1";
+        Paciente paciente = null;
+        try {
+            connection = CConection.getConexion();
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, dni);
+            rs = ps.executeQuery();
+            //System.out.println("rs es "+rs.getArray(sql));
+            if (rs.next()) {
+                paciente = new Paciente();
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setDni(rs.getInt("dni"));
+                paciente.setDomicilio(rs.getString("domicilio"));
+                paciente.setTelefono(rs.getString("telefono"));
+                //paciente.setEstado(true);       
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe ese Paciente");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder "+ex.getMessage());
+        }
+        return paciente;
+    }
+   
+    public void modificadorPaciente(Paciente paciente) {
+        sql = "UPDATE paciente SET  nombre=?,dni=?,domicilio=?,telefono=? WHERE dni=?";
+        try {
+            connection = CConection.getConexion();
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, paciente.getNombre());
+            ps.setInt(2, paciente.getDni());
+            ps.setString(3, paciente.getDomicilio());
+            ps.setString(4, paciente.getTelefono());
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Se modifico el Paciente");
+            }
+
+             //rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+               // alumno.setIdAlumno(rs.getInt(1));
+                JOptionPane.showMessageDialog(null, "Paciente Guardado");   
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de Paciente" + ex.getLocalizedMessage());
+        }
+    }
+
+    public void eliminarPaciente(int dni) {
+        sql = "UPDATE paciente SET estado = 0 WHERE dni=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, dni);
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Paciente Eliminado");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de paciente");
+        }
+    }
+    public List<Paciente> listarPaciente() {
+        List<Paciente> pacientes = new ArrayList<>();
+        try {
+             sql = "SELECT * FROM paciente WHERE estado = 1 ";
+             rs = ps.executeQuery();
+            while (rs.next()) {
+                Paciente paciente = new Paciente();
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setDni(rs.getInt("dni"));
+                paciente.setDomicilio(rs.getString("domicilio"));
+                paciente.setTelefono(rs.getString("telefono"));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Paciente " + ex.getMessage());
+        }
+        return pacientes;
+    }
 }
+
