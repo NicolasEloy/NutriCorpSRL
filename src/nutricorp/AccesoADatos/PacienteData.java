@@ -25,7 +25,7 @@ public class PacienteData extends Paciente{
             // Establecer la conexión antes de la preparación de la sentencia SQL
             connection = CConection.getConexion();
 
-            sql = "INSERT INTO `alumno`( `nombre`, `dni`, `domicilio`, `telefono`) VALUES (?,?,?,?);";
+            sql = "INSERT INTO `nutricorp`( `Nombre`, `DNI`,`Apellido`, `Domicilio`, `Telefono`) VALUES (?,?,?,?);";
             ps = connection.prepareStatement(sql);
 
             // Completar los campos con símbolos por las variables
