@@ -51,7 +51,7 @@ public class PacienteData extends Paciente{
         }
     }
    
-   //listo
+   //listo y funcionando
     public Paciente buscarPacientePorDni(int dni) {
         sql = "SELECT Nombre, DNI , Domicilio,Apellido, Telefono FROM paciente WHERE dni =? ";
         Paciente paciente = null;
@@ -83,14 +83,15 @@ public class PacienteData extends Paciente{
     
     
     public void modificadorPaciente(Paciente paciente) {
-        sql = "UPDATE paciente SET  nombre=?,dni=?,domicilio=?,telefono=? WHERE dni=?";
+        sql = "UPDATE paciente SET  Nombre=?,Apellido = ?,DNI=?,Domicilio=?,Telefono=? WHERE dni=?";
         try {
             connection = CConection.getConexion();
             ps = connection.prepareStatement(sql);
             ps.setString(1, paciente.getNombre());
-            ps.setInt(2, paciente.getDni());
-            ps.setString(3, paciente.getDomicilio());
-            ps.setString(4, paciente.getTelefono());
+            ps.setString(2, paciente.getApellido());
+            ps.setInt(3, paciente.getDni());
+            ps.setString(4, paciente.getDomicilio());
+            ps.setString(5, paciente.getTelefono());
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Se modifico el Paciente");

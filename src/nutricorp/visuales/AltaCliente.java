@@ -240,6 +240,18 @@ public class AltaCliente extends javax.swing.JInternalFrame {
 
     private void ButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonModificarActionPerformed
 
+        Paciente paci = new Paciente();
+        
+        paci.setApellido(TFApellido.getText());
+        paci.setDni(Integer.parseInt(TXTDNI.getText()));
+        paci.setDomicilio(TFDomicilio.getText());
+        paci.setNombre(TFNombre.getText());
+        paci.setTelefono(TXTtelefono.getText());
+        
+        PacienteData pacidata = new PacienteData();
+        pacidata.modificadorPaciente(paci);
+        
+        
         
 
 
