@@ -95,6 +95,11 @@ public class AltaCliente extends javax.swing.JInternalFrame {
         });
 
         ButtonEliminar.setText("Eliminar");
+        ButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonEliminarActionPerformed(evt);
+            }
+        });
 
         jDesktopPane1.setLayer(TXTnombre, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(TXTapellido, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -203,8 +208,8 @@ public class AltaCliente extends javax.swing.JInternalFrame {
         
         PacienteData pacienteDate = new PacienteData();
         pacienteDate.insertarPaciente(paciente);
-        
-        System.out.println("hola");
+        limpiarCampos();
+       
         //listo y funcionando
 
     }//GEN-LAST:event_ButtonAgregarActionPerformed
@@ -243,13 +248,14 @@ public class AltaCliente extends javax.swing.JInternalFrame {
         Paciente paci = new Paciente();
         
         paci.setApellido(TFApellido.getText());
-        paci.setDni(Integer.parseInt(TXTDNI.getText()));
+        paci.setDni(Integer.parseInt(TFDNI.getText()));
         paci.setDomicilio(TFDomicilio.getText());
         paci.setNombre(TFNombre.getText());
-        paci.setTelefono(TXTtelefono.getText());
+        paci.setTelefono(TFTelefono.getText());
         
         PacienteData pacidata = new PacienteData();
         pacidata.modificadorPaciente(paci);
+        limpiarCampos();
         
         
         
@@ -259,6 +265,23 @@ public class AltaCliente extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_ButtonModificarActionPerformed
+
+    private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -278,4 +301,20 @@ public class AltaCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel TXTtelefono;
     private javax.swing.JDesktopPane jDesktopPane1;
     // End of variables declaration//GEN-END:variables
+
+    private void limpiarCampos(){
+    
+    TFApellido.setText("");
+    TFDNI.setText("");
+    TFDomicilio.setText("");
+    TFNombre.setText("");
+    TFTelefono.setText("");
+    
+    }
+    
+
+
+
+
+
 }
