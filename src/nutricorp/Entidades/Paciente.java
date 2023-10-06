@@ -74,9 +74,6 @@ public class Paciente {
         this.idPaciente = idPaciente;
         this.apellido = apellido;
     }
-    
-    
-
     public Paciente(String nombre, int dni, String domicilio, String telefono) {
         this.nombre = nombre;
         this.dni = dni;
