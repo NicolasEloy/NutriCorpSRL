@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2023 a las 23:18:29
+-- Tiempo de generación: 07-10-2023 a las 00:02:03
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -159,7 +159,6 @@ CREATE TABLE `dieta` (
   `IdPaciente` int(11) NOT NULL,
   `fechaInicial` date NOT NULL,
   `pesoInicial` double NOT NULL,
-  `PesoActual` double DEFAULT NULL,
   `pesoFinal` double NOT NULL,
   `FechaFinal` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -168,17 +167,17 @@ CREATE TABLE `dieta` (
 -- Volcado de datos para la tabla `dieta`
 --
 
-INSERT INTO `dieta` (`IdDieta`, `Nombre`, `IdPaciente`, `fechaInicial`, `pesoInicial`, `PesoActual`, `pesoFinal`, `FechaFinal`) VALUES
-(13, 'Dieta 1', 21, '2023-09-01', 75, 0, 70, '2023-09-30'),
-(14, 'Dieta 2', 22, '2023-08-15', 85.5, 0, 80, '2023-09-15'),
-(15, 'Dieta 3', 23, '2023-09-10', 70, 0, 65.5, '2023-10-10'),
-(16, 'Dieta 4', 24, '2023-08-20', 95, 0, 90, '2023-09-30'),
-(17, 'Dieta 5', 25, '2023-09-05', 80, 0, 75, '2023-10-05'),
-(18, 'Dieta 6', 26, '2023-08-10', 70.5, 0, 67, '2023-09-10'),
-(19, 'Dieta 7', 27, '2023-09-02', 88, 0, 84.5, '2023-09-30'),
-(20, 'Dieta 8', 28, '2023-08-25', 75, 0, 70.5, '2023-09-25'),
-(21, 'Dieta 9', 29, '2023-09-15', 90.5, 0, 86, '2023-10-15'),
-(22, 'Dieta 10', 30, '2023-08-12', 78, 0, 74, '2023-09-12');
+INSERT INTO `dieta` (`IdDieta`, `Nombre`, `IdPaciente`, `fechaInicial`, `pesoInicial`, `pesoFinal`, `FechaFinal`) VALUES
+(13, 'Dieta 1', 21, '2023-09-01', 75, 70, '2023-09-30'),
+(14, 'Dieta 2', 22, '2023-08-15', 85.5, 80, '2023-09-15'),
+(15, 'Dieta 3', 23, '2023-09-10', 70, 65.5, '2023-10-10'),
+(16, 'Dieta 4', 24, '2023-08-20', 95, 90, '2023-09-30'),
+(17, 'Dieta 5', 25, '2023-09-05', 80, 75, '2023-10-05'),
+(18, 'Dieta 6', 26, '2023-08-10', 70.5, 67, '2023-09-10'),
+(19, 'Dieta 7', 27, '2023-09-02', 88, 84.5, '2023-09-30'),
+(20, 'Dieta 8', 28, '2023-08-25', 75, 70.5, '2023-09-25'),
+(21, 'Dieta 9', 29, '2023-09-15', 90.5, 86, '2023-10-15'),
+(22, 'Dieta 10', 30, '2023-08-12', 78, 74, '2023-09-12');
 
 -- --------------------------------------------------------
 
@@ -188,7 +187,7 @@ INSERT INTO `dieta` (`IdDieta`, `Nombre`, `IdPaciente`, `fechaInicial`, `pesoIni
 
 CREATE TABLE `historialpeso` (
   `IdHistorialPeso` int(11) NOT NULL,
-  `IdDieta` int(11) NOT NULL,
+  `IdPaciente` int(11) NOT NULL,
   `Fecha` date NOT NULL,
   `Peso` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -206,24 +205,25 @@ CREATE TABLE `paciente` (
   `DNI` int(11) NOT NULL,
   `Domicilio` varchar(200) NOT NULL,
   `Telefono` int(20) NOT NULL,
-  `FechaNacimiento` date NOT NULL
+  `FechaNacimiento` date NOT NULL,
+  `pesoActual` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `paciente`
 --
 
-INSERT INTO `paciente` (`IdPaciente`, `Nombre`, `Apellido`, `DNI`, `Domicilio`, `Telefono`, `FechaNacimiento`) VALUES
-(21, 'Juan Pérez', '', 11111111, 'Calle 123, Ciudad A', 1234567890, '1990-01-15'),
-(22, 'María García', '', 22222222, 'Avenida XYZ, Ciudad B', 1234567891, '1985-05-20'),
-(23, 'Luis Rodríguez', '', 33333333, 'Calle Principal, Ciudad C', 1234567892, '1978-12-10'),
-(24, 'Ana López', '', 44444444, 'Avenida Central, Ciudad D', 1234567893, '1992-08-30'),
-(25, 'Carlos Martínez', '', 55555555, 'Calle 456, Ciudad E', 1234567894, '1980-03-25'),
-(26, 'Laura Fernández', '', 66666666, 'Avenida ABC, Ciudad F', 1234567895, '1995-06-12'),
-(27, 'Pedro González', '', 77777777, 'Calle 789, Ciudad G', 1234567896, '1974-02-08'),
-(28, 'Sofía Díaz', '', 88888888, 'Avenida XYZ, Ciudad H', 1234567897, '1988-11-19'),
-(29, 'Miguel Pérez', '', 99999999, 'Calle 101, Ciudad I', 1234567898, '1987-07-05'),
-(30, 'Lucía Rodríguez', '', 10101010, 'Avenida Principal, Ciudad J', 1234567899, '1998-04-03');
+INSERT INTO `paciente` (`IdPaciente`, `Nombre`, `Apellido`, `DNI`, `Domicilio`, `Telefono`, `FechaNacimiento`, `pesoActual`) VALUES
+(21, 'Juan Pérez', '', 11111111, 'Calle 123, Ciudad A', 1234567890, '1990-01-15', 0),
+(22, 'María García', '', 22222222, 'Avenida XYZ, Ciudad B', 1234567891, '1985-05-20', 0),
+(23, 'Luis Rodríguez', '', 33333333, 'Calle Principal, Ciudad C', 1234567892, '1978-12-10', 0),
+(24, 'Ana López', '', 44444444, 'Avenida Central, Ciudad D', 1234567893, '1992-08-30', 0),
+(25, 'Carlos Martínez', '', 55555555, 'Calle 456, Ciudad E', 1234567894, '1980-03-25', 0),
+(26, 'Laura Fernández', '', 66666666, 'Avenida ABC, Ciudad F', 1234567895, '1995-06-12', 0),
+(27, 'Pedro González', '', 77777777, 'Calle 789, Ciudad G', 1234567896, '1974-02-08', 0),
+(28, 'Sofía Díaz', '', 88888888, 'Avenida XYZ, Ciudad H', 1234567897, '1988-11-19', 0),
+(29, 'Miguel Pérez', '', 99999999, 'Calle 101, Ciudad I', 1234567898, '1987-07-05', 0),
+(30, 'Lucía Rodríguez', '', 10101010, 'Avenida Principal, Ciudad J', 1234567899, '1998-04-03', 0);
 
 --
 -- Índices para tablas volcadas
@@ -256,7 +256,7 @@ ALTER TABLE `dieta`
 --
 ALTER TABLE `historialpeso`
   ADD PRIMARY KEY (`IdHistorialPeso`),
-  ADD KEY `HistorialPeso` (`IdDieta`);
+  ADD KEY `HistorialPeso-1` (`IdPaciente`);
 
 --
 -- Indices de la tabla `paciente`
@@ -320,7 +320,7 @@ ALTER TABLE `dieta`
 -- Filtros para la tabla `historialpeso`
 --
 ALTER TABLE `historialpeso`
-  ADD CONSTRAINT `HistorialPeso` FOREIGN KEY (`IdDieta`) REFERENCES `dieta` (`IdDieta`);
+  ADD CONSTRAINT `HistorialPeso-1` FOREIGN KEY (`IdPaciente`) REFERENCES `paciente` (`IdPaciente`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
