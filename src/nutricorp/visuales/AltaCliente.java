@@ -268,10 +268,13 @@ public class AltaCliente extends javax.swing.JInternalFrame {
 
     private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
 
+        int dni = Integer.parseInt(TFDNI.getText());
 
+        PacienteData pacidata = new PacienteData();
+        
+        pacidata.eliminarPaciente(dni);
 
-
-
+        limpiarCampos();
 
 
 

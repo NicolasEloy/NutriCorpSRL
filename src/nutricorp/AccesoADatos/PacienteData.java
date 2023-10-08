@@ -82,7 +82,7 @@ public class PacienteData extends Paciente{
     }
    
     
-    
+    // listo y funcionando
     public void modificadorPaciente(Paciente paciente) {
         sql = "UPDATE paciente SET  Nombre=?,Apellido = ?,DNI=?,Domicilio=?,Telefono=? WHERE DNI=?";
         try {
@@ -104,6 +104,8 @@ public class PacienteData extends Paciente{
         }
     }
 
+    
+    
     public void eliminarPaciente(int dni) {
         sql = "UPDATE paciente SET estado = 0 WHERE dni=?";
         try {
