@@ -29,7 +29,7 @@ public class PacienteData extends Paciente{
             connection = CConection.getConexion();
 
 
-            sql = "INSERT INTO `paciente`( `Nombre`, `DNI`,`Apellido`, `Domicilio`, `Telefono`) VALUES (?,?,?,?,?);";
+            sql = "INSERT INTO `paciente`( `Nombre`, `DNI`,`Apellido`, `Domicilio`, `Telefono`,`estado`) VALUES (?,?,?,?,?,1);";
             connection = CConection.getConexion();
             ps = connection.prepareStatement(sql);
 
@@ -40,6 +40,7 @@ public class PacienteData extends Paciente{
             ps.setString(3, paciente.getDomicilio());
             ps.setString(4, paciente.getTelefono()); 
             ps.setString(5, paciente.getApellido()); 
+            
             ps.executeUpdate();
             // Cerrar la consulta y otros recursos si es necesario
             System.out.println("Paciente cargado correctamente ");
@@ -54,7 +55,7 @@ public class PacienteData extends Paciente{
    
    //listo y funcionando
     public Paciente buscarPacientePorDni(int dni) {
-        sql = "SELECT Nombre, DNI , Domicilio,Apellido, Telefono FROM paciente WHERE dni =? ";
+        sql = "SELECT Nombre, DNI , Domicilio,Apellido, Telefono FROM paciente WHERE dni =? AND estado = 1";
         Paciente paciente = null;
         try {
             connection = CConection.getConexion();
@@ -107,12 +108,14 @@ public class PacienteData extends Paciente{
     
     
     public void eliminarPaciente(int dni) {
-        sql = "UPDATE paciente SET estado = 0 WHERE dni=?";
+        
+        sql = "UPDATE paciente SET estado=0  WHERE DNI=?";
+       
         try {
 
             connection = CConection.getConexion();
             ps = connection.prepareStatement(sql);
-
+            ps.setInt(1,dni);
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Paciente Eliminado");
