@@ -61,11 +61,11 @@
                       <Component id="TFTelefono" alignment="0" pref="199" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="ButtonAgregar" min="-2" max="-2" attributes="0"/>
-                      <Component id="ButtonModificar" min="-2" max="-2" attributes="0"/>
-                      <Component id="ButtonBuscar" min="-2" max="-2" attributes="0"/>
-                      <Component id="ButtonEliminar" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="ButtonModificar" max="32767" attributes="0"/>
+                      <Component id="ButtonAgregar" alignment="0" max="32767" attributes="0"/>
+                      <Component id="ButtonEliminar" alignment="0" max="32767" attributes="0"/>
+                      <Component id="ButtonBuscar" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
