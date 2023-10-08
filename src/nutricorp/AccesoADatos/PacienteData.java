@@ -107,8 +107,10 @@ public class PacienteData extends Paciente{
     public void eliminarPaciente(int dni) {
         sql = "UPDATE paciente SET estado = 0 WHERE dni=?";
         try {
-             ps = connection.prepareStatement(sql);
-            ps.setInt(1, dni);
+
+            connection = CConection.getConexion();
+            ps = connection.prepareStatement(sql);
+
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Paciente Eliminado");
@@ -120,6 +122,10 @@ public class PacienteData extends Paciente{
             
         }
     }
+    
+    
+    
+    
     public List<Paciente> listarPaciente() {
         List<Paciente> pacientes = new ArrayList<>();
         try {
@@ -138,6 +144,4 @@ public class PacienteData extends Paciente{
         }
         return pacientes;
     }
-   
 }
-
