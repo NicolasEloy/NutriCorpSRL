@@ -2,6 +2,10 @@
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+    </Property>
+    <Property name="closable" type="boolean" value="true"/>
     <Property name="title" type="java.lang.String" value="Dietas"/>
   </Properties>
   <SyntheticProperties>
@@ -117,11 +121,17 @@
         </Container>
         <Component class="javax.swing.JRadioButton" name="jRadioButton1">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="cc" red="cc" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Vigentes"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioButton2">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="cc" red="cc" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Finalizados"/>
           </Properties>
         </Component>

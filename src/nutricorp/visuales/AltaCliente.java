@@ -111,7 +111,7 @@ public class AltaCliente extends javax.swing.JInternalFrame {
                     .addComponent(jButton3)
                     .addComponent(jButton2)
                     .addComponent(jButton4))
-                .addGap(30, 30, 30))
+                .addGap(35, 35, 35))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
