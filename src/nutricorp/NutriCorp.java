@@ -5,6 +5,8 @@
  */
 package nutricorp;
 
+import nutricorp.visuales.Principal;
+
 /**
  *
  * @author gg
@@ -16,7 +18,8 @@ public class NutriCorp {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String as = "asd";
+                Principal P = new Principal();
+                P.setVisible(true);
         
     }
     
