@@ -27,21 +27,65 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        escritorio = new javax.swing.JDesktopPane();
+        BarraMenu = new javax.swing.JMenuBar();
+        MenuPacientes = new javax.swing.JMenu();
+        MenuIPacientes = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        escritorio.setBackground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
+        escritorio.setLayout(escritorioLayout);
+        escritorioLayout.setHorizontalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        escritorioLayout.setVerticalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 279, Short.MAX_VALUE)
+        );
+
+        MenuPacientes.setText("Pacientes");
+
+        MenuIPacientes.setText("Pacientes");
+        MenuIPacientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuIPacientesActionPerformed(evt);
+            }
+        });
+        MenuPacientes.add(MenuIPacientes);
+
+        BarraMenu.add(MenuPacientes);
+
+        jMenu2.setText("Edit");
+        BarraMenu.add(jMenu2);
+
+        setJMenuBar(BarraMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(escritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(escritorio)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void MenuIPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuIPacientesActionPerformed
+        // TODO add your handling code here:
+    AltaCliente AC = new AltaCliente(/*datos a ingresar*/);
+    AC.setVisible(true);
+    escritorio.add(AC);
+    escritorio.moveToFront(AC);
+    }//GEN-LAST:event_MenuIPacientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -69,6 +113,7 @@ public class Principal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -79,5 +124,10 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar BarraMenu;
+    private javax.swing.JMenuItem MenuIPacientes;
+    private javax.swing.JMenu MenuPacientes;
+    private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JMenu jMenu2;
     // End of variables declaration//GEN-END:variables
 }
