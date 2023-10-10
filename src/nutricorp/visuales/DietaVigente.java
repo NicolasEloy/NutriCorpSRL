@@ -71,13 +71,6 @@ public class DietaVigente extends javax.swing.JInternalFrame {
         });
         Tabla.setViewportView(jTable1);
 
-        jRadioButton1.setBackground(new java.awt.Color(204, 204, 204));
-        jRadioButton1.setText("Vigentes");
-
-        jRadioButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jRadioButton2.setText("Finalizados");
-
-
         jDesktopPane1.setLayer(TXTFecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(FechaDChooser, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(Tabla, javax.swing.JLayeredPane.DEFAULT_LAYER);
