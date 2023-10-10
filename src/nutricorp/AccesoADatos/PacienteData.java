@@ -105,7 +105,7 @@ public class PacienteData extends Paciente{
         }
     }
 
-    
+
     
     public void eliminarPaciente(int dni) {        
         sql = "UPDATE paciente SET estado=0  WHERE DNI=?";       
@@ -113,6 +113,7 @@ public class PacienteData extends Paciente{
             connection = CConection.getConexion();
             ps = connection.prepareStatement(sql);
             ps.setInt(1,dni);
+
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Paciente Eliminado");
