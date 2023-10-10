@@ -22,14 +22,14 @@ public class PacienteData extends Paciente{
     String sql = "";
     
     
-    //listo
+    //funcionando
    public void insertarPaciente(Paciente paciente) {
         try {
             // Establecer la conexión antes de la preparación de la sentencia SQL
             connection = CConection.getConexion();
 
 
-            sql = "INSERT INTO `paciente`( `Nombre`, `DNI`,`Apellido`, `Domicilio`, `Telefono`) VALUES (?,?,?,?,?);";
+            sql = "INSERT INTO `paciente`( `Nombre`, `DNI`,`Apellido`, `Domicilio`, `Telefono`,`estado`) VALUES (?,?,?,?,?,1);";
             connection = CConection.getConexion();
             ps = connection.prepareStatement(sql);
 
@@ -40,6 +40,7 @@ public class PacienteData extends Paciente{
             ps.setString(3, paciente.getDomicilio());
             ps.setString(4, paciente.getTelefono()); 
             ps.setString(5, paciente.getApellido()); 
+            
             ps.executeUpdate();
             // Cerrar la consulta y otros recursos si es necesario
             System.out.println("Paciente cargado correctamente ");
@@ -52,9 +53,9 @@ public class PacienteData extends Paciente{
         }
     }
    
-   //listo
+   //listo y funcionando
     public Paciente buscarPacientePorDni(int dni) {
-        sql = "SELECT Nombre, DNI , Domicilio, Telefono FROM paciente WHERE dni =? ";
+        sql = "SELECT Nombre, DNI , Domicilio,Apellido, Telefono FROM paciente WHERE dni =? AND estado = 1";
         Paciente paciente = null;
         try {
             connection = CConection.getConexion();
@@ -68,6 +69,8 @@ public class PacienteData extends Paciente{
                 paciente.setDni(rs.getInt("dni"));
                 paciente.setDomicilio(rs.getString("domicilio"));
                 paciente.setTelefono(rs.getString("telefono"));
+                paciente.setApellido(rs.getString("apellido"));
+                
                 //paciente.setEstado(true);       
             } else {
                 JOptionPane.showMessageDialog(null, "No existe ese Paciente");
@@ -80,38 +83,37 @@ public class PacienteData extends Paciente{
     }
    
     
-    
+    // listo y funcionando
     public void modificadorPaciente(Paciente paciente) {
-        sql = "UPDATE paciente SET  nombre=?,dni=?,domicilio=?,telefono=? WHERE dni=?";
+        sql = "UPDATE paciente SET  Nombre=?,Apellido = ?,DNI=?,Domicilio=?,Telefono=? WHERE DNI=?";
         try {
             connection = CConection.getConexion();
             ps = connection.prepareStatement(sql);
             ps.setString(1, paciente.getNombre());
-            ps.setInt(2, paciente.getDni());
-            ps.setString(3, paciente.getDomicilio());
-            ps.setString(4, paciente.getTelefono());
+            ps.setString(2, paciente.getApellido());
+            ps.setInt(3, paciente.getDni());
+            ps.setString(4, paciente.getDomicilio());
+            ps.setString(5, paciente.getTelefono());
+            ps.setInt(6, paciente.getDni());
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Se modifico el Paciente");
             }
-
-             //rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-               // alumno.setIdAlumno(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Paciente Guardado");   
-            }
-            ps.close();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de Paciente" + ex.getLocalizedMessage());
         }
     }
 
-    public void eliminarPaciente(int dni) {
-        sql = "UPDATE paciente SET estado = 0 WHERE dni=?";
+
+    
+    public void eliminarPaciente(int dni) {        
+        sql = "UPDATE paciente SET estado=0  WHERE DNI=?";       
         try {
+            connection = CConection.getConexion();
             ps = connection.prepareStatement(sql);
-            ps.setInt(1, dni);
+            ps.setInt(1,dni);
+
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Paciente Eliminado");
@@ -120,8 +122,13 @@ public class PacienteData extends Paciente{
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de paciente");
+            
         }
     }
+    
+    
+    
+    
     public List<Paciente> listarPaciente() {
         List<Paciente> pacientes = new ArrayList<>();
         try {
@@ -141,4 +148,3 @@ public class PacienteData extends Paciente{
         return pacientes;
     }
 }
-

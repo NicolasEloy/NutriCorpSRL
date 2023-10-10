@@ -35,6 +35,8 @@ public class DietaVigente extends javax.swing.JInternalFrame {
         RbuttonVigente = new javax.swing.JRadioButton();
         RbuttonFinalizados = new javax.swing.JRadioButton();
 
+        setBackground(new java.awt.Color(204, 204, 204));
+        setClosable(true);
         setTitle("Dietas");
 
         jDesktopPane1.setBackground(new java.awt.Color(204, 204, 204));
@@ -68,10 +70,6 @@ public class DietaVigente extends javax.swing.JInternalFrame {
             }
         });
         Tabla.setViewportView(jTable1);
-
-        RbuttonVigente.setText("Vigentes");
-
-        RbuttonFinalizados.setText("Finalizados");
 
         jDesktopPane1.setLayer(TXTFecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(FechaDChooser, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -114,18 +112,18 @@ public class DietaVigente extends javax.swing.JInternalFrame {
                     .addComponent(RbuttonFinalizados))
                 .addGap(25, 25, 25)
                 .addComponent(Tabla, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jDesktopPane1)
         );
 
         pack();
