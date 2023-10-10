@@ -35,6 +35,8 @@ public class DietaVigente extends javax.swing.JInternalFrame {
         RbuttonVigente = new javax.swing.JRadioButton();
         RbuttonFinalizados = new javax.swing.JRadioButton();
 
+        setBackground(new java.awt.Color(204, 204, 204));
+        setClosable(true);
         setTitle("Dietas");
 
         jDesktopPane1.setBackground(new java.awt.Color(204, 204, 204));
@@ -68,10 +70,6 @@ public class DietaVigente extends javax.swing.JInternalFrame {
             }
         });
         Tabla.setViewportView(jTable1);
-
-        RbuttonVigente.setText("Vigentes");
-
-        RbuttonFinalizados.setText("Finalizados");
 
         jDesktopPane1.setLayer(TXTFecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(FechaDChooser, javax.swing.JLayeredPane.DEFAULT_LAYER);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-10-2023 a las 00:02:03
+-- Tiempo de generación: 07-10-2023 a las 00:36:38
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -206,24 +206,25 @@ CREATE TABLE `paciente` (
   `Domicilio` varchar(200) NOT NULL,
   `Telefono` int(20) NOT NULL,
   `FechaNacimiento` date NOT NULL,
-  `pesoActual` double NOT NULL
+  `pesoActual` double NOT NULL,
+  `estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `paciente`
 --
 
-INSERT INTO `paciente` (`IdPaciente`, `Nombre`, `Apellido`, `DNI`, `Domicilio`, `Telefono`, `FechaNacimiento`, `pesoActual`) VALUES
-(21, 'Juan Pérez', '', 11111111, 'Calle 123, Ciudad A', 1234567890, '1990-01-15', 0),
-(22, 'María García', '', 22222222, 'Avenida XYZ, Ciudad B', 1234567891, '1985-05-20', 0),
-(23, 'Luis Rodríguez', '', 33333333, 'Calle Principal, Ciudad C', 1234567892, '1978-12-10', 0),
-(24, 'Ana López', '', 44444444, 'Avenida Central, Ciudad D', 1234567893, '1992-08-30', 0),
-(25, 'Carlos Martínez', '', 55555555, 'Calle 456, Ciudad E', 1234567894, '1980-03-25', 0),
-(26, 'Laura Fernández', '', 66666666, 'Avenida ABC, Ciudad F', 1234567895, '1995-06-12', 0),
-(27, 'Pedro González', '', 77777777, 'Calle 789, Ciudad G', 1234567896, '1974-02-08', 0),
-(28, 'Sofía Díaz', '', 88888888, 'Avenida XYZ, Ciudad H', 1234567897, '1988-11-19', 0),
-(29, 'Miguel Pérez', '', 99999999, 'Calle 101, Ciudad I', 1234567898, '1987-07-05', 0),
-(30, 'Lucía Rodríguez', '', 10101010, 'Avenida Principal, Ciudad J', 1234567899, '1998-04-03', 0);
+INSERT INTO `paciente` (`IdPaciente`, `Nombre`, `Apellido`, `DNI`, `Domicilio`, `Telefono`, `FechaNacimiento`, `pesoActual`, `estado`) VALUES
+(21, 'Juan Pérez', '', 11111111, 'Calle 123, Ciudad A', 1234567890, '1990-01-15', 0, 0),
+(22, 'María García', '', 22222222, 'Avenida XYZ, Ciudad B', 1234567891, '1985-05-20', 0, 0),
+(23, 'Luis Rodríguez', '', 33333333, 'Calle Principal, Ciudad C', 1234567892, '1978-12-10', 0, 0),
+(24, 'Ana López', '', 44444444, 'Avenida Central, Ciudad D', 1234567893, '1992-08-30', 0, 0),
+(25, 'Carlos Martínez', '', 55555555, 'Calle 456, Ciudad E', 1234567894, '1980-03-25', 0, 0),
+(26, 'Laura Fernández', '', 66666666, 'Avenida ABC, Ciudad F', 1234567895, '1995-06-12', 0, 0),
+(27, 'Pedro González', '', 77777777, 'Calle 789, Ciudad G', 1234567896, '1974-02-08', 0, 0),
+(28, 'Sofía Díaz', '', 88888888, 'Avenida XYZ, Ciudad H', 1234567897, '1988-11-19', 0, 0),
+(29, 'Miguel Pérez', '', 99999999, 'Calle 101, Ciudad I', 1234567898, '1987-07-05', 0, 0),
+(30, 'Lucía Rodríguez', '', 10101010, 'Avenida Principal, Ciudad J', 1234567899, '1998-04-03', 0, 0);
 
 --
 -- Índices para tablas volcadas

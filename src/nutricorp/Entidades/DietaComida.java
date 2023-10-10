@@ -11,6 +11,7 @@ public class DietaComida {
     private int id;
     private Comida comida;
     private Dieta dieta;
+    private String Horario;
 
     public int getId() {
         return id;
@@ -42,6 +43,14 @@ public class DietaComida {
     public DietaComida(Comida comida, Dieta dieta) {
         this.comida = comida;
         this.dieta = dieta;
+    }
+
+    public String getHorario() {
+        return Horario;
+    }
+
+    public void setHorario(String Horario) {
+        this.Horario = Horario;
     }
     
 }
