@@ -25,11 +25,12 @@ public class DietaData {
     ResultSet rs;
     String sql = "";
 
-    public DietaData(Connection connection, PreparedStatement ps, ResultSet rs) {
-        this.connection = connection;
-        this.ps = ps;
-        this.rs = rs;
+   
+
+    public DietaData() {
     }
+    
+    
     
      public void guardarDieta(Dieta dieta) {
         sql = "INSERT INTO dieta(nombre, idPaciente, fechaInicial, pesoInicial, pesoFinal, fechaFinal) VALUES(?, ?, ?, ?, ?, ?)";
@@ -114,11 +115,10 @@ public class DietaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de dieta: " + ex.getMessage());
         }
-     
-     
-     
-    
+   
 }
+    
+    //listo y funcionando
 public void llenarComboBox(JComboBox<String> CBSeleccionarDieta) {
     sql = "SELECT nombre FROM dieta";
     try {

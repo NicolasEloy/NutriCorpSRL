@@ -5,10 +5,23 @@
  */
 package nutricorp.AccesoADatos;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+
 /**
  *
- * @author Matias
+ * @author ale :D
+ *
  */
 public class ComidaData {
+
+    Connection connection;
+    PreparedStatement ps;
+    ResultSet rs;
+    String sql = "";
+
     
+
 }
