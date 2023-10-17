@@ -11,11 +11,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JComboBox;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import nutricorp.Entidades.Dieta;
+import nutricorp.Entidades.Paciente;
+
 
 
 public class DietaData {
@@ -30,7 +32,9 @@ public class DietaData {
         this.ps = ps;
         this.rs = rs;
     }
-    
+    public DietaData(){
+        
+    }
      public void guardarDieta(Dieta dieta) {
         sql = "INSERT INTO dieta(nombre, idPaciente, fechaInicial, pesoInicial, pesoFinal, fechaFinal) VALUES(?, ?, ?, ?, ?, ?)";
         try {
@@ -117,24 +121,53 @@ public class DietaData {
      
      
      
-    
+    /* idDieta , nombre , paciente paciente , localdate fechaInicial
+double pesoInicial,double pesoFinal, localdate fechaFinal
+ */
 }
-public void llenarComboBox(JComboBox<String> CBSeleccionarDieta) {
-    sql = "SELECT nombre FROM dieta";
-    try {
-        connection =  CConection.getConexion();
-        ps = connection.prepareStatement(sql);
-        rs = ps.executeQuery();
-        
-        while (rs.next()) {
-            CBSeleccionarDieta.addItem(rs.getString("nombre"));
+public List<Dieta> listarDieta() {
+        List<Dieta> dietas = new ArrayList<>();
+        try {
+             sql = "SELECT nombre FROM dieta ";
+             rs = ps.executeQuery();
+            while (rs.next()) {
+                Dieta dieta = new Dieta();
+                dieta.setNombre(rs.getString("nombre"));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Dieta " + ex.getMessage());
         }
-        rs.close();
-    } catch (SQLException ex) {
-        System.out.println("Error de SQL: " + ex.getMessage());
+        return dietas;
     }
+public List<Dieta>ListarPacientesDietaTerminada(Date ld){
+        List<Dieta> dietas=new ArrayList<>();
+        sql = "SELECT paciente.Nombre ,paciente.Telefono ,dieta.fechaInicial ,\n" +
+                   "dieta.pesoInicial, dieta.pesoFinal, dieta.FechaFinal FROM paciente\n" +
+                   ", dieta WHERE dieta.FechaFinal < ? ORDER BY dieta.FechaFinal";
+        try{
+            connection = CConection.getConexion();
+            ps = connection.prepareStatement(sql);
+            ps.setDate(1,ld);
+            
+            rs =ps.executeQuery();
+            while (rs.next()){
+                Dieta dieta =new Dieta();
+                Paciente paciente=new Paciente();
+                paciente.setNombre(rs.getString("paciente.Nombre"));
+                paciente.setTelefono(rs.getString("paciente.Telefono"));
+                dieta.setPaciente(paciente);
+                dieta.setFechaInicial(rs.getDate("dieta.fechaInicial").toLocalDate());
+                dieta.setPesoInicial(rs.getDouble("dieta.pesoInicial"));
+                dieta.setPesoFinal(rs.getDouble("dieta.pesoFinal"));
+                dieta.setFechaFinal(rs.getDate("dieta.FechaFinal").toLocalDate());
+            }
+            ps.close();
+        }catch (SQLException ex){
+            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla Dieta"+ ex.getMessage());
+        }
+        return dietas;
 }
-
 
 
 

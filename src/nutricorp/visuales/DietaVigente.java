@@ -5,6 +5,10 @@
  */
 package nutricorp.visuales;
 
+import java.time.Instant;
+import java.util.Date;
+import nutricorp.AccesoADatos.DietaData;
+
 /**
  *
  * @author gg
@@ -43,6 +47,17 @@ public class DietaVigente extends javax.swing.JInternalFrame {
 
         TXTFecha.setText("Fecha Actual:");
 
+        FechaDChooser.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                FechaDChooserComponentShown(evt);
+            }
+        });
+        FechaDChooser.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                FechaDChooserPropertyChange(evt);
+            }
+        });
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -70,6 +85,12 @@ public class DietaVigente extends javax.swing.JInternalFrame {
             }
         });
         Tabla.setViewportView(jTable1);
+
+        RbuttonVigente.setBackground(new java.awt.Color(204, 204, 204));
+        RbuttonVigente.setText("Vigentes");
+
+        RbuttonFinalizados.setBackground(new java.awt.Color(204, 204, 204));
+        RbuttonFinalizados.setText("Finalizados");
 
         jDesktopPane1.setLayer(TXTFecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(FechaDChooser, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -128,6 +149,33 @@ public class DietaVigente extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void FechaDChooserComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_FechaDChooserComponentShown
+        // TODO add your handling code here
+        FechaDChooser.setDate(Date.from(Instant.now()));
+       
+    }//GEN-LAST:event_FechaDChooserComponentShown
+
+    private void FechaDChooserPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_FechaDChooserPropertyChange
+        // TODO add your handling code here:
+        DietaData dd=new DietaData();
+        Date ld=FechaDChooser.getDate();
+        int total=dd.ListarPacientesDietaTerminada();
+        /*
+          String titulos[]={"IdMateria"," Nombre "," Año "};
+       jtablemod=new DefaultTableModel(null,titulos);
+        int total=materiadata.listarMateria().size();
+        String [] mate=new String[3];
+        for (int i = 0; i < total; i++) {
+            mate[0]=String.valueOf(materiadata.listarMateria().get(i).getIdMateria());
+            mate[1]=materiadata.listarMateria().get(i).getNombre();
+            mate[2]=String.valueOf(materiadata.listarMateria().get(i).getAño());
+            jtablemod.addRow(mate);
+        }
+       jTableAlumnos.setModel(jtablemod); 
+               }
+        */
+    }//GEN-LAST:event_FechaDChooserPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
