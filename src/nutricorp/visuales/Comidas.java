@@ -1,8 +1,11 @@
 
 package nutricorp.visuales;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import nutricorp.AccesoADatos.ComidaData;
 import nutricorp.Entidades.Comida;
 
@@ -28,7 +31,6 @@ public class Comidas extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Comidas");
@@ -43,22 +45,15 @@ public class Comidas extends javax.swing.JInternalFrame {
 
         ButtonEliminar.setText("Eliminar");
 
-        ButtonEditar.setText("Editar");
+        ButtonEditar.setText("Guardar");
 
-        ButtonGuardar.setText("Guardar");
+        ButtonGuardar.setText("Nuevo");
 
-        jLabel1.setText("Bucar Dieta");
+        jLabel1.setText("Buscar comida");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel2.setText("________________________________________");
-
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jDesktopPane1.setLayer(TXTNombre, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(TXTDetalle, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -72,7 +67,6 @@ public class Comidas extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jComboBox1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -88,9 +82,7 @@ public class Comidas extends javax.swing.JInternalFrame {
                                 .addComponent(TXTNombre)
                                 .addComponent(TXTCaloria)
                                 .addComponent(ButtonEliminar))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1)))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -103,22 +95,19 @@ public class Comidas extends javax.swing.JInternalFrame {
                                 .addGap(100, 100, 100)
                                 .addComponent(ButtonEditar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                                .addComponent(ButtonGuardar)))
-                        .addGap(57, 57, 57)
-                        .addComponent(jButton1))
+                                .addComponent(ButtonGuardar))))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGap(71, 71, 71)
                         .addComponent(jLabel2)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(28, 28, 28)
@@ -154,10 +143,6 @@ public class Comidas extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
  private ComidaData comidaData;
     private JComboBox<Comida> cbComidas;
 
@@ -167,15 +152,163 @@ public class Comidas extends javax.swing.JInternalFrame {
      
         comidaData = new ComidaData();
          cbComidas = new JComboBox<>();
+          
+       cargarComidasEnComboBox();
+         jComboBox1.setSelectedIndex(-1);
        
-        
        
-      
-        
-      
-        
+        jComboBox1.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Llamada a un método para cargar los datos de la comida seleccionada
+            cargarDatosComidaSeleccionada((String) jComboBox1.getSelectedItem());
+        }
+    });
+        ButtonGuardar.addActionListener(new ActionListener() {
+         @Override
+        public void actionPerformed(ActionEvent e) {
+        guardarComida();
     }
+});
 
+        ButtonEditar.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        editarComida();
+    }
+});
+        ButtonEliminar.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        eliminarComida();
+    }
+});
+
+    
+    }
+        
+    
+   private void cargarComidasEnComboBox() {
+ 
+    List<Comida> comidas = comidaData.listarComidas();
+
+ 
+    jComboBox1.removeAllItems(); 
+    for (Comida comida : comidas) {
+        jComboBox1.addItem(comida.getNombre()); // Puedes usar otro atributo si deseas mostrar algo diferente.
+    }
+    
+  
+    System.out.println("Elementos agregados al JComboBox: " + comidas.size());
+}
+private void cargarDatosComidaSeleccionada(String nombreComida) {
+    Comida comidaSeleccionada = comidaData.buscarComidaPorNombre(nombreComida); // Cambiado para usar el método adecuado
+
+    if (comidaSeleccionada != null) {
+        // Cargar los datos en los campos de texto
+        TFNombreComida.setText(comidaSeleccionada.getNombre());
+        TFDetalle.setText(comidaSeleccionada.getDetalle());
+        TFCalorias.setText(String.valueOf(comidaSeleccionada.getCantCalorias()));
+    }
+}
+         
+  private void guardarComida() {
+    String nombre = TFNombreComida.getText();
+    String detalle = TFDetalle.getText();
+    String caloriasText = TFCalorias.getText();
+    
+    if (nombre.isEmpty() || detalle.isEmpty() || caloriasText.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.");
+        return;
+    }
+    
+    try {
+        double CantCalorias = Double.parseDouble(caloriasText);
+        Comida nuevaComida = new Comida(nombre, detalle, (int) CantCalorias);
+        comidaData.guardarComida(nuevaComida);
+        
+       cargarComidasEnComboBox(); // Actualiza el JComboBox con los cambios
+        jComboBox1.setSelectedIndex(-1);
+         TFNombreComida.setText("");
+        TFDetalle.setText("");
+        TFCalorias.setText("");
+        JOptionPane.showMessageDialog(null, "Comida guardada exitosamente.");
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(null, "Por favor, ingrese un valor válido para las calorías.");
+    }
+}
+
+     
+ private void editarComida() {
+    String nombre = TFNombreComida.getText();
+    String detalle = TFDetalle.getText();
+    String caloriasText = TFCalorias.getText();
+    
+    if (nombre.isEmpty() || detalle.isEmpty() || caloriasText.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.");
+        return;
+    }
+    
+    try {
+        double CantCalorias = Double.parseDouble(caloriasText);
+        Comida comidaSeleccionada = obtenerComidaSeleccionada();
+        
+        if (comidaSeleccionada == null) {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione una comida para editar.");
+            return;
+        }
+        
+        comidaSeleccionada.setNombre(nombre);
+        comidaSeleccionada.setDetalle(detalle);
+        comidaSeleccionada.setCantCalorias((int) CantCalorias);
+        
+        comidaData.modificarComida(comidaSeleccionada);
+        
+        
+
+        
+          cargarComidasEnComboBox(); // Actualiza el JComboBox con los cambios
+        jComboBox1.setSelectedIndex(-1);
+         TFNombreComida.setText("");
+        TFDetalle.setText("");
+        TFCalorias.setText("");
+        
+        JOptionPane.showMessageDialog(null, "Comida editada exitosamente.");
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(null, "Por favor, ingrese un valor válido para las calorías.");
+    }
+}
+
+private Comida obtenerComidaSeleccionada() {
+    String nombreComida = (String) jComboBox1.getSelectedItem();
+    return comidaData.buscarComidaPorNombre(nombreComida);
+}
+   private void eliminarComida() {
+    Comida comidaSeleccionada = obtenerComidaSeleccionada();
+    
+    if (comidaSeleccionada == null) {
+        JOptionPane.showMessageDialog(null, "Por favor, seleccione una comida para eliminar.");
+        return;
+    }
+    
+    int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas eliminar esta comida?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+    
+    if (confirmacion == JOptionPane.YES_OPTION) {
+        comidaData.eliminarComida(comidaSeleccionada.getIdComida());
+        cargarComidasEnComboBox(); // Actualiza el JComboBox sin la comida eliminada
+        limpiarCampos();
+        JOptionPane.showMessageDialog(null, "Comida eliminada exitosamente.");
+    }
+}
+
+private void limpiarCampos() {
+     cargarComidasEnComboBox(); // Actualiza el JComboBox con los cambios
+        jComboBox1.setSelectedIndex(-1);
+         TFNombreComida.setText("");
+        TFDetalle.setText("");
+        TFCalorias.setText("");
+
+}
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -188,7 +321,6 @@ public class Comidas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel TXTCaloria;
     private javax.swing.JLabel TXTDetalle;
     private javax.swing.JLabel TXTNombre;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;

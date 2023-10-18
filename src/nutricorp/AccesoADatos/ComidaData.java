@@ -49,7 +49,7 @@ public class ComidaData {
                 comida.setDetalle(rs.getString("Detalle"));
                 comida.setCantCalorias((int) rs.getDouble("CantCalorias"));
             } else {
-                JOptionPane.showMessageDialog(null, "No existe esa Comida");
+                //JOptionPane.showMessageDialog(null, "No existe esa Comida");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -115,6 +115,34 @@ public List<Comida> listarComidas() {
         }
         return comidas;
     }
+
+public Comida buscarComidaPorNombre(String nombreComida) {
+    Comida comida = null;
+    String sql = "SELECT * FROM comida WHERE Nombre = ?";
+    
+    try {
+        connection = CConection.getConexion();
+        ps = connection.prepareStatement(sql);
+        ps.setString(1, nombreComida);
+        rs = ps.executeQuery();
+
+        if (rs.next()) {
+            comida = new Comida();
+            comida.setIdComida(rs.getInt("IdComida"));
+            comida.setNombre(rs.getString("Nombre"));
+            comida.setDetalle(rs.getString("Detalle"));
+            comida.setCantCalorias(rs.getInt("CantCalorias"));
+        } else {
+          //  JOptionPane.showMessageDialog(null, "No existe esa Comida");
+        }
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al buscar la comida por nombre: " + ex.getMessage());
+    }
+    
+    return comida;
+}
+
 }
 
 
