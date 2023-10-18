@@ -5,21 +5,29 @@
  */
 package nutricorp.visuales;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import nutricorp.AccesoADatos.DietaData;
+import nutricorp.Entidades.Dieta;
 
 /**
  *
  * @author gg
  */
 public class DietaVigente extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form DietaVigente
-     */
+    DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+    DefaultTableModel jtablemod;
     public DietaVigente() {
+        
         initComponents();
+        
     }
 
     /**
@@ -47,6 +55,11 @@ public class DietaVigente extends javax.swing.JInternalFrame {
 
         TXTFecha.setText("Fecha Actual:");
 
+        FechaDChooser.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                FechaDChooserFocusGained(evt);
+            }
+        });
         FechaDChooser.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 FechaDChooserComponentShown(evt);
@@ -91,6 +104,11 @@ public class DietaVigente extends javax.swing.JInternalFrame {
 
         RbuttonFinalizados.setBackground(new java.awt.Color(204, 204, 204));
         RbuttonFinalizados.setText("Finalizados");
+        RbuttonFinalizados.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                RbuttonFinalizadosStateChanged(evt);
+            }
+        });
 
         jDesktopPane1.setLayer(TXTFecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(FechaDChooser, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -102,10 +120,6 @@ public class DietaVigente extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(Tabla, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,12 +127,16 @@ public class DietaVigente extends javax.swing.JInternalFrame {
                         .addComponent(TXTFecha)
                         .addGap(18, 18, 18)
                         .addComponent(FechaDChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(228, Short.MAX_VALUE))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addComponent(RbuttonVigente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(RbuttonFinalizados)
                         .addGap(62, 62, 62))))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(Tabla, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,9 +176,7 @@ public class DietaVigente extends javax.swing.JInternalFrame {
 
     private void FechaDChooserPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_FechaDChooserPropertyChange
         // TODO add your handling code here:
-        DietaData dd=new DietaData();
-        Date ld=FechaDChooser.getDate();
-        int total=dd.ListarPacientesDietaTerminada();
+        
         /*
           String titulos[]={"IdMateria"," Nombre "," Año "};
        jtablemod=new DefaultTableModel(null,titulos);
@@ -176,6 +192,35 @@ public class DietaVigente extends javax.swing.JInternalFrame {
                }
         */
     }//GEN-LAST:event_FechaDChooserPropertyChange
+
+    private void RbuttonFinalizadosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_RbuttonFinalizadosStateChanged
+        // TODO add your handling code here:
+        DietaData dd=new DietaData();
+        Date date = FechaDChooser.getDate(); //ic es la interfaz, jDate el JDatechooser
+        long d = date.getTime(); //guardamos en un long el tiempo
+        java.sql.Date fecha = new java.sql.Date(d);// parseamos al formato del sql  
+        String titulos[]={"Nombre"," Telefono "," FechaInicial "," PesoInicial "," PesoFinal "," FechaFinal "};
+        jtablemod=new DefaultTableModel(null,titulos);
+        int total=dd.ListarPacientesDietaTerminada(fecha).size();
+        List<Dieta>dtterminada=new ArrayList<>();
+        dtterminada=dd.ListarPacientesDietaTerminada(fecha);
+        String [] vec=new String [6];
+        for (int i = 0; i < total; i++) {
+            vec[0]=dtterminada.get(i).getPaciente().getNombre();
+            vec[1]=dtterminada.get(i).getPaciente().getTelefono();
+            vec[2]=String.valueOf(dtterminada.get(i).getFechaInicial());
+            vec[3]=String.valueOf(dtterminada.get(i).getPesoInicial());
+            vec[4]=String.valueOf(dtterminada.get(i).getPesoFinal());
+            vec[5]=String.valueOf(dtterminada.get(i).getFechaFinal());
+            jtablemod.addRow(vec);
+        }
+        jTable1.setModel(jtablemod);
+    }//GEN-LAST:event_RbuttonFinalizadosStateChanged
+
+    private void FechaDChooserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FechaDChooserFocusGained
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_FechaDChooserFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

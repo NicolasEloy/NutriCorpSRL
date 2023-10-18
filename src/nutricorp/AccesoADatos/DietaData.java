@@ -11,9 +11,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import nutricorp.Entidades.Dieta;
 import nutricorp.Entidades.Paciente;
@@ -140,7 +146,7 @@ public List<Dieta> listarDieta() {
         }
         return dietas;
     }
-public List<Dieta>ListarPacientesDietaTerminada(Date ld){
+        public List<Dieta>ListarPacientesDietaTerminada(Date dt){
         List<Dieta> dietas=new ArrayList<>();
         sql = "SELECT paciente.Nombre ,paciente.Telefono ,dieta.fechaInicial ,\n" +
                    "dieta.pesoInicial, dieta.pesoFinal, dieta.FechaFinal FROM paciente\n" +
@@ -148,8 +154,7 @@ public List<Dieta>ListarPacientesDietaTerminada(Date ld){
         try{
             connection = CConection.getConexion();
             ps = connection.prepareStatement(sql);
-            ps.setDate(1,ld);
-            
+            ps.setDate(1,dt);
             rs =ps.executeQuery();
             while (rs.next()){
                 Dieta dieta =new Dieta();
@@ -161,6 +166,35 @@ public List<Dieta>ListarPacientesDietaTerminada(Date ld){
                 dieta.setPesoInicial(rs.getDouble("dieta.pesoInicial"));
                 dieta.setPesoFinal(rs.getDouble("dieta.pesoFinal"));
                 dieta.setFechaFinal(rs.getDate("dieta.FechaFinal").toLocalDate());
+                dietas.add(dieta);
+            }
+            ps.close();
+        }catch (SQLException ex){
+            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla Dieta"+ ex.getMessage());
+        }
+        return dietas;
+}
+        public List<Dieta>ListarPacientesDietaNoTerminada(Date dt){
+        List<Dieta> dietas=new ArrayList<>();
+        sql = "SELECT paciente.Nombre ,paciente.Telefono ,dieta.fechaInicial ,\n" +
+                   "dieta.pesoInicial, dieta.pesoFinal, dieta.FechaFinal FROM paciente\n" +
+                   ", dieta WHERE dieta.FechaFinal > ? ORDER BY dieta.FechaFinal";
+        try{
+            connection = CConection.getConexion();
+            ps = connection.prepareStatement(sql);
+            ps.setDate(1,dt);
+            rs =ps.executeQuery();
+            while (rs.next()){
+                Dieta dieta =new Dieta();
+                Paciente paciente=new Paciente();
+                paciente.setNombre(rs.getString("paciente.Nombre"));
+                paciente.setTelefono(rs.getString("paciente.Telefono"));
+                dieta.setPaciente(paciente);
+                dieta.setFechaInicial(rs.getDate("dieta.fechaInicial").toLocalDate());
+                dieta.setPesoInicial(rs.getDouble("dieta.pesoInicial"));
+                dieta.setPesoFinal(rs.getDouble("dieta.pesoFinal"));
+                dieta.setFechaFinal(rs.getDate("dieta.FechaFinal").toLocalDate());
+                dietas.add(dieta);
             }
             ps.close();
         }catch (SQLException ex){
