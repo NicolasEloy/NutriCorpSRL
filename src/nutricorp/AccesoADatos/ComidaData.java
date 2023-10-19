@@ -10,6 +10,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 
+/**
+ *
+ * @author ale :D
+ *
+ */
 public class ComidaData {
 
     Connection connection;
