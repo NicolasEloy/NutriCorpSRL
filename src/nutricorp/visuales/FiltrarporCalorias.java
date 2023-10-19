@@ -5,17 +5,27 @@
  */
 package nutricorp.visuales;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+import nutricorp.AccesoADatos.CConection;
+
 /**
  *
  * @author gg
  */
 public class FiltrarporCalorias extends javax.swing.JInternalFrame {
-
+    Connection connection;
+        PreparedStatement ps;
+         ResultSet rs;
+        String sql = "";
     /**
      * Creates new form FiltrarporCalorias
      */
     public FiltrarporCalorias() {
-        initComponents();
+        initComponents();    
     }
 
     /**
@@ -114,6 +124,36 @@ public class FiltrarporCalorias extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {                                              
+
+        int extraerNumero = Integer.parseInt(jTextField1.getText());
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("COMIDAS");
+         modelo.addColumn("DETALLES");
+         modelo.addColumn("CALORIAS");
+         jTable1.setModel(modelo);
+
+    try {
+            // Establecer la conexión antes de la preparación de la sentencia SQL
+            connection = CConection.getConexion();
+            sql = "SELECT `Nombre`,`Detalle`,`CantCalorias` FROM `comida` WHERE `CantCalorias` < ?";
+            connection = CConection.getConexion();
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, extraerNumero);
+            rs = ps.executeQuery();
+           
+            Object[] objeto = new Object[3];
+            while (rs.next()) {
+              objeto[0] = rs.getString("Nombre");
+              objeto[1] = rs.getString("Detalle");
+              objeto[2] = rs.getInt("CantCalorias");
+              modelo.addRow(objeto);
+             }
+            jTable1.setModel(modelo);
+       } catch (SQLException | NumberFormatException e) {
+            System.out.println("Error al cargar los datos de las comidas : " + e.getMessage());
+       } 
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
