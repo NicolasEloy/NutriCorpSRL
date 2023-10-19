@@ -129,22 +129,30 @@ public class PacienteData extends Paciente{
     
     
     
-    public List<Paciente> listarPaciente() {
-        List<Paciente> pacientes = new ArrayList<>();
-        try {
-             sql = "SELECT * FROM paciente WHERE estado = 1 ";
-             rs = ps.executeQuery();
-            while (rs.next()) {
-                Paciente paciente = new Paciente();
-                paciente.setNombre(rs.getString("nombre"));
-                paciente.setDni(rs.getInt("dni"));
-                paciente.setDomicilio(rs.getString("domicilio"));
-                paciente.setTelefono(rs.getString("telefono"));
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Paciente " + ex.getMessage());
+   public List<Paciente> listarPaciente() {
+    List<Paciente> pacientes = new ArrayList<>();
+    try {
+        connection = CConection.getConexion(); // Obtener una conexión a la base de datos
+        sql = "SELECT * FROM paciente WHERE estado = 1";
+        ps = connection.prepareStatement(sql);
+        rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Paciente paciente = new Paciente();
+            paciente.setNombre(rs.getString("nombre"));
+            paciente.setDni(rs.getInt("dni"));
+            paciente.setDomicilio(rs.getString("domicilio"));
+            paciente.setTelefono(rs.getString("telefono"));
+            pacientes.add(paciente); // Agregar el objeto paciente a la lista
         }
-        return pacientes;
+
+        rs.close();
+        ps.close();
+        connection.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Paciente: " + ex.getMessage());
     }
+    return pacientes;
+}
+   
 }
