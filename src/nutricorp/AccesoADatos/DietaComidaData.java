@@ -11,9 +11,4 @@ package nutricorp.AccesoADatos;
  */
 public class DietaComidaData {
     
-    
-    
-    
-    
-    String sql="";
 }

@@ -29,22 +29,19 @@ public class PacienteData extends Paciente{
             connection = CConection.getConexion();
 
 
-            sql = "INSERT INTO `paciente`( `Nombre`,`Apellido`, `DNI`, `Domicilio`, `Telefono`,`estado`) VALUES (?,?,?,?,?,?);";
+            sql = "INSERT INTO `paciente`( `Nombre`, `DNI`,`Apellido`, `Domicilio`, `Telefono`,`estado`) VALUES (?,?,?,?,?,1);";
             connection = CConection.getConexion();
             ps = connection.prepareStatement(sql);
 
             // Completar los campos con símbolos por las variables
             // Primera posición corresponde al primer símbolo y así sucesivamente, la contabilización arranca desde 1
             ps.setString(1, paciente.getNombre());
-            ps.setString(2, paciente.getApellido());
-            ps.setInt(3, paciente.getDni());
-            ps.setString(4, paciente.getDomicilio());
-            ps.setString(5, paciente.getTelefono()); 
-             
-            ps.setBoolean(6, true);
-            ps.executeUpdate();
+            ps.setInt(2, paciente.getDni());
+            ps.setString(3, paciente.getDomicilio());
+            ps.setString(4, paciente.getTelefono()); 
+            ps.setString(5, paciente.getApellido()); 
             
-            System.out.println(sql);
+            ps.executeUpdate();
             // Cerrar la consulta y otros recursos si es necesario
             System.out.println("Paciente cargado correctamente ");
             JOptionPane.showMessageDialog(null, "Paciente Ingresado Correctamente");
