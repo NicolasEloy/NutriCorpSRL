@@ -5,6 +5,8 @@
  */
 package nutricorp.visuales;
 
+import nutricorp.AccesoADatos.DietaData;
+
 /**
  *
  * @author gg
@@ -16,6 +18,7 @@ public class CrearDieta extends javax.swing.JInternalFrame {
      */
     public CrearDieta() {
         initComponents();
+     
     }
 
     /**
@@ -29,41 +32,56 @@ public class CrearDieta extends javax.swing.JInternalFrame {
 
         FondoDietas2 = new javax.swing.JDesktopPane();
         TXTND = new javax.swing.JLabel();
-        CBCliente = new javax.swing.JComboBox<>();
-        TXTCliente = new javax.swing.JLabel();
         TFNombreDieta = new javax.swing.JTextField();
         TXTFechaInicio = new javax.swing.JLabel();
-        TXTFechaInicial = new javax.swing.JLabel();
-        DateChooserFechaInicio = new com.toedter.calendar.JDateChooser();
-        TXTPesoInicio = new javax.swing.JLabel();
-        TXTPesoFinal = new javax.swing.JLabel();
-        DateChooserFechaFinal = new com.toedter.calendar.JDateChooser();
-        TFPesoInicial = new javax.swing.JTextField();
-        TFPesoFinal = new javax.swing.JTextField();
         ButtonEliminar = new javax.swing.JButton();
         ButtonEditar = new javax.swing.JButton();
         ButtonGuardar = new javax.swing.JButton();
-        ButtonBuscar = new javax.swing.JButton();
-        TXTSeleccionarDieta = new javax.swing.JLabel();
-        barritasAguanteBoca = new javax.swing.JLabel();
-        CBSeleccionarDieta = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableDesayunoSinAgregar = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTabledesayunoAgregado = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jtableMeriendaSinAgregar = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTableMeriendaAgregada = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTableCenaSinAgregar = new javax.swing.JTable();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTableCenaAgregada = new javax.swing.JTable();
+        btnAgregarDesayuno = new javax.swing.JButton();
+        btnQuitarDesayuno = new javax.swing.JButton();
+        btnAgregarMerienda = new javax.swing.JButton();
+        btnQuitarmerienda = new javax.swing.JButton();
+        btnAgregarCEna = new javax.swing.JButton();
+        btnQuitarCena = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTableDesayunoSinAgregar1 = new javax.swing.JTable();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTableDesayunoSinAgregar2 = new javax.swing.JTable();
+        btnAgregarDesayuno1 = new javax.swing.JButton();
+        btnQuitarDesayuno1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("Crear/Editar Dietas");
+        setPreferredSize(new java.awt.Dimension(1136, 767));
 
         FondoDietas2.setBackground(new java.awt.Color(204, 204, 204));
 
         TXTND.setText("Nombre de la Dieta:");
 
-        TXTCliente.setText("Cliente:");
+        TFNombreDieta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFNombreDietaActionPerformed(evt);
+            }
+        });
 
-        TXTFechaInicio.setText("Fecha Inicio:");
-
-        TXTFechaInicial.setText("Fecha Final:");
-
-        TXTPesoInicio.setText("Peso Inicial:");
-
-        TXTPesoFinal.setText("Peso Final:");
+        TXTFechaInicio.setText("Cantidad de Dias :");
 
         ButtonEliminar.setText("Eliminar");
 
@@ -71,122 +89,321 @@ public class CrearDieta extends javax.swing.JInternalFrame {
 
         ButtonGuardar.setText("Guardar");
 
-        ButtonBuscar.setText("Buscar");
+        jTableDesayunoSinAgregar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableDesayunoSinAgregar);
 
-        TXTSeleccionarDieta.setText("Seleccionar Dieta");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Desayuno");
 
-        barritasAguanteBoca.setBackground(new java.awt.Color(0, 0, 0));
-        barritasAguanteBoca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        barritasAguanteBoca.setText("________________________________________________");
+        jTabledesayunoAgregado.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTabledesayunoAgregado);
+
+        jtableMeriendaSinAgregar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jtableMeriendaSinAgregar);
+
+        jTableMeriendaAgregada.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jTableMeriendaAgregada);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Merienda");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Cena");
+
+        jTableCenaSinAgregar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(jTableCenaSinAgregar);
+
+        jTableCenaAgregada.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane6.setViewportView(jTableCenaAgregada);
+
+        btnAgregarDesayuno.setText("Agregar >>");
+
+        btnQuitarDesayuno.setText("<< Quitar");
+
+        btnAgregarMerienda.setText("Agregar >>");
+
+        btnQuitarmerienda.setText("<< Quitar");
+
+        btnAgregarCEna.setText("Agregar >>");
+
+        btnQuitarCena.setText("<< Quitar");
+        btnQuitarCena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuitarCenaActionPerformed(evt);
+            }
+        });
+
+        jTableDesayunoSinAgregar1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane7.setViewportView(jTableDesayunoSinAgregar1);
+
+        jTableDesayunoSinAgregar2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane8.setViewportView(jTableDesayunoSinAgregar2);
+
+        btnAgregarDesayuno1.setText("Agregar >>");
+
+        btnQuitarDesayuno1.setText("<< Quitar");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Almuerzo");
 
         FondoDietas2.setLayer(TXTND, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        FondoDietas2.setLayer(CBCliente, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        FondoDietas2.setLayer(TXTCliente, javax.swing.JLayeredPane.DEFAULT_LAYER);
         FondoDietas2.setLayer(TFNombreDieta, javax.swing.JLayeredPane.DEFAULT_LAYER);
         FondoDietas2.setLayer(TXTFechaInicio, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        FondoDietas2.setLayer(TXTFechaInicial, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        FondoDietas2.setLayer(DateChooserFechaInicio, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        FondoDietas2.setLayer(TXTPesoInicio, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        FondoDietas2.setLayer(TXTPesoFinal, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        FondoDietas2.setLayer(DateChooserFechaFinal, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        FondoDietas2.setLayer(TFPesoInicial, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        FondoDietas2.setLayer(TFPesoFinal, javax.swing.JLayeredPane.DEFAULT_LAYER);
         FondoDietas2.setLayer(ButtonEliminar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         FondoDietas2.setLayer(ButtonEditar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         FondoDietas2.setLayer(ButtonGuardar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        FondoDietas2.setLayer(ButtonBuscar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        FondoDietas2.setLayer(TXTSeleccionarDieta, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        FondoDietas2.setLayer(barritasAguanteBoca, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        FondoDietas2.setLayer(CBSeleccionarDieta, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        FondoDietas2.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        FondoDietas2.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        FondoDietas2.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        FondoDietas2.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        FondoDietas2.setLayer(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        FondoDietas2.setLayer(jScrollPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        FondoDietas2.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        FondoDietas2.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        FondoDietas2.setLayer(jScrollPane5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        FondoDietas2.setLayer(jScrollPane6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        FondoDietas2.setLayer(btnAgregarDesayuno, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        FondoDietas2.setLayer(btnQuitarDesayuno, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        FondoDietas2.setLayer(btnAgregarMerienda, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        FondoDietas2.setLayer(btnQuitarmerienda, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        FondoDietas2.setLayer(btnAgregarCEna, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        FondoDietas2.setLayer(btnQuitarCena, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        FondoDietas2.setLayer(jScrollPane7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        FondoDietas2.setLayer(jScrollPane8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        FondoDietas2.setLayer(btnAgregarDesayuno1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        FondoDietas2.setLayer(btnQuitarDesayuno1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        FondoDietas2.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout FondoDietas2Layout = new javax.swing.GroupLayout(FondoDietas2);
         FondoDietas2.setLayout(FondoDietas2Layout);
         FondoDietas2Layout.setHorizontalGroup(
             FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FondoDietas2Layout.createSequentialGroup()
-                .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(FondoDietas2Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
+                .addContainerGap()
+                .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoDietas2Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
                         .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ButtonEliminar)
-                            .addComponent(TXTFechaInicio)
-                            .addComponent(TXTPesoFinal)
-                            .addComponent(TXTND)
-                            .addComponent(TXTCliente)
-                            .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(TXTPesoInicio)
-                                .addComponent(TXTFechaInicial)))
+                            .addGroup(FondoDietas2Layout.createSequentialGroup()
+                                .addComponent(TXTND)
+                                .addGap(18, 18, 18)
+                                .addComponent(TFNombreDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(FondoDietas2Layout.createSequentialGroup()
+                                .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(TXTFechaInicio)
+                                    .addComponent(ButtonEliminar))
+                                .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(FondoDietas2Layout.createSequentialGroup()
+                                        .addGap(40, 40, 40)
+                                        .addComponent(ButtonEditar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(ButtonGuardar))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, FondoDietas2Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(160, 160, 160)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                         .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(FondoDietas2Layout.createSequentialGroup()
-                                .addGap(167, 167, 167)
-                                .addComponent(ButtonEditar)
-                                .addGap(30, 30, 30)
-                                .addComponent(ButtonGuardar))
-                            .addGroup(FondoDietas2Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoDietas2Layout.createSequentialGroup()
                                 .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(CBCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TFNombreDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(DateChooserFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(DateChooserFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoDietas2Layout.createSequentialGroup()
+                                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(btnAgregarDesayuno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btnQuitarDesayuno, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(14, 14, 14)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoDietas2Layout.createSequentialGroup()
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(btnAgregarDesayuno1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btnQuitarDesayuno1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoDietas2Layout.createSequentialGroup()
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(btnAgregarMerienda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btnQuitarmerienda, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoDietas2Layout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(119, 119, 119)))
+                                .addGap(29, 29, 29))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoDietas2Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(139, 139, 139))
                             .addGroup(FondoDietas2Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
                                 .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TFPesoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TFPesoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoDietas2Layout.createSequentialGroup()
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(TXTSeleccionarDieta)
-                            .addGap(18, 18, 18)
-                            .addComponent(CBSeleccionarDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(42, 42, 42)
-                            .addComponent(ButtonBuscar))
-                        .addGroup(FondoDietas2Layout.createSequentialGroup()
-                            .addGap(74, 74, 74)
-                            .addComponent(barritasAguanteBoca, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(40, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoDietas2Layout.createSequentialGroup()
+                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(btnAgregarCEna)
+                                            .addComponent(btnQuitarCena, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoDietas2Layout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(82, 82, 82)))
+                                .addContainerGap())))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoDietas2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(138, 138, 138))))
         );
         FondoDietas2Layout.setVerticalGroup(
             FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FondoDietas2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ButtonBuscar)
-                    .addComponent(TXTSeleccionarDieta)
-                    .addComponent(CBSeleccionarDieta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(barritasAguanteBoca)
-                .addGap(31, 31, 31)
-                .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TXTND)
-                    .addComponent(TFNombreDieta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CBCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TXTCliente))
-                .addGap(18, 18, 18)
-                .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TXTFechaInicio)
-                    .addComponent(DateChooserFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TXTFechaInicial)
-                    .addComponent(DateChooserFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TXTPesoInicio)
-                    .addComponent(TFPesoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TXTPesoFinal)
-                    .addComponent(TFPesoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ButtonEliminar)
-                    .addComponent(ButtonEditar)
-                    .addComponent(ButtonGuardar))
-                .addGap(40, 40, 40))
+                .addContainerGap()
+                .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(FondoDietas2Layout.createSequentialGroup()
+                        .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TXTND)
+                            .addComponent(TFNombreDieta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TXTFechaInicio)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ButtonEliminar)
+                            .addComponent(ButtonEditar)
+                            .addComponent(ButtonGuardar)))
+                    .addGroup(FondoDietas2Layout.createSequentialGroup()
+                        .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(FondoDietas2Layout.createSequentialGroup()
+                                .addGap(68, 68, 68)
+                                .addComponent(btnAgregarDesayuno)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnQuitarDesayuno))
+                            .addGroup(FondoDietas2Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoDietas2Layout.createSequentialGroup()
+                                .addComponent(btnAgregarDesayuno1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnQuitarDesayuno1)
+                                .addGap(26, 26, 26)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(FondoDietas2Layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(btnAgregarMerienda)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnQuitarmerienda))
+                            .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(FondoDietas2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(FondoDietas2Layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(btnAgregarCEna)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnQuitarCena))
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 8, Short.MAX_VALUE)))
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -197,33 +414,75 @@ public class CrearDieta extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(FondoDietas2)
+            .addComponent(FondoDietas2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void TFNombreDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFNombreDietaActionPerformed
+
+
+    }//GEN-LAST:event_TFNombreDietaActionPerformed
+
+    private void btnQuitarCenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarCenaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnQuitarCenaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonBuscar;
     private javax.swing.JButton ButtonEditar;
     private javax.swing.JButton ButtonEliminar;
     private javax.swing.JButton ButtonGuardar;
-    private javax.swing.JComboBox<String> CBCliente;
-    private javax.swing.JComboBox<String> CBSeleccionarDieta;
-    private com.toedter.calendar.JDateChooser DateChooserFechaFinal;
-    private com.toedter.calendar.JDateChooser DateChooserFechaInicio;
     private javax.swing.JDesktopPane FondoDietas2;
     private javax.swing.JTextField TFNombreDieta;
-    private javax.swing.JTextField TFPesoFinal;
-    private javax.swing.JTextField TFPesoInicial;
-    private javax.swing.JLabel TXTCliente;
-    private javax.swing.JLabel TXTFechaInicial;
     private javax.swing.JLabel TXTFechaInicio;
     private javax.swing.JLabel TXTND;
-    private javax.swing.JLabel TXTPesoFinal;
-    private javax.swing.JLabel TXTPesoInicio;
-    private javax.swing.JLabel TXTSeleccionarDieta;
-    private javax.swing.JLabel barritasAguanteBoca;
+    private javax.swing.JButton btnAgregarCEna;
+    private javax.swing.JButton btnAgregarDesayuno;
+    private javax.swing.JButton btnAgregarDesayuno1;
+    private javax.swing.JButton btnAgregarMerienda;
+    private javax.swing.JButton btnQuitarCena;
+    private javax.swing.JButton btnQuitarDesayuno;
+    private javax.swing.JButton btnQuitarDesayuno1;
+    private javax.swing.JButton btnQuitarmerienda;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JTable jTableCenaAgregada;
+    private javax.swing.JTable jTableCenaSinAgregar;
+    private javax.swing.JTable jTableDesayunoSinAgregar;
+    private javax.swing.JTable jTableDesayunoSinAgregar1;
+    private javax.swing.JTable jTableDesayunoSinAgregar2;
+    private javax.swing.JTable jTableMeriendaAgregada;
+    private javax.swing.JTable jTabledesayunoAgregado;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable jtableMeriendaSinAgregar;
     // End of variables declaration//GEN-END:variables
+
+//private void updateCombo() {
+//        int total=DietaData.listarAlumnos().size();
+//        for (int i = 0; i < total; i++) {
+//            CBSeleccionarDieta.addItem(DietaData.listarAlumnos().get(i).toString());
+//        }         
+//    }
+    
+    private void armarModeloTablaGeneral(){
+        
+    }
+    
+    
+    
+    
+    
+
 }
