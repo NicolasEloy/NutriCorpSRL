@@ -8,19 +8,21 @@ package nutricorp.Entidades;
  * @author Matias
  */
 public class Paciente {
+    private int idPaciente;
     private String nombre;
+    private String apellido;
     private int dni;
     private String domicilio;
     private String telefono;
-    private int idPaciente;
-    private String apellido;
+    private double pesoActual;
+    private boolean estado;
 
-    public String getApellido() {
-        return apellido;
+    public int getIdPaciente() {
+        return idPaciente;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setIdPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
     public String getNombre() {
@@ -29,6 +31,14 @@ public class Paciente {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public int getDni() {
@@ -55,32 +65,39 @@ public class Paciente {
         this.telefono = telefono;
     }
 
-    public int getIdPaciente() {
-        return idPaciente;
+    public double getPesoActual() {
+        return pesoActual;
     }
 
-    public void setIdPaciente(int idPaciente) {
-        this.idPaciente = idPaciente;
+    public void setPesoActual(double pesoActual) {
+        this.pesoActual = pesoActual;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     public Paciente() {
     }
 
-    public Paciente(String nombre, int dni, String domicilio, String telefono, int idPaciente, String apellido) {
+    public Paciente(String nombre, String apellido, int dni, String domicilio, String telefono, double pesoActual, boolean estado) {
         this.nombre = nombre;
-        this.dni = dni;
-        this.domicilio = domicilio;
-        this.telefono = telefono;
-        this.idPaciente = idPaciente;
         this.apellido = apellido;
-    }
-    public Paciente(String nombre, int dni, String domicilio, String telefono) {
-        this.nombre = nombre;
         this.dni = dni;
         this.domicilio = domicilio;
         this.telefono = telefono;
+        this.pesoActual = pesoActual;
+        this.estado = estado;
     }
+    
+    
+    
 
+    
     
     
 }
