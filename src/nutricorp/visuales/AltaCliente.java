@@ -27,6 +27,12 @@ public class AltaCliente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaBuscarPaciente = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         TXTnombre = new javax.swing.JLabel();
         TXTapellido = new javax.swing.JLabel();
@@ -42,6 +48,59 @@ public class AltaCliente extends javax.swing.JInternalFrame {
         ButtonBuscar = new javax.swing.JButton();
         ButtonModificar = new javax.swing.JButton();
         ButtonEliminar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txtpesoactual = new javax.swing.JTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
+
+        jLabel2.setText("NOMBRE DEL PACIENTE");
+
+        tablaBuscarPaciente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaBuscarPaciente);
+
+        jButton1.setText("jButton1");
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDialog1Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jDialog1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField1))))
+                    .addGroup(jDialog1Layout.createSequentialGroup()
+                        .addGap(299, 299, 299)
+                        .addComponent(jButton1)))
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jButton1)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
 
         setClosable(true);
         setTitle("Alta Clientes ");
@@ -86,6 +145,10 @@ public class AltaCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setText("Peso Actual");
+
+        jCheckBox1.setText("Estado");
+
         jDesktopPane1.setLayer(TXTnombre, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(TXTapellido, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(TXTDNI, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -100,23 +163,31 @@ public class AltaCliente extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(ButtonBuscar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(ButtonModificar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(ButtonEliminar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(txtpesoactual, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jCheckBox1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-
-
+                .addGap(35, 35, 35)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
+                        .addComponent(ButtonAgregar)
+                        .addGap(29, 29, 29)
+                        .addComponent(ButtonModificar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ButtonEliminar))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(TXTtelefono)
                             .addComponent(TXTDomicilio)
                             .addComponent(TXTapellido)
-                            .addComponent(TXTnombre, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TXTDNI, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jLabel1)
+                            .addComponent(TXTnombre)
+                            .addComponent(TXTDNI))
                         .addGap(18, 18, 18)
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(TFNombre)
@@ -126,16 +197,12 @@ public class AltaCliente extends javax.swing.JInternalFrame {
                             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                                 .addComponent(TFDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(ButtonBuscar))))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(ButtonAgregar)
-                        .addGap(18, 18, 18)
-                        .addComponent(ButtonModificar)
-                        .addGap(18, 18, 18)
-                        .addComponent(ButtonEliminar)))
-                .addGap(48, 48, 48))
-
+                                .addComponent(ButtonBuscar))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                                .addComponent(txtpesoactual)
+                                .addGap(18, 18, 18)
+                                .addComponent(jCheckBox1)))))
+                .addContainerGap())
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,21 +228,24 @@ public class AltaCliente extends javax.swing.JInternalFrame {
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TXTtelefono)
                     .addComponent(TFTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
+                .addGap(26, 26, 26)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtpesoactual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBox1))
+                .addGap(30, 30, 30)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonModificar)
                     .addComponent(ButtonAgregar)
                     .addComponent(ButtonEliminar))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,6 +264,8 @@ public class AltaCliente extends javax.swing.JInternalFrame {
         paciente.setDomicilio(TFDomicilio.getText());
         paciente.setNombre(TFNombre.getText());
         paciente.setTelefono(TFTelefono.getText());
+        paciente.setPeso(txtpesoactual.getText());
+        paciente.setEstado(jCheckBox1.toString());
         
         PacienteData pacienteDate = new PacienteData();
         pacienteDate.insertarPaciente(paciente);
@@ -214,6 +286,14 @@ public class AltaCliente extends javax.swing.JInternalFrame {
         TFDomicilio.setText(paci.getDomicilio());
         TFNombre.setText(paci.getNombre());
         TFTelefono.setText(paci.getTelefono());
+        txtpesoactual.setText(paci.getPeso());
+        if (paci.getEstado().equals("1")) {
+        jCheckBox1.setSelected(true);
+    }
+        
+        
+        
+        
       
         ///listo y funcionando
  
@@ -246,21 +326,30 @@ public class AltaCliente extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonAgregar;
-    private javax.swing.JButton ButtonBuscar;
-    private javax.swing.JButton ButtonEliminar;
-    private javax.swing.JButton ButtonModificar;
-    private javax.swing.JTextField TFApellido;
-    private javax.swing.JTextField TFDNI;
-    private javax.swing.JTextField TFDomicilio;
-    private javax.swing.JTextField TFNombre;
-    private javax.swing.JTextField TFTelefono;
+    public javax.swing.JButton ButtonAgregar;
+    public javax.swing.JButton ButtonBuscar;
+    public javax.swing.JButton ButtonEliminar;
+    public javax.swing.JButton ButtonModificar;
+    public javax.swing.JTextField TFApellido;
+    public javax.swing.JTextField TFDNI;
+    public javax.swing.JTextField TFDomicilio;
+    public javax.swing.JTextField TFNombre;
+    public javax.swing.JTextField TFTelefono;
     private javax.swing.JLabel TXTDNI;
     private javax.swing.JLabel TXTDomicilio;
     private javax.swing.JLabel TXTapellido;
     private javax.swing.JLabel TXTnombre;
     private javax.swing.JLabel TXTtelefono;
+    public javax.swing.JButton jButton1;
+    public javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JTextField jTextField1;
+    public javax.swing.JTable tablaBuscarPaciente;
+    public javax.swing.JTextField txtpesoactual;
     // End of variables declaration//GEN-END:variables
 
     private void limpiarCampos(){

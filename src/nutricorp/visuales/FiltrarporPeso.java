@@ -5,6 +5,15 @@
  */
 package nutricorp.visuales;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+import nutricorp.AccesoADatos.CConection;
+
 /**
  *
  * @author gg
@@ -14,8 +23,51 @@ public class FiltrarporPeso extends javax.swing.JInternalFrame {
     /**
      * Creates new form FiltrarporPeso
      */
+    Connection connection;
+    PreparedStatement ps;
+    ResultSet rs;
+    String sql = "";
+
     public FiltrarporPeso() {
         initComponents();
+        llenarComboEasy();
+
+    }
+
+    private void llenartabla() {
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Nombre Cliente");
+        modelo.addColumn("Peso Buscado");
+        modelo.addColumn("Peso Actual");
+        modelo.addColumn("Fecha Final");
+        jTable1.setModel(modelo);
+
+        try {
+            // Establecer la conexión antes de la preparación de la sentencia SQL
+            connection = CConection.getConexion();
+
+            if (jComboBox1.getSelectedItem().equals("Logrado")) {
+                sql = "SELECT  paciente.Nombre,dieta.pesoFinal,paciente.pesoActual,dieta.FechaFinal FROM `paciente` JOIN dieta ON (paciente.IdPaciente = dieta.IdPaciente) WHERE paciente.pesoActual<=dieta.pesoFinal";
+            } else {
+                sql = "SELECT  paciente.Nombre,dieta.pesoFinal,paciente.pesoActual,dieta.FechaFinal FROM `paciente` JOIN dieta ON (paciente.IdPaciente = dieta.IdPaciente) WHERE paciente.pesoActual>dieta.pesoFinal";
+            }
+            connection = CConection.getConexion();
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            Object[] objeto = new Object[4];
+            while (rs.next()) {
+                objeto[0] = rs.getString("Nombre");
+                objeto[1] = rs.getInt("pesoFinal");
+                objeto[2] = rs.getInt("pesoActual");
+                objeto[3] = rs.getDate("FechaFinal");
+                modelo.addRow(objeto);
+            }
+            jTable1.setModel(modelo);
+        } catch (SQLException | NumberFormatException e) {
+            System.out.println("Error al cargar los datos de las comidas : " + e.getMessage());
+        }
     }
 
     /**
@@ -49,6 +101,12 @@ public class FiltrarporPeso extends javax.swing.JInternalFrame {
         setTitle("Peso Logrado o No Logrado\n");
 
         jDesktopPane1.setBackground(new java.awt.Color(204, 204, 204));
+
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Finalizo con:");
 
@@ -125,6 +183,11 @@ public class FiltrarporPeso extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+
+        llenartabla();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jComboBox1;
@@ -134,4 +197,10 @@ public class FiltrarporPeso extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void llenarComboEasy() {
+        jComboBox1.addItem("Logrado");
+        jComboBox1.addItem("No Logrado");
+    }
+
 }
