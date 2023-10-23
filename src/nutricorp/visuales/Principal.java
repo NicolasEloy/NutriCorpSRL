@@ -39,7 +39,7 @@ public class Principal extends javax.swing.JFrame {
         MenuFiltro = new javax.swing.JMenu();
         FiltrarClientesporPeso = new javax.swing.JMenuItem();
         MenuDietas = new javax.swing.JMenu();
-        CrearDietas = new javax.swing.JMenuItem();
+        CrearDieta = new javax.swing.JMenuItem();
         InsertarComidasaDietas = new javax.swing.JMenuItem();
         AgregarComidas = new javax.swing.JMenuItem();
         Filtros2 = new javax.swing.JMenu();
@@ -52,7 +52,6 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1360, 768));
 
         escritorio.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -109,13 +108,13 @@ public class Principal extends javax.swing.JFrame {
 
         MenuDietas.setText("Dietas");
 
-        CrearDietas.setText("Crear Dieta");
-        CrearDietas.addActionListener(new java.awt.event.ActionListener() {
+        CrearDieta.setText("Crear Dieta");
+        CrearDieta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CrearDietasActionPerformed(evt);
+                CrearDietaActionPerformed(evt);
             }
         });
-        MenuDietas.add(CrearDietas);
+        MenuDietas.add(CrearDieta);
 
         InsertarComidasaDietas.setText("Insertar Comidas a Dietas");
         InsertarComidasaDietas.addActionListener(new java.awt.event.ActionListener() {
@@ -195,13 +194,13 @@ public class Principal extends javax.swing.JFrame {
         escritorio.moveToFront(FP);
     }//GEN-LAST:event_FiltrarClientesporPesoActionPerformed
 
-    private void CrearDietasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearDietasActionPerformed
+    private void CrearDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearDietaActionPerformed
         // TODO add your handling code here:
         CrearDieta CD = new CrearDieta();
         CD.setVisible(true);
         escritorio.add(CD);
         escritorio.moveToFront(CD);
-    }//GEN-LAST:event_CrearDietasActionPerformed
+    }//GEN-LAST:event_CrearDietaActionPerformed
 
     private void InsertarComidasaDietasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertarComidasaDietasActionPerformed
         // TODO add your handling code here:
@@ -266,7 +265,7 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AgregarComidas;
     private javax.swing.JMenuBar BarraMenu;
-    private javax.swing.JMenuItem CrearDietas;
+    private javax.swing.JMenuItem CrearDieta;
     private javax.swing.JMenuItem DietaVigente;
     private javax.swing.JMenuItem FiltrarClientesporPeso;
     private javax.swing.JMenuItem FiltrarComidasporCalorias;

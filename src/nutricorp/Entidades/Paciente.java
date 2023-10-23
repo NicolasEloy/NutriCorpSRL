@@ -93,6 +93,11 @@ public class Paciente {
         this.pesoActual = pesoActual;
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "Paciente{" + nombre +","+ apellido + ",dni=" + dni + '}';
+    }
     
     
     

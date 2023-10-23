@@ -136,10 +136,13 @@ public List<Dieta> listarDieta() {
         List<Dieta> dietas = new ArrayList<>();
         try {
              sql = "SELECT nombre FROM dieta ";
+             connection = CConection.getConexion();
+             ps=connection.prepareStatement(sql);
              rs = ps.executeQuery();
             while (rs.next()) {
                 Dieta dieta = new Dieta();
                 dieta.setNombre(rs.getString("nombre"));
+                dietas.add(dieta);
             }
             ps.close();
         } catch (SQLException ex) {
@@ -147,6 +150,7 @@ public List<Dieta> listarDieta() {
         }
         return dietas;
     }
+
         public List<Dieta>ListarPacientesDietaTerminada(Date dt){
         List<Dieta> dietas=new ArrayList<>();
         sql = "SELECT paciente.Nombre ,paciente.Telefono ,dieta.fechaInicial ,\n" +
@@ -217,6 +221,7 @@ public List<Paciente> listarPacienteConDietas(String nombre) {
                 paciente.setNombre(rs.getString("nombre"));
                 paciente.setApellido(rs.getString("apellido"));
                 paciente.setDni(rs.getInt("dni"));
+                pacientes.add(paciente);
             }
             ps.close();
         } catch (SQLException ex) {
@@ -250,5 +255,6 @@ public List<Paciente> listarPacienteSinDietas(String nombre) {
 
 
 
+   
 }
 

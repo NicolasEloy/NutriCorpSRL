@@ -86,6 +86,11 @@ public class Dieta {
         this.pesoFinal = pesoFinal;
         this.fechaFinal = fechaFinal;
     }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
     
     
 }
