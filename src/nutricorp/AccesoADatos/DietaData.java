@@ -242,6 +242,7 @@ public List<Paciente> listarPacienteSinDietas(String nombre) {
                 paciente.setNombre(rs.getString("nombre"));
                 paciente.setApellido(rs.getString("apellido"));
                 paciente.setDni(rs.getInt("dni"));
+                pacientes.add(paciente);
             }
             ps.close();
         } catch (SQLException ex) {

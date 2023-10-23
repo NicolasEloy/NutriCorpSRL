@@ -133,6 +133,8 @@ public class PacienteData extends Paciente{
         List<Paciente> pacientes = new ArrayList<>();
         try {
              sql = "SELECT * FROM paciente WHERE estado = 1 ";
+             connection=CConection.getConexion();
+             ps=connection.prepareStatement(sql);
              rs = ps.executeQuery();
             while (rs.next()) {
                 Paciente paciente = new Paciente();
@@ -140,6 +142,7 @@ public class PacienteData extends Paciente{
                 paciente.setDni(rs.getInt("dni"));
                 paciente.setDomicilio(rs.getString("domicilio"));
                 paciente.setTelefono(rs.getString("telefono"));
+                pacientes.add(paciente);
             }
             ps.close();
         } catch (SQLException ex) {

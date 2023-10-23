@@ -8,6 +8,7 @@ package nutricorp.visuales;
 import java.sql.Date;
 import nutricorp.AccesoADatos.DietaData;
 import nutricorp.Entidades.Dieta;
+import nutricorp.Entidades.Paciente;
 
 /**
  *
@@ -220,6 +221,7 @@ public class CrearDieta extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Dieta dt=new Dieta();
+        Paciente pc=new Paciente();
         String name=jComboBox1.getSelectedItem().toString();
         dt=dd.buscarDieta(name,dd.listarPacienteConDietas(name).get(0).getIdPaciente());
         NombreDieta.setText(dt.getNombre());
@@ -227,7 +229,8 @@ public class CrearDieta extends javax.swing.JInternalFrame {
         PesoInicial.setText(Double.toString(dt.getPesoInicial()));
         FechaFinal.setDate(Date.valueOf(dt.getFechaFinal()));
         FechaInicio.setDate(Date.valueOf(dt.getFechaInicial()));
-        jComboBox3.setSelectedItem(dt);
+        jComboBox3.addItem(dd.listarPacienteConDietas(name).get(0).toString());
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -262,7 +265,6 @@ private void updateCombo() {
         for (int i = 0; i < total; i++) {
             jComboBox1.addItem(dd.listarDieta().get(i).toString());
         }    
-        System.out.println(" hola"+total);
         jComboBox2.setSelectedIndex(-1);
     }
 }
