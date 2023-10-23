@@ -14,6 +14,26 @@ public class Paciente {
     private String telefono;
     private int idPaciente;
     private String apellido;
+    private String peso;
+    private String estado;
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    
+
+    public String getPeso() {
+        return peso;
+    }
+
+    public void setPeso(String peso) {
+        this.peso = peso;
+    }
 
     public String getApellido() {
         return apellido;

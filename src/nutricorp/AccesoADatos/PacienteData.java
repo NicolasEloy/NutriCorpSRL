@@ -9,8 +9,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import nutricorp.Entidades.Paciente;
+
 /**
  *
  * @author Matias
@@ -20,6 +23,8 @@ public class PacienteData extends Paciente{
     PreparedStatement ps;
     ResultSet rs;
     String sql = "";
+   
+    DefaultTableModel tableFiltroPacientes;
     
     
     //funcionando
@@ -29,7 +34,7 @@ public class PacienteData extends Paciente{
             connection = CConection.getConexion();
 
 
-            sql = "INSERT INTO `paciente`( `Nombre`,`Apellido`, `DNI`, `Domicilio`, `Telefono`,`estado`) VALUES (?,?,?,?,?,?);";
+            sql = "INSERT INTO `paciente`( `Nombre`,`Apellido`, `DNI`, `Domicilio`, `Telefono`,pesoActual,`estado`) VALUES (?,?,?,?,?,?,?);";
             connection = CConection.getConexion();
             ps = connection.prepareStatement(sql);
 
@@ -40,8 +45,8 @@ public class PacienteData extends Paciente{
             ps.setInt(3, paciente.getDni());
             ps.setString(4, paciente.getDomicilio());
             ps.setString(5, paciente.getTelefono()); 
-             
-            ps.setBoolean(6, true);
+            ps.setString(6, paciente.getPeso());
+            ps.setString(7, paciente.getEstado());
             ps.executeUpdate();
             
             System.out.println(sql);
@@ -58,7 +63,7 @@ public class PacienteData extends Paciente{
    
    //listo y funcionando
     public Paciente buscarPacientePorDni(int dni) {
-        sql = "SELECT Nombre, DNI , Domicilio,Apellido, Telefono FROM paciente WHERE dni =? AND estado = 1";
+        sql = "SELECT Nombre, DNI , Domicilio,Apellido,pesoActual,estado, Telefono FROM paciente WHERE dni =? AND estado = 1";
         Paciente paciente = null;
         try {
             connection = CConection.getConexion();
@@ -73,6 +78,10 @@ public class PacienteData extends Paciente{
                 paciente.setDomicilio(rs.getString("domicilio"));
                 paciente.setTelefono(rs.getString("telefono"));
                 paciente.setApellido(rs.getString("apellido"));
+                paciente.setEstado(rs.getString("estado"));
+                paciente.setPeso(rs.getString("pesoActual"));
+                
+                
                 
                 //paciente.setEstado(true);       
             } else {
@@ -150,4 +159,20 @@ public class PacienteData extends Paciente{
         }
         return pacientes;
     }
+    
+    
+    
+     
+   
+            
+            
+            
+   
+    
+    
+    
+    
+    
+    
+    
 }
