@@ -1,8 +1,6 @@
 package nutricorp.visuales;
-
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
-import com.toedter.calendar.JDateChooser;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +9,7 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import nutricorp.AccesoADatos.CConection;
 import nutricorp.AccesoADatos.PacienteData;
+
 public class HistorialCliente extends javax.swing.JInternalFrame {
 
     @SuppressWarnings("unchecked")
@@ -19,10 +18,8 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
     PreparedStatement ps;
     ResultSet rs;
     String sql = "";
-    
-    
-    
-    
+
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -181,22 +178,15 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-     public HistorialCliente() {
+    public HistorialCliente() {
 
         initComponents();
         PacienteData pd = new PacienteData();
         pd.llenarComboBoxPacientes(jComboBox1);
     }
-     
-     
-     
-     
-     
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-          
+
         llenarTablaHistorial();
-        
-        
         String sql = "select IdPaciente from paciente where Nombre = '" + jComboBox1.getSelectedItem().toString() + "'";
         try {
             connection = CConection.getConexion();
@@ -207,40 +197,25 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             Logger.getLogger(HistorialCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-       // Crear un formato de fecha
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-        // Obtener la fecha del JDateChooser
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");       
         String fecha = sdf.format(jDateChooser1.getDate());
-
-        
-        String sql = "insert into historialpeso (IdPaciente,Fecha,Peso) VALUES ('" + txtidpaciente.getText() + "','"+fecha+"','" + TXTNUEVOPESO.getText() + "')";
-        
+        String sql = "insert into historialpeso (IdPaciente,Fecha,Peso) VALUES ('" + txtidpaciente.getText() + "','" + fecha + "','" + TXTNUEVOPESO.getText() + "')";
         System.out.println(jDateChooser1.getDate());
-        
         connection = CConection.getConexion();
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             System.out.println("actualizado el peso del paciente");
-            
-            
-           
+
         } catch (SQLException ex) {
             Logger.getLogger(HistorialCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-         llenarTablaHistorial();
-        
-
-
+        llenarTablaHistorial();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-   
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -258,36 +233,24 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
     public javax.swing.JLabel txtidpaciente;
     // End of variables declaration//GEN-END:variables
 
-    public void llenarTablaHistorial(){
-        String sql= "Select Fecha,Peso from historialpeso where IdPaciente='"+txtidpaciente.getText()+"'";
+    public void llenarTablaHistorial() {
+        String sql = "Select Fecha,Peso from historialpeso where IdPaciente='" + txtidpaciente.getText() + "'";
         DefaultTableModel modeloT = (DefaultTableModel) tablaAlumnoFecha.getModel();
-        
         connection = CConection.getConexion();
         try {
-           modeloT.setRowCount(0);
-          ps = connection.prepareStatement(sql);
-          rs = ps.executeQuery();
-            while (rs.next()) { 
-               modeloT.addRow(new Object[]{
-                   rs.getString("Peso"),
-                   rs.getString("Fecha"),
-                 });
-             }
+            modeloT.setRowCount(0);
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                modeloT.addRow(new Object[]{
+                    rs.getString("Peso"),
+                    rs.getString("Fecha"),});
+            }
             tablaAlumnoFecha.setModel(modeloT);
             ps.close();
             rs.close();
-            
-            
-            
         } catch (Exception e) {
-            
-            
+            System.out.println("eeror de tipo "+e);
         }
-        
-        
-        
     }
-
-
-
 }
