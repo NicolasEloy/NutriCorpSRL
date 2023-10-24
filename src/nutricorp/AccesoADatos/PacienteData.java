@@ -9,25 +9,29 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import nutricorp.Entidades.Paciente;
+
 /**
  *
  * @author Matias
  */
-public class PacienteData extends Paciente{
+public class PacienteData extends Paciente {
+
     Connection connection;
     PreparedStatement ps;
     ResultSet rs;
     String sql = "";
-    
-    
+
     //funcionando
-   public void insertarPaciente(Paciente paciente) {
+    public void insertarPaciente(Paciente paciente) {
         try {
             // Establecer la conexión antes de la preparación de la sentencia SQL
             connection = CConection.getConexion();
-
 
             sql = "INSERT INTO `paciente`( `Nombre`, `DNI`,`Apellido`, `Domicilio`, `Telefono`,`estado`) VALUES (?,?,?,?,?,1);";
             connection = CConection.getConexion();
@@ -38,9 +42,9 @@ public class PacienteData extends Paciente{
             ps.setString(1, paciente.getNombre());
             ps.setInt(2, paciente.getDni());
             ps.setString(3, paciente.getDomicilio());
-            ps.setString(4, paciente.getTelefono()); 
-            ps.setString(5, paciente.getApellido()); 
-            
+            ps.setString(4, paciente.getTelefono());
+            ps.setString(5, paciente.getApellido());
+
             ps.executeUpdate();
             // Cerrar la consulta y otros recursos si es necesario
             System.out.println("Paciente cargado correctamente ");
@@ -52,8 +56,8 @@ public class PacienteData extends Paciente{
 
         }
     }
-   
-   //listo y funcionando
+
+    //listo y funcionando
     public Paciente buscarPacientePorDni(int dni) {
         sql = "SELECT Nombre, DNI , Domicilio,Apellido, Telefono FROM paciente WHERE dni =? AND estado = 1";
         Paciente paciente = null;
@@ -70,19 +74,18 @@ public class PacienteData extends Paciente{
                 paciente.setDomicilio(rs.getString("domicilio"));
                 paciente.setTelefono(rs.getString("telefono"));
                 paciente.setApellido(rs.getString("apellido"));
-                
+
                 //paciente.setEstado(true);       
             } else {
                 JOptionPane.showMessageDialog(null, "No existe ese Paciente");
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder "+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder " + ex.getMessage());
         }
         return paciente;
     }
-   
-    
+
     // listo y funcionando
     public void modificadorPaciente(Paciente paciente) {
         sql = "UPDATE paciente SET  Nombre=?,Apellido = ?,DNI=?,Domicilio=?,Telefono=? WHERE DNI=?";
@@ -105,14 +108,12 @@ public class PacienteData extends Paciente{
         }
     }
 
-
-    
-    public void eliminarPaciente(int dni) {        
-        sql = "UPDATE paciente SET estado=0  WHERE DNI=?";       
+    public void eliminarPaciente(int dni) {
+        sql = "UPDATE paciente SET estado=0  WHERE DNI=?";
         try {
             connection = CConection.getConexion();
             ps = connection.prepareStatement(sql);
-            ps.setInt(1,dni);
+            ps.setInt(1, dni);
 
             int exito = ps.executeUpdate();
             if (exito == 1) {
@@ -122,37 +123,54 @@ public class PacienteData extends Paciente{
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de paciente");
-            
+
         }
     }
-    
-    
-    
-    
-   public List<Paciente> listarPaciente() {
-    List<Paciente> pacientes = new ArrayList<>();
-    try {
-        connection = CConection.getConexion(); // Obtener una conexión a la base de datos
-        sql = "SELECT * FROM paciente WHERE estado = 1";
-        ps = connection.prepareStatement(sql);
-        rs = ps.executeQuery();
 
-        while (rs.next()) {
-            Paciente paciente = new Paciente();
-            paciente.setNombre(rs.getString("nombre"));
-            paciente.setDni(rs.getInt("dni"));
-            paciente.setDomicilio(rs.getString("domicilio"));
-            paciente.setTelefono(rs.getString("telefono"));
-            pacientes.add(paciente); // Agregar el objeto paciente a la lista
+    public List<Paciente> listarPaciente() {
+        List<Paciente> pacientes = new ArrayList<>();
+        try {
+            connection = CConection.getConexion(); // Obtener una conexión a la base de datos
+            sql = "SELECT * FROM paciente WHERE estado = 1";
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Paciente paciente = new Paciente();
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setDni(rs.getInt("dni"));
+                paciente.setDomicilio(rs.getString("domicilio"));
+                paciente.setTelefono(rs.getString("telefono"));
+                pacientes.add(paciente); // Agregar el objeto paciente a la lista
+            }
+
+            rs.close();
+            ps.close();
+            connection.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Paciente: " + ex.getMessage());
+        }
+        return pacientes;
+    }
+
+    public void llenarComboBoxPacientes(JComboBox parametrodelCombo) {
+
+        sql = "SELECT nombre FROM paciente ";
+        try {
+            connection = CConection.getConexion();
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                parametrodelCombo.addItem(rs.getString("nombre"));
+                
+            }
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.out.println("error de sql " + ex);
         }
 
-        rs.close();
-        ps.close();
-        connection.close();
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Paciente: " + ex.getMessage());
     }
-    return pacientes;
-}
-   
+
 }
