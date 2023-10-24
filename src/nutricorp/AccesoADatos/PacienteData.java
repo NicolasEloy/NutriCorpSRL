@@ -46,7 +46,7 @@ public class PacienteData extends Paciente{
             ps.setString(4, paciente.getDomicilio());
             ps.setString(5, paciente.getTelefono()); 
             ps.setString(6, paciente.getPeso());
-            ps.setString(7, paciente.getEstado());
+            ps.setBoolean(7, paciente.getEstado());
             ps.executeUpdate();
             
             System.out.println(sql);
@@ -78,7 +78,7 @@ public class PacienteData extends Paciente{
                 paciente.setDomicilio(rs.getString("domicilio"));
                 paciente.setTelefono(rs.getString("telefono"));
                 paciente.setApellido(rs.getString("apellido"));
-                paciente.setEstado(rs.getString("estado"));
+                paciente.setEstado(rs.getBoolean("estado"));
                 paciente.setPeso(rs.getString("pesoActual"));
                 
                 

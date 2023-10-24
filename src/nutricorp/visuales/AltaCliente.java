@@ -8,6 +8,7 @@ package nutricorp.visuales;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import nutricorp.AccesoADatos.PacienteData;
 import nutricorp.Entidades.Paciente;
 
@@ -145,7 +146,7 @@ public class AltaCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setText("Peso Actual");
+        jLabel1.setText("Peso Inicial");
 
         jCheckBox1.setText("Estado");
 
@@ -257,60 +258,120 @@ public class AltaCliente extends javax.swing.JInternalFrame {
 
     private void ButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAgregarActionPerformed
 
-        Paciente paciente = new Paciente();
-              
-         paciente.setApellido(TFApellido.getText());
-        paciente.setDni(Integer.parseInt(TFDNI.getText()));
-        paciente.setDomicilio(TFDomicilio.getText());
-        paciente.setNombre(TFNombre.getText());
-        paciente.setTelefono(TFTelefono.getText());
-        paciente.setPeso(txtpesoactual.getText());
-        paciente.setEstado(jCheckBox1.toString());
-        
-        PacienteData pacienteDate = new PacienteData();
-        pacienteDate.insertarPaciente(paciente);
-        limpiarCampos();
-       
-        //listo y funcionando
+    String nombre = TFNombre.getText();
+    String apellido = TFApellido.getText();
+    String dniText = TFDNI.getText();
+    String domicilio = TFDomicilio.getText();
+    String telefono = TFTelefono.getText(); // Declarar y definir la variable
+    String peso = txtpesoactual.getText();
+    boolean estado = jCheckBox1.isSelected();
+
+    // Validaciónes
+    if (nombre.isEmpty() || !nombre.matches("^[a-zA-Z]+$")) {
+        JOptionPane.showMessageDialog(this, "Nombre no válido. Debe contener solo letras.");
+        return;
+    }
+
+    if (apellido.isEmpty() || !apellido.matches("^[a-zA-Z]+$")) {
+        JOptionPane.showMessageDialog(this, "Apellido no válido. Debe contener solo letras.");
+        return; 
+    }
+
+    if (telefono.isEmpty() || !telefono.matches("^[0-9]+$")) {
+       JOptionPane.showMessageDialog(this, "Teléfono no válido. Debe contener solo números.");
+        return; 
+    }
+     if (peso.isEmpty() || !peso.matches("^[0-9]+$")) {
+       JOptionPane.showMessageDialog(this, "Peso no válido. Debe contener solo números.");
+        return; 
+    }
+
+   
+    Paciente paciente = new Paciente();
+    paciente.setApellido(apellido);
+    paciente.setDni(Integer.parseInt(dniText));
+    paciente.setDomicilio(domicilio);
+    paciente.setNombre(nombre);
+    paciente.setTelefono(telefono);
+    paciente.setPeso(peso);
+    paciente.setEstado(estado);
+
+    PacienteData pacienteData = new PacienteData();
+    pacienteData.insertarPaciente(paciente);
+    limpiarCampos();
+
 
     }//GEN-LAST:event_ButtonAgregarActionPerformed
 
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
 
-        int DNI =  Integer.parseInt(TFDNI.getText());
-        Paciente paci = new Paciente();
-        PacienteData pacidata = new PacienteData();
-               
-        paci = pacidata.buscarPacientePorDni(DNI);
-        TFApellido.setText(paci.getApellido());
-        TFDomicilio.setText(paci.getDomicilio());
-        TFNombre.setText(paci.getNombre());
-        TFTelefono.setText(paci.getTelefono());
-        txtpesoactual.setText(paci.getPeso());
-        if (paci.getEstado().equals("1")) {
-        jCheckBox1.setSelected(true);
+        try {
+        int dni = Integer.parseInt(TFDNI.getText());
+        PacienteData pacienteData = new PacienteData();
+        Paciente paciente = pacienteData.buscarPacientePorDni(dni);
+
+        if (paciente != null) {
+            TFApellido.setText(paciente.getApellido());
+            TFDomicilio.setText(paciente.getDomicilio());
+            TFNombre.setText(paciente.getNombre());
+            TFTelefono.setText(paciente.getTelefono());
+            txtpesoactual.setText(paciente.getPeso()); // Actualiza el campo de peso
+            jCheckBox1.setSelected(paciente.getEstado());
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontró ningún paciente con el DNI proporcionado.");
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "El DNI debe ser un número entero válido.");
     }
         
-        
-        
-        
-      
-        ///listo y funcionando
- 
     }//GEN-LAST:event_ButtonBuscarActionPerformed
 
     private void ButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonModificarActionPerformed
 
-        Paciente paci = new Paciente();       
-        paci.setApellido(TFApellido.getText());
-        paci.setDni(Integer.parseInt(TFDNI.getText()));
-        paci.setDomicilio(TFDomicilio.getText());
-        paci.setNombre(TFNombre.getText());
-        paci.setTelefono(TFTelefono.getText());       
-        PacienteData pacidata = new PacienteData();
-        pacidata.modificadorPaciente(paci);
-        limpiarCampos();
         
+    String nombre = TFNombre.getText();
+    String apellido = TFApellido.getText();
+    String dniText = TFDNI.getText();
+    String domicilio = TFDomicilio.getText();
+    String telefono = TFTelefono.getText();
+    String peso = txtpesoactual.getText();
+    boolean estado = jCheckBox1.isSelected();
+
+    // Validacións
+    if (nombre.isEmpty() || !nombre.matches("^[a-zA-Z]+$")) {
+        // El nombre está vacío o contiene números u otros caracteres no válidos
+        JOptionPane.showMessageDialog(this, "Nombre no válido. Debe contener solo letras.");
+        return; // Salir del método sin guardar
+    }
+
+    if (apellido.isEmpty() || !apellido.matches("^[a-zA-Z]+$")) {
+        JOptionPane.showMessageDialog(this, "Apellido no válido. Debe contener solo letras.");
+        return;
+    }
+
+    if (telefono.isEmpty() || !telefono.matches("^[0-9]+$")) {
+        JOptionPane.showMessageDialog(this, "Teléfono no válido. Debe contener solo números.");
+        return; 
+    }
+    
+    if (peso.isEmpty() || !peso.matches("^[0-9]+$")) {
+        JOptionPane.showMessageDialog(this, "Peso no válido. Debe contener solo números.");
+        return;
+    }
+
+  
+    Paciente paciente = new Paciente();
+    paciente.setApellido(apellido);
+    paciente.setDni(Integer.parseInt(dniText));
+    paciente.setDomicilio(domicilio);
+    paciente.setNombre(nombre);
+    paciente.setTelefono(telefono);
+    paciente.setPeso(peso);
+    paciente.setEstado(estado);
+
+    PacienteData pacienteData = new PacienteData();
+    pacienteData.modificadorPaciente(paciente);
+    limpiarCampos();
 
     }//GEN-LAST:event_ButtonModificarActionPerformed
 
@@ -359,6 +420,7 @@ public class AltaCliente extends javax.swing.JInternalFrame {
     TFDomicilio.setText("");
     TFNombre.setText("");
     TFTelefono.setText("");
+    txtpesoactual.setText("");
     
     }
 

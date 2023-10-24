@@ -319,7 +319,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Peso Actual"/>
+            <Property name="text" type="java.lang.String" value="Peso Inicial"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtpesoactual">
