@@ -15,13 +15,17 @@ public class Paciente {
     private int idPaciente;
     private String apellido;
     private String peso;
-    private String estado;
+    private boolean estado;
 
-    public String getEstado() {
+
+   
+    
+
+    public boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
     
@@ -86,19 +90,18 @@ public class Paciente {
     public Paciente() {
     }
 
-    public Paciente(String nombre, int dni, String domicilio, String telefono, int idPaciente, String apellido) {
-        this.nombre = nombre;
-        this.dni = dni;
-        this.domicilio = domicilio;
-        this.telefono = telefono;
-        this.idPaciente = idPaciente;
-        this.apellido = apellido;
-    }
-    public Paciente(String nombre, int dni, String domicilio, String telefono) {
-        this.nombre = nombre;
-        this.dni = dni;
-        this.domicilio = domicilio;
-        this.telefono = telefono;
+  public Paciente(String nombre, String apellido, int dni, String domicilio, String telefono, String peso, boolean estado) {
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.dni = dni;
+    this.domicilio = domicilio;
+    this.telefono = telefono;
+    this.peso = peso;
+    this.estado = estado;
+}
+
+    public int isEstado() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     

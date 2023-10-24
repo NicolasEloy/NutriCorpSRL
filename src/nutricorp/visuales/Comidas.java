@@ -4,6 +4,8 @@ package nutricorp.visuales;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import nutricorp.AccesoADatos.ComidaData;
@@ -143,7 +145,7 @@ public class Comidas extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
- private ComidaData comidaData;
+  private ComidaData comidaData;
     private JComboBox<Comida> cbComidas;
 
     public Comidas() {
@@ -160,7 +162,7 @@ public class Comidas extends javax.swing.JInternalFrame {
         jComboBox1.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            // Llamada a un método para cargar los datos de la comida seleccionada
+           
             cargarDatosComidaSeleccionada((String) jComboBox1.getSelectedItem());
         }
     });
@@ -195,17 +197,16 @@ public class Comidas extends javax.swing.JInternalFrame {
  
     jComboBox1.removeAllItems(); 
     for (Comida comida : comidas) {
-        jComboBox1.addItem(comida.getNombre()); // Puedes usar otro atributo si deseas mostrar algo diferente.
+        jComboBox1.addItem(comida.getNombre()); 
     }
     
   
     System.out.println("Elementos agregados al JComboBox: " + comidas.size());
 }
 private void cargarDatosComidaSeleccionada(String nombreComida) {
-    Comida comidaSeleccionada = comidaData.buscarComidaPorNombre(nombreComida); // Cambiado para usar el método adecuado
-
+    Comida comidaSeleccionada = comidaData.buscarComidaPorNombre(nombreComida); 
     if (comidaSeleccionada != null) {
-        // Cargar los datos en los campos de texto
+     
         TFNombreComida.setText(comidaSeleccionada.getNombre());
         TFDetalle.setText(comidaSeleccionada.getDetalle());
         TFCalorias.setText(String.valueOf(comidaSeleccionada.getCantCalorias()));
@@ -221,15 +222,21 @@ private void cargarDatosComidaSeleccionada(String nombreComida) {
         JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.");
         return;
     }
+
+  
+    if (!validarTexto(nombre) || !validarTexto(detalle)) {
+        JOptionPane.showMessageDialog(null, "Los campos de nombre y detalle solo deben contener letras y espacios.");
+        return;
+    }
     
     try {
         double CantCalorias = Double.parseDouble(caloriasText);
         Comida nuevaComida = new Comida(nombre, detalle, (int) CantCalorias);
         comidaData.guardarComida(nuevaComida);
         
-       cargarComidasEnComboBox(); // Actualiza el JComboBox con los cambios
+        cargarComidasEnComboBox(); // Actualiza el JComboBox con los cambios
         jComboBox1.setSelectedIndex(-1);
-         TFNombreComida.setText("");
+        TFNombreComida.setText("");
         TFDetalle.setText("");
         TFCalorias.setText("");
         JOptionPane.showMessageDialog(null, "Comida guardada exitosamente.");
@@ -248,6 +255,12 @@ private void cargarDatosComidaSeleccionada(String nombreComida) {
         JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.");
         return;
     }
+
+
+    if (!validarTexto(nombre) || !validarTexto(detalle)) {
+        JOptionPane.showMessageDialog(null, "Los campos de nombre y detalle solo deben contener letras y espacios.");
+        return;
+    }
     
     try {
         double CantCalorias = Double.parseDouble(caloriasText);
@@ -263,13 +276,10 @@ private void cargarDatosComidaSeleccionada(String nombreComida) {
         comidaSeleccionada.setCantCalorias((int) CantCalorias);
         
         comidaData.modificarComida(comidaSeleccionada);
-        
-        
 
-        
-          cargarComidasEnComboBox(); // Actualiza el JComboBox con los cambios
+        cargarComidasEnComboBox(); 
         jComboBox1.setSelectedIndex(-1);
-         TFNombreComida.setText("");
+        TFNombreComida.setText("");
         TFDetalle.setText("");
         TFCalorias.setText("");
         
@@ -278,6 +288,7 @@ private void cargarDatosComidaSeleccionada(String nombreComida) {
         JOptionPane.showMessageDialog(null, "Por favor, ingrese un valor válido para las calorías.");
     }
 }
+
 
 private Comida obtenerComidaSeleccionada() {
     String nombreComida = (String) jComboBox1.getSelectedItem();
@@ -295,20 +306,29 @@ private Comida obtenerComidaSeleccionada() {
     
     if (confirmacion == JOptionPane.YES_OPTION) {
         comidaData.eliminarComida(comidaSeleccionada.getIdComida());
-        cargarComidasEnComboBox(); // Actualiza el JComboBox sin la comida eliminada
+        cargarComidasEnComboBox(); 
         limpiarCampos();
         JOptionPane.showMessageDialog(null, "Comida eliminada exitosamente.");
     }
 }
 
 private void limpiarCampos() {
-     cargarComidasEnComboBox(); // Actualiza el JComboBox con los cambios
+     cargarComidasEnComboBox(); 
         jComboBox1.setSelectedIndex(-1);
          TFNombreComida.setText("");
         TFDetalle.setText("");
         TFCalorias.setText("");
 
 }
+
+
+private boolean validarTexto(String texto) {
+    String regex = "^[A-Za-z ]+$";
+    Pattern pattern = Pattern.compile(regex);
+    Matcher matcher = pattern.matcher(texto);
+    return matcher.matches();
+}
+ 
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
