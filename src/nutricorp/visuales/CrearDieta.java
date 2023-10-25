@@ -9,6 +9,7 @@ import java.sql.Date;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import nutricorp.AccesoADatos.DietaData;
 import nutricorp.Entidades.Dieta;
@@ -253,8 +254,10 @@ public class CrearDieta extends javax.swing.JInternalFrame {
         FechaFinal.setDate(Date.valueOf(dt.getFechaFinal()));
         FechaInicio.setDate(Date.valueOf(dt.getFechaInicial()));
         jComboBox3.addItem(dd.listarPacienteConDietas(name).get(0).toString());
-        
-        
+        int total=dd.listarPacienteSinDietas().size();
+        for (int i = 0; i < total; i++) {
+            jComboBox3.addItem(dd.listarPacienteSinDietas().get(i).toString());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -306,7 +309,10 @@ public class CrearDieta extends javax.swing.JInternalFrame {
             Instant instant2 = FechaFinal.getDate().toInstant(); // Convierte el objeto Date a un objeto Instant
             LocalDate localDate2 = instant2.atZone(ZoneId.systemDefault()).toLocalDate();  // Convierte el objeto Instant a un objeto LocalDate en una zona horaria específica
             dt.setFechaFinal(localDate2);
-            pc=dd.listarPacienteConDietas(dt.getNombre()).get(jComboBox3.getSelectedIndex());
+            ArrayList<Paciente> pacientes=new ArrayList<>();
+            pacientes.add(dd.listarPacienteConDietas(dt.getNombre()).get(0));
+            pacientes.addAll(dd.listarPacienteSinDietas());
+            pc=pacientes.get(jComboBox3.getSelectedIndex());
             dt.setPaciente(pc);
             dd.modificarDieta(dt);
             LimpiarCampos();
