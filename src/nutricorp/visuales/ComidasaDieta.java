@@ -5,17 +5,20 @@
  */
 package nutricorp.visuales;
 
+import nutricorp.AccesoADatos.DietaData;
+import nutricorp.Entidades.Dieta;
+
 /**
  *
  * @author gg
  */
 public class ComidasaDieta extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form DietaDeCliente
-     */
+    DietaData dd=new DietaData();
+    Dieta dt=new Dieta();
     public ComidasaDieta() {
         initComponents();
+        updateCombo();
     }
 
     /**
@@ -73,6 +76,12 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
             }
         });
         CuadroDietas.setViewportView(TablaDieta);
+
+        CBNombreDieta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBNombreDietaActionPerformed(evt);
+            }
+        });
 
         TXTHorario.setText("Horarios:");
 
@@ -174,6 +183,10 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_RBComidasAgregadasActionPerformed
 
+    private void CBNombreDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBNombreDietaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBNombreDietaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonAgregar;
@@ -188,4 +201,11 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
     private javax.swing.JTable TablaDieta;
     private javax.swing.JDesktopPane jDesktopPane1;
     // End of variables declaration//GEN-END:variables
+private void updateCombo() {
+        int total=dd.listarDieta().size();
+        for (int i = 0; i < total; i++) {
+            CBNombreDieta.addItem(dd.listarDieta().get(i).toString());
+        }    
+        
+    }
 }

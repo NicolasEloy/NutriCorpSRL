@@ -154,9 +154,10 @@ public List<Dieta> listarDieta() {
 
         public List<Dieta>ListarPacientesDietaTerminada(Date dt){
         List<Dieta> dietas=new ArrayList<>();
-        sql = "SELECT paciente.Nombre ,paciente.Telefono ,dieta.fechaInicial ,\n" +
-                   "dieta.pesoInicial, dieta.pesoFinal, dieta.FechaFinal FROM paciente\n" +
-                   ", dieta WHERE dieta.FechaFinal < ? ORDER BY dieta.FechaFinal";
+        sql = "SELECT paciente.Nombre ,paciente.Telefono ,dieta.fechaInicial , dieta.pesoInicial, dieta.pesoFinal, dieta.FechaFinal\n" +
+                "FROM paciente INNER JOIN dieta on dieta.IdPaciente = paciente.IdPaciente\n" +
+                "WHERE dieta.FechaFinal < ?\n" +
+                "ORDER BY dieta.FechaFinal;";
         try{
             connection = CConection.getConexion();
             ps = connection.prepareStatement(sql);
@@ -182,9 +183,10 @@ public List<Dieta> listarDieta() {
 }
         public List<Dieta>ListarPacientesDietaNoTerminada(Date dt){
         List<Dieta> dietas=new ArrayList<>();
-        sql = "SELECT paciente.Nombre ,paciente.Telefono ,dieta.fechaInicial ,\n" +
-                   "dieta.pesoInicial, dieta.pesoFinal, dieta.FechaFinal FROM paciente\n" +
-                   ", dieta WHERE dieta.FechaFinal > ? ORDER BY dieta.FechaFinal";
+        sql = "SELECT paciente.Nombre ,paciente.Telefono ,dieta.fechaInicial , dieta.pesoInicial, dieta.pesoFinal, dieta.FechaFinal\n" +
+               "FROM paciente INNER JOIN dieta on dieta.IdPaciente = paciente.IdPaciente\n" +
+               "WHERE dieta.FechaFinal >= ?\n" +
+               "ORDER BY dieta.FechaFinal;";
         try{
             connection = CConection.getConexion();
             ps = connection.prepareStatement(sql);
