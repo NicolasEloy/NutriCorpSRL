@@ -217,7 +217,6 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
         llenarTablaHistorial();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField TXTNUEVOPESO;
     private javax.swing.JButton jButton1;
