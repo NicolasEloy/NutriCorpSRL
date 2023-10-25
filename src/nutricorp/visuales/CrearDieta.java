@@ -6,6 +6,10 @@
 package nutricorp.visuales;
 
 import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import javax.swing.JOptionPane;
 import nutricorp.AccesoADatos.DietaData;
 import nutricorp.Entidades.Dieta;
 import nutricorp.Entidades.Paciente;
@@ -17,6 +21,8 @@ import nutricorp.Entidades.Paciente;
 public class CrearDieta extends javax.swing.JInternalFrame {
 
     DietaData dd=new DietaData();
+    Dieta dt=new Dieta();
+    Paciente pc=new Paciente();
     public CrearDieta() {
         initComponents();
         updateCombo();
@@ -60,7 +66,6 @@ public class CrearDieta extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Paciente:");
 
-        jComboBox1.setSelectedIndex(-1);
         jComboBox1.setSelectedItem(null);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,7 +73,6 @@ public class CrearDieta extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox2.setSelectedIndex(-1);
         jComboBox2.setSelectedItem(null);
 
         jLabel3.setText("Fecha de inicio:");
@@ -87,22 +91,41 @@ public class CrearDieta extends javax.swing.JInternalFrame {
         });
 
         jButton2.setText("Guardar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Eliminar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Paciente:");
 
         jLabel8.setText("Nombre Dieta:");
 
-        jComboBox3.setSelectedIndex(-1);
         jComboBox3.setSelectedItem(null);
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
         jButton4.setText("Nuevo");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Salir");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -210,18 +233,18 @@ public class CrearDieta extends javax.swing.JInternalFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
+        if(jButton1.isEnabled()==true){
             jComboBox2.removeAllItems();
         String name=jComboBox1.getSelectedItem().toString();
         int total=dd.listarPacienteConDietas(name).size();
         for (int i = 0; i < total; i++) {
             jComboBox2.addItem(dd.listarPacienteConDietas(name).get(i).toString());
-        }
+        }}
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Dieta dt=new Dieta();
-        Paciente pc=new Paciente();
+        jComboBox3.removeAllItems();
         String name=jComboBox1.getSelectedItem().toString();
         dt=dd.buscarDieta(name,dd.listarPacienteConDietas(name).get(0).getIdPaciente());
         NombreDieta.setText(dt.getNombre());
@@ -233,6 +256,77 @@ public class CrearDieta extends javax.swing.JInternalFrame {
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        LimpiarCampos();
+        int total=dd.listarPacienteSinDietas().size();
+        for (int i = 0; i < total; i++) {
+            jComboBox3.addItem(dd.listarPacienteSinDietas().get(i).toString());
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if(jComboBox3.getItemCount()==0){
+            JOptionPane.showMessageDialog(this, "No hay pacientes sin dieta para agregar");
+        }else{
+        if (jButton1.isEnabled()==false){
+            dt.setNombre(NombreDieta.getText());
+            dt.setPesoInicial(Double.parseDouble(PesoInicial.getText()));
+            dt.setPesoFinal(Double.parseDouble(PesoFinal.getText()));
+             Instant instant1 = FechaInicio.getDate().toInstant(); // Convierte el objeto Date a un objeto Instant
+             LocalDate localDate1 = instant1.atZone(ZoneId.systemDefault()).toLocalDate();  // Convierte el objeto Instant a un objeto LocalDate en una zona horaria específica
+            dt.setFechaInicial(localDate1);
+             Instant instant2 = FechaFinal.getDate().toInstant(); // Convierte el objeto Date a un objeto Instant
+             LocalDate localDate2 = instant2.atZone(ZoneId.systemDefault()).toLocalDate();  // Convierte el objeto Instant a un objeto LocalDate en una zona horaria específica
+            dt.setFechaFinal(localDate2);
+            pc=dd.listarPacienteSinDietas().get(jComboBox3.getSelectedIndex());
+            dt.setPaciente(pc);
+            dd.guardarDieta(dt);
+            LimpiarCampos();
+            updateCombo();
+            jComboBox1.setEnabled(true);
+            jComboBox2.setEnabled(true);
+            jButton1.setEnabled(true);
+        }else{
+            dt=dd.listarDieta().get(jComboBox1.getSelectedIndex());
+            dt.setIdDieta(dt.getIdDieta());
+            dt.setNombre(NombreDieta.getText());
+            dt.setPesoInicial(Double.parseDouble(PesoInicial.getText()));
+            dt.setPesoFinal(Double.parseDouble(PesoFinal.getText()));
+            Instant instant1 = FechaInicio.getDate().toInstant(); // Convierte el objeto Date a un objeto Instant
+            LocalDate localDate1 = instant1.atZone(ZoneId.systemDefault()).toLocalDate();  // Convierte el objeto Instant a un objeto LocalDate en una zona horaria específica
+            dt.setFechaInicial(localDate1);
+            Instant instant2 = FechaFinal.getDate().toInstant(); // Convierte el objeto Date a un objeto Instant
+            LocalDate localDate2 = instant2.atZone(ZoneId.systemDefault()).toLocalDate();  // Convierte el objeto Instant a un objeto LocalDate en una zona horaria específica
+            dt.setFechaFinal(localDate2);
+            pc=dd.listarPacienteConDietas(dt.getNombre()).get(jComboBox3.getSelectedIndex());
+            dt.setPaciente(pc);
+            dd.modificarDieta(dt);
+            LimpiarCampos();
+            updateCombo();
+            jComboBox1.setEnabled(true);
+            jComboBox2.setEnabled(true);
+            jButton1.setEnabled(true);
+        }}
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        dt=dd.listarDieta().get(jComboBox1.getSelectedIndex());
+        dd.eliminarDieta(dt.getIdDieta());
+        LimpiarCampos();
+        jComboBox1.setEnabled(true);
+        jComboBox2.setEnabled(true);
+        jButton1.setEnabled(true);
+        updateCombo();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -265,6 +359,19 @@ private void updateCombo() {
         for (int i = 0; i < total; i++) {
             jComboBox1.addItem(dd.listarDieta().get(i).toString());
         }    
-        jComboBox2.setSelectedIndex(-1);
+        
     }
+private void LimpiarCampos(){
+    jButton1.setEnabled(false);
+        jComboBox1.setEnabled(false);
+        jComboBox1.removeAllItems();
+        jComboBox2.removeAllItems();
+        jComboBox2.setEnabled(false);
+        jComboBox3.removeAllItems();
+        NombreDieta.setText("");
+        PesoFinal.setText("");
+        PesoInicial.setText("");
+        FechaFinal.setDate(null);
+        FechaInicio.setDate(null);
+}
 }

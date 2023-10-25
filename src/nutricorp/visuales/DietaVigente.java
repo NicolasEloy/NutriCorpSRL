@@ -11,6 +11,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import nutricorp.AccesoADatos.DietaData;
 import nutricorp.Entidades.Dieta;
@@ -95,16 +96,27 @@ public class DietaVigente extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setEnabled(false);
         Tabla.setViewportView(jTable1);
 
         RbuttonVigente.setBackground(new java.awt.Color(204, 204, 204));
         RbuttonVigente.setText("Vigentes");
+        RbuttonVigente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RbuttonVigenteActionPerformed(evt);
+            }
+        });
 
         RbuttonFinalizados.setBackground(new java.awt.Color(204, 204, 204));
         RbuttonFinalizados.setText("Finalizados");
         RbuttonFinalizados.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 RbuttonFinalizadosStateChanged(evt);
+            }
+        });
+        RbuttonFinalizados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RbuttonFinalizadosActionPerformed(evt);
             }
         });
 
@@ -174,26 +186,36 @@ public class DietaVigente extends javax.swing.JInternalFrame {
 
     private void FechaDChooserPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_FechaDChooserPropertyChange
         // TODO add your handling code here:
+        RbuttonVigente.setEnabled(true);
+        RbuttonFinalizados.setEnabled(true);
+        RbuttonVigente.setSelected(false);
+        RbuttonFinalizados.setSelected(false);
         
-        /*
-          String titulos[]={"IdMateria"," Nombre "," Año "};
-       jtablemod=new DefaultTableModel(null,titulos);
-        int total=materiadata.listarMateria().size();
-        String [] mate=new String[3];
-        for (int i = 0; i < total; i++) {
-            mate[0]=String.valueOf(materiadata.listarMateria().get(i).getIdMateria());
-            mate[1]=materiadata.listarMateria().get(i).getNombre();
-            mate[2]=String.valueOf(materiadata.listarMateria().get(i).getAño());
-            jtablemod.addRow(mate);
-        }
-       jTableAlumnos.setModel(jtablemod); 
-               }
-        */
     }//GEN-LAST:event_FechaDChooserPropertyChange
 
     private void RbuttonFinalizadosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_RbuttonFinalizadosStateChanged
         // TODO add your handling code here:
-        DietaData dd=new DietaData();
+    }//GEN-LAST:event_RbuttonFinalizadosStateChanged
+
+    private void FechaDChooserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FechaDChooserFocusGained
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_FechaDChooserFocusGained
+
+    private void RbuttonFinalizadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbuttonFinalizadosActionPerformed
+        // TODO add your handling code here:
+        if (FechaDChooser.getDate()==null){
+            JOptionPane.showMessageDialog(this,"Seleccionar una fecha");
+            RbuttonFinalizados.setSelected(false);
+            RbuttonVigente.setSelected(false);
+            RbuttonFinalizados.setEnabled(true);
+            RbuttonVigente.setEnabled(true);
+        }else{
+        if(RbuttonFinalizados.isSelected()){
+            RbuttonVigente.setSelected(false);
+            RbuttonVigente.setEnabled(true);
+            RbuttonFinalizados.setEnabled(false);
+            DietaData dd=new DietaData();
         Date date = FechaDChooser.getDate(); //ic es la interfaz, jDate el JDatechooser
         long d = date.getTime(); //guardamos en un long el tiempo
         java.sql.Date fecha = new java.sql.Date(d);// parseamos al formato del sql  
@@ -212,13 +234,51 @@ public class DietaVigente extends javax.swing.JInternalFrame {
             vec[5]=String.valueOf(dtterminada.get(i).getFechaFinal());
             jtablemod.addRow(vec);
         }
+        if(dtterminada.isEmpty()){
+                JOptionPane.showMessageDialog(null,"No hay pacientes que finalicen en esta fecha");
+            }
         jTable1.setModel(jtablemod);
-    }//GEN-LAST:event_RbuttonFinalizadosStateChanged
+        }}
+    }//GEN-LAST:event_RbuttonFinalizadosActionPerformed
 
-    private void FechaDChooserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FechaDChooserFocusGained
+    private void RbuttonVigenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbuttonVigenteActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_FechaDChooserFocusGained
+        if (FechaDChooser.getDate()==null){
+            JOptionPane.showMessageDialog(this,"Seleccionar una fecha");
+            RbuttonFinalizados.setSelected(false);
+            RbuttonVigente.setSelected(false);
+            RbuttonFinalizados.setEnabled(true);
+            RbuttonVigente.setEnabled(true);
+        }else{
+        if(RbuttonVigente.isSelected()){
+            RbuttonFinalizados.setSelected(false);
+            RbuttonFinalizados.setEnabled(true);
+            RbuttonVigente.setEnabled(false);
+            DietaData dd=new DietaData();
+        Date date = FechaDChooser.getDate(); //ic es la interfaz, jDate el JDatechooser
+        long d = date.getTime(); //guardamos en un long el tiempo
+        java.sql.Date fecha = new java.sql.Date(d);// parseamos al formato del sql  
+        String titulos[]={"Nombre"," Telefono "," FechaInicial "," PesoInicial "," PesoFinal "," FechaFinal "};
+        jtablemod=new DefaultTableModel(null,titulos);
+        int total=dd.ListarPacientesDietaNoTerminada(fecha).size();
+        List<Dieta>dtterminada=new ArrayList<>();
+        dtterminada=dd.ListarPacientesDietaNoTerminada(fecha);
+        String [] vec=new String [6];
+        for (int i = 0; i < total; i++) {
+            vec[0]=dtterminada.get(i).getPaciente().getNombre();
+            vec[1]=dtterminada.get(i).getPaciente().getTelefono();
+            vec[2]=String.valueOf(dtterminada.get(i).getFechaInicial());
+            vec[3]=String.valueOf(dtterminada.get(i).getPesoInicial());
+            vec[4]=String.valueOf(dtterminada.get(i).getPesoFinal());
+            vec[5]=String.valueOf(dtterminada.get(i).getFechaFinal());
+            jtablemod.addRow(vec);
+        }
+        if(dtterminada.isEmpty()){
+                JOptionPane.showMessageDialog(null,"No hay pacientes que inicien la dieta en esta fecha");
+            }
+        jTable1.setModel(jtablemod);
+        }}
+    }//GEN-LAST:event_RbuttonVigenteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

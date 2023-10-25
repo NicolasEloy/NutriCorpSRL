@@ -50,7 +50,7 @@ public class DietaData {
             rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 dieta.setIdDieta(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Dieta Guardada, el ID de la dieta es " + dieta.getNombre());
+                JOptionPane.showMessageDialog(null, "Dieta Guardada, el Nombre de la dieta es " + dieta.getNombre());
             }
             ps.close();
         } catch (SQLException ex) {
@@ -135,12 +135,13 @@ double pesoInicial,double pesoFinal, localdate fechaFinal
 public List<Dieta> listarDieta() {
         List<Dieta> dietas = new ArrayList<>();
         try {
-             sql = "SELECT nombre FROM dieta ";
+             sql = "SELECT nombre,IdDieta FROM dieta ";
              connection = CConection.getConexion();
              ps=connection.prepareStatement(sql);
              rs = ps.executeQuery();
             while (rs.next()) {
                 Dieta dieta = new Dieta();
+                dieta.setIdDieta(rs.getInt("IdDieta"));
                 dieta.setNombre(rs.getString("nombre"));
                 dietas.add(dieta);
             }
@@ -229,9 +230,9 @@ public List<Paciente> listarPacienteConDietas(String nombre) {
         }
         return pacientes;
     }
-public List<Paciente> listarPacienteSinDietas(String nombre) {
+public List<Paciente> listarPacienteSinDietas() {
         List<Paciente> pacientes = new ArrayList<>();
-        sql="SELECT paciente.* FROM paciente JOIN dieta on (paciente.IdPaciente=dieta.IdPaciente)WHERE dieta.Nombre  IS NULL";
+        sql="SELECT paciente.* FROM paciente LEFT JOIN dieta ON paciente.IdPaciente = dieta.IdPaciente WHERE dieta.Nombre IS NULL;";
         try {
              connection=CConection.getConexion();
              ps= connection.prepareStatement(sql);

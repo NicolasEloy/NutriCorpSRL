@@ -120,6 +120,7 @@
                     <Column editable="false" title="Finaliza" type="java.lang.String"/>
                   </Table>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -131,6 +132,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Vigentes"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RbuttonVigenteActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="RbuttonFinalizados">
           <Properties>
@@ -141,6 +145,7 @@
           </Properties>
           <Events>
             <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="RbuttonFinalizadosStateChanged"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RbuttonFinalizadosActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
