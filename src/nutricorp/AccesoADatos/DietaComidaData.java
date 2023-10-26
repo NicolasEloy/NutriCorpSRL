@@ -12,7 +12,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import nutricorp.AccesoADatos.CConection;
 import nutricorp.Entidades.Comida;
+import nutricorp.Entidades.Dieta;
 import nutricorp.Entidades.DietaComida;
 
 /**
@@ -20,19 +22,20 @@ import nutricorp.Entidades.DietaComida;
  * @author Matias
  */
 public class DietaComidaData {
-        Connection connection;
+    Connection connection;
     PreparedStatement ps;
     ResultSet rs;
     String sql = "";
-    
-    public void guardarDietaComida(DietaComida comida) {
-        sql = "INSERT INTO comidadieta(IdDieta,Horarios,Porciones) VALUES (?, ?, ?)";
+
+    public void guardarDietaComida(DietaComida dietacomida) {
+        sql = "INSERT INTO comidadieta(IdDieta,IdComida,Horarios,Porciones) VALUES (?, ?, ?, ?)";
         try {
             connection =  CConection.getConexion();
             ps = connection.prepareStatement(sql);
-            ps.setInt(1, comida.getDieta().getIdDieta());
-            ps.setString(2, comida.getHorario());
-            ps.setInt(3, comida.getComida().getIdComida());
+            ps.setInt(1, dietacomida.getDieta().getIdDieta());
+            ps.setInt(2, dietacomida.getComida().getIdComida());
+            ps.setString(3, dietacomida.getHorario());
+            ps.setInt(4, dietacomida.getPorciones());
             ps.executeUpdate();
 
             JOptionPane.showMessageDialog(null, "ComidaDieta Guardada");
@@ -42,15 +45,15 @@ public class DietaComidaData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de comidadieta");
         }
     }
-    public void modificarComida(Comida comida) {
-        sql = "UPDATE comida SET Nombre = ?, Detalle = ?, CantCalorias = ? WHERE IdComida = ?";
+    public void modificarComida(DietaComida dietacomida) {
+        sql = "UPDATE comidadieta SET IdDieta = ?, IdComida = ?, Horarios = ?, Porciones = ? WHERE IdComidaDieta";
         try {
             connection =  CConection.getConexion(); 
             ps = connection.prepareStatement(sql);
-            ps.setString(1, comida.getNombre());
-            ps.setString(2, comida.getDetalle());
-            ps.setDouble(3, comida.getCantCalorias());
-            ps.setInt(4, comida.getIdComida());
+            ps.setInt(1, dietacomida.getDieta().getIdDieta());
+            ps.setInt(2, dietacomida.getComida().getIdComida());
+            ps.setString(3, dietacomida.getHorario());
+            ps.setInt(4, dietacomida.getPorciones());
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Se modificó la ComidaDieta correctamente");
@@ -79,7 +82,11 @@ public class DietaComidaData {
     public List<DietaComida> comidasEnDieta(int iddieta,String horarios){
      List<DietaComida> dietaComida = new ArrayList<>();
         try {
-            sql = "SELECT comida.IdComida, comida.Nombre, comida.CantCalorias,comidadieta.Porciones FROM comida INNER JOIN comidadieta ON comida.IdComida = comidadieta.IdComida WHERE comidadieta.IdDieta = ? and comidadieta.Horarios=?";
+            sql = "SELECT comida.IdComida, comida.Nombre,comidadieta1.Horarios, comidadieta1.Porciones,comidadieta1.IdComidaDieta, dieta.IdDieta, dieta.Nombre\n" +
+                  "FROM comida\n" +
+                  "INNER JOIN comidadieta AS comidadieta1 ON comida.IdComida = comidadieta1.IdComida\n" +
+                  "INNER JOIN dieta ON dieta.IdDieta = comidadieta1.IdDieta\n" +
+                  "WHERE comidadieta1.IdDieta = ? AND comidadieta1.Horarios = ?;";
             connection = CConection.getConexion();
             ps = connection.prepareStatement(sql);
             ps.setInt(1, iddieta);
@@ -87,11 +94,16 @@ public class DietaComidaData {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Comida comida = new Comida();
+                Dieta dieta=new Dieta();
                 DietaComida dietacomida=new DietaComida();
                 comida.setIdComida(rs.getInt("comida.IdComida"));
                 comida.setNombre(rs.getString("comida.Nombre"));
-                comida.setCantCalorias( rs.getInt("comida.CantCalorias"));
-                dietacomida.setPorciones(rs.getInt("comidadieta.Porciones"));
+                dietacomida.setHorario(rs.getString("comidadieta1.Horarios"));
+                dietacomida.setPorciones(rs.getInt("comidadieta1.Porciones"));
+                dietacomida.setId(rs.getInt("comidadieta1.IdComidaDieta"));
+                dieta.setIdDieta(rs.getInt("dieta.IdDieta"));
+                dieta.setNombre(rs.getString("dieta.Nombre"));
+                dietacomida.setDieta(dieta);
                 dietacomida.setComida(comida);
                 dietaComida.add(dietacomida);
             }
@@ -101,22 +113,23 @@ public class DietaComidaData {
         }
         return dietaComida;
 }
-    public List<DietaComida> horarios(){
-     List<DietaComida> dietaComida = new ArrayList<>();
+    public List<String> horarios(){
+     List<String> horarios = new ArrayList<>();
         try {
-            sql = "SELECT Horarios FROM comidadieta";
+            sql = "SELECT DISTINCT Horarios FROM comidadieta";
             connection = CConection.getConexion();
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                DietaComida dietacomida=new DietaComida();
-                dietacomida.setHorario("Horarios");
-                dietaComida.add(dietacomida);
+                DietaComida dietacomida =new DietaComida();
+                dietacomida.setHorario(rs.getString("Horarios"));
+                horarios.add(dietacomida.getHorario());
             }
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de comidadieta " + ex.getMessage());
         }
-        return dietaComida;
+        return horarios;
 }
+    
 }

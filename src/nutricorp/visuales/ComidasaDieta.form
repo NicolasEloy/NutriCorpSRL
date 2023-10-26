@@ -36,10 +36,7 @@
     <Container class="javax.swing.JDesktopPane" name="jDesktopPane1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="2e" green="2f" red="5" type="rgb"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="c5" green="f3" red="f4" type="rgb"/>
+          <Color blue="cc" green="cc" red="cc" type="rgb"/>
         </Property>
       </Properties>
 
@@ -49,7 +46,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                   <Component id="ButtonAgregar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="225" max="32767" attributes="0"/>
+                  <EmptySpace pref="312" max="32767" attributes="0"/>
                   <Component id="ButtonEliminar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
               </Group>
@@ -69,17 +66,17 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="RBComidasAgregadas" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="RBComidasNoAgregadas" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="CuadroDietas" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="RBComidasAgregadas" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
+                          <Component id="RBComidasNoAgregadas" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="CuadroDietas" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -116,9 +113,6 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="TXTND">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="c5" green="f3" red="f4" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Nombre de la Dieta:"/>
           </Properties>
         </Component>
@@ -132,12 +126,7 @@
             <Component class="javax.swing.JTable" name="TablaDieta">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="4" rowCount="4">
-                    <Column editable="false" title="Comida" type="java.lang.String"/>
-                    <Column editable="false" title="Detalle" type="java.lang.String"/>
-                    <Column editable="false" title="Calorias" type="java.lang.Double"/>
-                    <Column editable="true" title="Porciones" type="java.lang.Double"/>
-                  </Table>
+                  <Table columnCount="0" rowCount="4"/>
                 </Property>
               </Properties>
             </Component>
@@ -149,15 +138,15 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CBNombreDietaActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="TXTHorario">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="c5" green="f3" red="f4" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Horarios:"/>
           </Properties>
         </Component>
@@ -176,11 +165,7 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="c5" green="f3" red="f4" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Comidas Agregadas"/>
-            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RBComidasAgregadasActionPerformed"/>
@@ -191,30 +176,27 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="c5" green="f3" red="f4" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Comidas No Agreagadas"/>
-            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RBComidasNoAgregadasActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="ButtonAgregar">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="c5" green="f3" red="f4" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Agregar"/>
-            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonAgregarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="ButtonEliminar">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="c5" green="f3" red="f4" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Eliminar"/>
-            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonEliminarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
