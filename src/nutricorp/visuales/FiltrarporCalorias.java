@@ -23,11 +23,6 @@ public class FiltrarporCalorias extends javax.swing.JInternalFrame {
          ResultSet rs;
         String sql = "";
     
-    
-    
-    /**
-     * Creates new form FiltrarporCalorias
-     */
     public FiltrarporCalorias() {
         initComponents();
         crearTabla();       
@@ -155,7 +150,7 @@ public class FiltrarporCalorias extends javax.swing.JInternalFrame {
          jTable1.setModel(modelo);
 
     try {
-            // Establecer la conexión antes de la preparación de la sentencia SQL
+
             connection = CConection.getConexion();
             sql = "SELECT `Nombre`,`Detalle`,`CantCalorias` FROM `comida` WHERE `CantCalorias` < ?";
             connection = CConection.getConexion();

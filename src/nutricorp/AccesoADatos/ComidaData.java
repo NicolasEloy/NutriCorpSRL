@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import nutricorp.Entidades.Comida;
 
@@ -143,8 +141,27 @@ public Comida buscarComidaPorNombre(String nombreComida) {
     return comida;
 }
 
+public List<Comida> comidasSinDieta(){
+    List<Comida> comidas = new ArrayList<>();
+        try {
+            sql = "SELECT comida.IdComida, comida.Nombre, comida.CantCalorias FROM comida lEFT JOIN comidadieta ON comida.IdComida = comidadieta.IdComida WHERE comidadieta.IdDieta IS NULL";
+            connection = CConection.getConexion();
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Comida comida = new Comida();
+                comida.setIdComida(rs.getInt("IdComida"));
+                comida.setNombre(rs.getString("Nombre"));
+                comida.setDetalle(rs.getString("Detalle"));
+                comida.setCantCalorias( rs.getInt("CantCalorias"));
+                comidas.add(comida);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de comida " + ex.getMessage());
+        }
+        return comidas;
+        
 }
 
-
-
-
+}

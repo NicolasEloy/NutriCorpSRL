@@ -1,21 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package nutricorp.visuales;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import nutricorp.AccesoADatos.DietaData;
+import nutricorp.Entidades.Dieta;
 
 /**
  *
  * @author gg
  */
 public class DietaVigente extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form DietaVigente
-     */
+    DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+    DefaultTableModel jtablemod;
     public DietaVigente() {
+        
         initComponents();
+        
     }
 
     /**
@@ -43,6 +50,22 @@ public class DietaVigente extends javax.swing.JInternalFrame {
 
         TXTFecha.setText("Fecha Actual:");
 
+        FechaDChooser.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                FechaDChooserFocusGained(evt);
+            }
+        });
+        FechaDChooser.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                FechaDChooserComponentShown(evt);
+            }
+        });
+        FechaDChooser.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                FechaDChooserPropertyChange(evt);
+            }
+        });
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -69,7 +92,29 @@ public class DietaVigente extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setEnabled(false);
         Tabla.setViewportView(jTable1);
+
+        RbuttonVigente.setBackground(new java.awt.Color(204, 204, 204));
+        RbuttonVigente.setText("Vigentes");
+        RbuttonVigente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RbuttonVigenteActionPerformed(evt);
+            }
+        });
+
+        RbuttonFinalizados.setBackground(new java.awt.Color(204, 204, 204));
+        RbuttonFinalizados.setText("Finalizados");
+        RbuttonFinalizados.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                RbuttonFinalizadosStateChanged(evt);
+            }
+        });
+        RbuttonFinalizados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RbuttonFinalizadosActionPerformed(evt);
+            }
+        });
 
         jDesktopPane1.setLayer(TXTFecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(FechaDChooser, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -81,10 +126,6 @@ public class DietaVigente extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(Tabla, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,12 +133,16 @@ public class DietaVigente extends javax.swing.JInternalFrame {
                         .addComponent(TXTFecha)
                         .addGap(18, 18, 18)
                         .addComponent(FechaDChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(228, Short.MAX_VALUE))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addComponent(RbuttonVigente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(RbuttonFinalizados)
                         .addGap(62, 62, 62))))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(Tabla, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,6 +173,108 @@ public class DietaVigente extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void FechaDChooserComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_FechaDChooserComponentShown
+        // TODO add your handling code here
+        FechaDChooser.setDate(Date.from(Instant.now()));
+       
+    }//GEN-LAST:event_FechaDChooserComponentShown
+
+    private void FechaDChooserPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_FechaDChooserPropertyChange
+        // TODO add your handling code here:
+        RbuttonVigente.setEnabled(true);
+        RbuttonFinalizados.setEnabled(true);
+        RbuttonVigente.setSelected(false);
+        RbuttonFinalizados.setSelected(false);
+        
+    }//GEN-LAST:event_FechaDChooserPropertyChange
+
+    private void RbuttonFinalizadosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_RbuttonFinalizadosStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RbuttonFinalizadosStateChanged
+
+    private void FechaDChooserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FechaDChooserFocusGained
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_FechaDChooserFocusGained
+
+    private void RbuttonFinalizadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbuttonFinalizadosActionPerformed
+        // TODO add your handling code here:
+        if (FechaDChooser.getDate()==null){
+            JOptionPane.showMessageDialog(this,"Seleccionar una fecha");
+            RbuttonFinalizados.setSelected(false);
+            RbuttonVigente.setSelected(false);
+            RbuttonFinalizados.setEnabled(true);
+            RbuttonVigente.setEnabled(true);
+        }else{
+        if(RbuttonFinalizados.isSelected()){
+            RbuttonVigente.setSelected(false);
+            RbuttonVigente.setEnabled(true);
+            RbuttonFinalizados.setEnabled(false);
+            DietaData dd=new DietaData();
+        Date date = FechaDChooser.getDate(); //ic es la interfaz, jDate el JDatechooser
+        long d = date.getTime(); //guardamos en un long el tiempo
+        java.sql.Date fecha = new java.sql.Date(d);// parseamos al formato del sql  
+        String titulos[]={"Nombre"," Telefono "," FechaInicial "," PesoInicial "," PesoFinal "," FechaFinal "};
+        jtablemod=new DefaultTableModel(null,titulos);
+        int total=dd.ListarPacientesDietaTerminada(fecha).size();
+        List<Dieta>dtterminada=new ArrayList<>();
+        dtterminada=dd.ListarPacientesDietaTerminada(fecha);
+        String [] vec=new String [6];
+        for (int i = 0; i < total; i++) {
+            vec[0]=dtterminada.get(i).getPaciente().getNombre();
+            vec[1]=dtterminada.get(i).getPaciente().getTelefono();
+            vec[2]=String.valueOf(dtterminada.get(i).getFechaInicial());
+            vec[3]=String.valueOf(dtterminada.get(i).getPesoInicial());
+            vec[4]=String.valueOf(dtterminada.get(i).getPesoFinal());
+            vec[5]=String.valueOf(dtterminada.get(i).getFechaFinal());
+            jtablemod.addRow(vec);
+        }
+        if(dtterminada.isEmpty()){
+                JOptionPane.showMessageDialog(null,"No hay pacientes que finalicen en esta fecha");
+            }
+        jTable1.setModel(jtablemod);
+        }}
+    }//GEN-LAST:event_RbuttonFinalizadosActionPerformed
+
+    private void RbuttonVigenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbuttonVigenteActionPerformed
+        // TODO add your handling code here:
+        if (FechaDChooser.getDate()==null){
+            JOptionPane.showMessageDialog(this,"Seleccionar una fecha");
+            RbuttonFinalizados.setSelected(false);
+            RbuttonVigente.setSelected(false);
+            RbuttonFinalizados.setEnabled(true);
+            RbuttonVigente.setEnabled(true);
+        }else{
+        if(RbuttonVigente.isSelected()){
+            RbuttonFinalizados.setSelected(false);
+            RbuttonFinalizados.setEnabled(true);
+            RbuttonVigente.setEnabled(false);
+            DietaData dd=new DietaData();
+        Date date = FechaDChooser.getDate(); //ic es la interfaz, jDate el JDatechooser
+        long d = date.getTime(); //guardamos en un long el tiempo
+        java.sql.Date fecha = new java.sql.Date(d);// parseamos al formato del sql  
+        String titulos[]={"Nombre"," Telefono "," FechaInicial "," PesoInicial "," PesoFinal "," FechaFinal "};
+        jtablemod=new DefaultTableModel(null,titulos);
+        int total=dd.ListarPacientesDietaNoTerminada(fecha).size();
+        List<Dieta>dtterminada=new ArrayList<>();
+        dtterminada=dd.ListarPacientesDietaNoTerminada(fecha);
+        String [] vec=new String [6];
+        for (int i = 0; i < total; i++) {
+            vec[0]=dtterminada.get(i).getPaciente().getNombre();
+            vec[1]=dtterminada.get(i).getPaciente().getTelefono();
+            vec[2]=String.valueOf(dtterminada.get(i).getFechaInicial());
+            vec[3]=String.valueOf(dtterminada.get(i).getPesoInicial());
+            vec[4]=String.valueOf(dtterminada.get(i).getPesoFinal());
+            vec[5]=String.valueOf(dtterminada.get(i).getFechaFinal());
+            jtablemod.addRow(vec);
+        }
+        if(dtterminada.isEmpty()){
+                JOptionPane.showMessageDialog(null,"No hay pacientes que inicien la dieta en esta fecha");
+            }
+        jTable1.setModel(jtablemod);
+        }}
+    }//GEN-LAST:event_RbuttonVigenteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

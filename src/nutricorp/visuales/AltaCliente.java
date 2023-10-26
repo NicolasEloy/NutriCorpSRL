@@ -293,7 +293,7 @@ public class AltaCliente extends javax.swing.JInternalFrame {
     paciente.setDomicilio(domicilio);
     paciente.setNombre(nombre);
     paciente.setTelefono(telefono);
-    paciente.setPeso(peso);
+    paciente.setPesoActual(peso);
     paciente.setEstado(estado);
 
     PacienteData pacienteData = new PacienteData();
@@ -315,8 +315,8 @@ public class AltaCliente extends javax.swing.JInternalFrame {
             TFDomicilio.setText(paciente.getDomicilio());
             TFNombre.setText(paciente.getNombre());
             TFTelefono.setText(paciente.getTelefono());
-            txtpesoactual.setText(paciente.getPeso()); // Actualiza el campo de peso
-            jCheckBox1.setSelected(paciente.getEstado());
+            txtpesoactual.setText(paciente.getPesoActual()); // Actualiza el campo de peso
+            jCheckBox1.setSelected(paciente.isEstado());
         } else {
             JOptionPane.showMessageDialog(this, "No se encontró ningún paciente con el DNI proporcionado.");
         }
@@ -366,7 +366,7 @@ public class AltaCliente extends javax.swing.JInternalFrame {
     paciente.setDomicilio(domicilio);
     paciente.setNombre(nombre);
     paciente.setTelefono(telefono);
-    paciente.setPeso(peso);
+    paciente.setPesoActual(peso);
     paciente.setEstado(estado);
 
     PacienteData pacienteData = new PacienteData();

@@ -1,6 +1,3 @@
-/*
- *nombre , dni , domicilio , telefono , idpaciente
- */
 package nutricorp.AccesoADatos;
 
 import java.sql.Connection;
@@ -9,11 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import nutricorp.Entidades.Paciente;
-
 /**
  *
  * @author Matias
@@ -45,8 +40,8 @@ public class PacienteData extends Paciente{
             ps.setInt(3, paciente.getDni());
             ps.setString(4, paciente.getDomicilio());
             ps.setString(5, paciente.getTelefono()); 
-            ps.setString(6, paciente.getPeso());
-            ps.setBoolean(7, paciente.getEstado());
+            ps.setString(6, paciente.getPesoActual());
+            ps.setBoolean(7, paciente.isEstado());
             ps.executeUpdate();
             
             System.out.println(sql);
@@ -79,7 +74,7 @@ public class PacienteData extends Paciente{
                 paciente.setTelefono(rs.getString("telefono"));
                 paciente.setApellido(rs.getString("apellido"));
                 paciente.setEstado(rs.getBoolean("estado"));
-                paciente.setPeso(rs.getString("pesoActual"));
+                paciente.setPesoActual(rs.getString("pesoActual"));
                 
                 
                 
@@ -158,21 +153,5 @@ public class PacienteData extends Paciente{
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Paciente " + ex.getMessage());
         }
         return pacientes;
-    }
-    
-    
-    
-     
-   
-            
-            
-            
-   
-    
-    
-    
-    
-    
-    
-    
+    } 
 }

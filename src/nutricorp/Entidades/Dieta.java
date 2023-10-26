@@ -87,5 +87,9 @@ public class Dieta {
         this.fechaFinal = fechaFinal;
     }
     
+    @Override
+    public String toString() {
+        return nombre;
+    }
     
 }
