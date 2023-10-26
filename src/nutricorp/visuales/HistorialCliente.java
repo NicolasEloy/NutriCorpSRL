@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import nutricorp.AccesoADatos.CConection;
 import nutricorp.AccesoADatos.PacienteData;
@@ -201,7 +202,18 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");       
+        if (TXTNUEVOPESO.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El campo peso es obligatorio.");
+          
+        } else if (!TXTNUEVOPESO.getText().matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(this, "Solo se permiten números en el campo peso.");
+        }
+
+        if (jDateChooser1.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Debe colocar una fecha.");
+         }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String fecha = sdf.format(jDateChooser1.getDate());
         String sql = "insert into historialpeso (IdPaciente,Fecha,Peso) VALUES ('" + txtidpaciente.getText() + "','" + fecha + "','" + TXTNUEVOPESO.getText() + "')";
         System.out.println(jDateChooser1.getDate());
@@ -221,7 +233,7 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
     public javax.swing.JTextField TXTNUEVOPESO;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    public com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -249,7 +261,7 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
             ps.close();
             rs.close();
         } catch (Exception e) {
-            System.out.println("eeror de tipo "+e);
+            System.out.println("eeror de tipo " + e);
         }
     }
 }
