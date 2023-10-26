@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import nutricorp.AccesoADatos.CConection;
 
@@ -23,6 +24,11 @@ public class FiltrarporCalorias extends javax.swing.JInternalFrame {
          ResultSet rs;
         String sql = "";
     
+    
+    
+    /**
+     * Creates new form FiltrarporCalorias
+     */
     public FiltrarporCalorias() {
         initComponents();
         crearTabla();       
@@ -142,34 +148,45 @@ public class FiltrarporCalorias extends javax.swing.JInternalFrame {
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
 
-        int extraerNumero = Integer.parseInt(jTextField1.getText());
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("COMIDAS");
-         modelo.addColumn("DETALLES");
-         modelo.addColumn("CALORIAS");
-         jTable1.setModel(modelo);
+      String input = jTextField1.getText();
+    if (input.isEmpty()) {
+     
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese un valor numérico.");
+        return;
+    }
 
     try {
+        int extraerNumero = Integer.parseInt(input);
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("COMIDAS");
+        modelo.addColumn("DETALLES");
+        modelo.addColumn("CALORIAS");
+        jTable1.setModel(modelo);
 
+        try {
+          
             connection = CConection.getConexion();
             sql = "SELECT `Nombre`,`Detalle`,`CantCalorias` FROM `comida` WHERE `CantCalorias` < ?";
             connection = CConection.getConexion();
             ps = connection.prepareStatement(sql);
             ps.setInt(1, extraerNumero);
             rs = ps.executeQuery();
-           
+
             Object[] objeto = new Object[3];
             while (rs.next()) {
-              objeto[0] = rs.getString("Nombre");
-              objeto[1] = rs.getString("Detalle");
-              objeto[2] = rs.getInt("CantCalorias");
-              modelo.addRow(objeto);
-             }
+                objeto[0] = rs.getString("Nombre");
+                objeto[1] = rs.getString("Detalle");
+                objeto[2] = rs.getInt("CantCalorias");
+                modelo.addRow(objeto);
+            }
             jTable1.setModel(modelo);
-       } catch (SQLException | NumberFormatException e) {
-            System.out.println("Error al cargar los datos de las comidas : " + e.getMessage());
-        }  
-    
+        } catch (SQLException | NumberFormatException e) {
+            System.out.println("Error al cargar los datos de las comidas: " + e.getMessage());
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese un valor numérico válido en el campo.");
+    }
+
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
 

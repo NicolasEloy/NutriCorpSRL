@@ -58,7 +58,7 @@ public class PacienteData extends Paciente{
    
    //listo y funcionando
     public Paciente buscarPacientePorDni(int dni) {
-        sql = "SELECT Nombre, DNI , Domicilio,Apellido,pesoActual,estado, Telefono FROM paciente WHERE dni =? AND estado = 1";
+        sql = "SELECT Nombre, DNI , Domicilio,Apellido,pesoActual,estado, Telefono FROM paciente WHERE dni =? ";
         Paciente paciente = null;
         try {
             connection = CConection.getConexion();
@@ -74,11 +74,7 @@ public class PacienteData extends Paciente{
                 paciente.setTelefono(rs.getString("telefono"));
                 paciente.setApellido(rs.getString("apellido"));
                 paciente.setEstado(rs.getBoolean("estado"));
-                paciente.setPesoActual(rs.getString("pesoActual"));
-                
-                
-                
-                //paciente.setEstado(true);       
+                paciente.setPesoActual(rs.getString("pesoActual"));   
             } else {
                 JOptionPane.showMessageDialog(null, "No existe ese Paciente");
             }
@@ -92,24 +88,25 @@ public class PacienteData extends Paciente{
     
     // listo y funcionando
     public void modificadorPaciente(Paciente paciente) {
-        sql = "UPDATE paciente SET  Nombre=?,Apellido = ?,DNI=?,Domicilio=?,Telefono=? WHERE DNI=?";
-        try {
-            connection = CConection.getConexion();
-            ps = connection.prepareStatement(sql);
-            ps.setString(1, paciente.getNombre());
-            ps.setString(2, paciente.getApellido());
-            ps.setInt(3, paciente.getDni());
-            ps.setString(4, paciente.getDomicilio());
-            ps.setString(5, paciente.getTelefono());
-            ps.setInt(6, paciente.getDni());
-            int exito = ps.executeUpdate();
-            if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Se modifico el Paciente");
-            }
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de Paciente" + ex.getLocalizedMessage());
+  sql = "UPDATE paciente SET Nombre=?, Apellido=?, DNI=?, Domicilio=?, Telefono=?, PesoActual=?, Estado=? WHERE DNI=?";
+    try {
+        connection = CConection.getConexion();
+        ps = connection.prepareStatement(sql);
+        ps.setString(1, paciente.getNombre());
+        ps.setString(2, paciente.getApellido());
+        ps.setInt(3, paciente.getDni());
+        ps.setString(4, paciente.getDomicilio());
+        ps.setString(5, paciente.getTelefono());
+        ps.setString(6, paciente.getPesoActual());
+        ps.setBoolean(7, paciente.isEstado()); // Actualiza el estado del paciente
+        ps.setInt(8, paciente.getDni());
+        int exito = ps.executeUpdate();
+        if (exito == 1) {
+            JOptionPane.showMessageDialog(null, "Se modificó el Paciente");
         }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de Paciente: " + ex.getLocalizedMessage());
+    }
     }
 
 
