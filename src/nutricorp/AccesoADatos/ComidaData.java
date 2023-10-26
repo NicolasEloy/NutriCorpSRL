@@ -137,22 +137,23 @@ public Comida buscarComidaPorNombre(String nombreComida) {
     } catch (SQLException ex) {
         JOptionPane.showMessageDialog(null, "Error al buscar la comida por nombre: " + ex.getMessage());
     }
-    
     return comida;
 }
 
-public List<Comida> comidasSinDieta(){
+public List<Comida> comidasSinDieta(int iddieta){
     List<Comida> comidas = new ArrayList<>();
         try {
-            sql = "SELECT comida.IdComida, comida.Nombre, comida.CantCalorias FROM comida lEFT JOIN comidadieta ON comida.IdComida = comidadieta.IdComida WHERE comidadieta.IdDieta IS NULL";
+            sql = "SELECT IdComida, Nombre, CantCalorias\n" +
+                  "FROM comida\n" +
+                  "WHERE IdComida NOT IN (SELECT IdComida FROM comidadieta WHERE IdDieta = ?);";
             connection = CConection.getConexion();
             ps = connection.prepareStatement(sql);
+            ps.setInt(1, iddieta);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Comida comida = new Comida();
                 comida.setIdComida(rs.getInt("IdComida"));
                 comida.setNombre(rs.getString("Nombre"));
-                comida.setDetalle(rs.getString("Detalle"));
                 comida.setCantCalorias( rs.getInt("CantCalorias"));
                 comidas.add(comida);
             }
