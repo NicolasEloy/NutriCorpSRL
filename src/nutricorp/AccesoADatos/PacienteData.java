@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import nutricorp.Entidades.Paciente;
@@ -150,5 +151,23 @@ public class PacienteData extends Paciente{
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Paciente " + ex.getMessage());
         }
         return pacientes;
-    } 
+    }
+    
+        public void llenarComboBoxPacientes(JComboBox parametrodelCombo) {
+        sql = "SELECT nombre FROM paciente ";
+        try {
+            connection = CConection.getConexion();
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                parametrodelCombo.addItem(rs.getString("nombre"));
+                
+            }
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.out.println("error de sql " + ex);
+        }
+    }
 }
