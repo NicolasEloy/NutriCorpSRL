@@ -28,7 +28,7 @@ public class DietaData {
     }
 
     public DietaData() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
     
      public void guardarDieta(Dieta dieta) {
