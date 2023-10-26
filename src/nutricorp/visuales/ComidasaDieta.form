@@ -36,7 +36,10 @@
     <Container class="javax.swing.JDesktopPane" name="jDesktopPane1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="cc" green="cc" red="cc" type="rgb"/>
+          <Color blue="2e" green="2f" red="5" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="c5" green="f3" red="f4" type="rgb"/>
         </Property>
       </Properties>
 
@@ -113,6 +116,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="TXTND">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="c5" green="f3" red="f4" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Nombre de la Dieta:"/>
           </Properties>
         </Component>
@@ -149,6 +155,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="TXTHorario">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="c5" green="f3" red="f4" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Horarios:"/>
           </Properties>
         </Component>
@@ -167,7 +176,11 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="c5" green="f3" red="f4" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Comidas Agregadas"/>
+            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RBComidasAgregadasActionPerformed"/>
@@ -178,17 +191,29 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="c5" green="f3" red="f4" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Comidas No Agreagadas"/>
+            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="ButtonAgregar">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="c5" green="f3" red="f4" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Agregar"/>
+            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="ButtonEliminar">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="c5" green="f3" red="f4" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Eliminar"/>
+            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>

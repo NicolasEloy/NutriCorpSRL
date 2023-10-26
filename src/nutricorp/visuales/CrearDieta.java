@@ -50,14 +50,18 @@ public class CrearDieta extends javax.swing.JInternalFrame {
         jSeparator1 = new javax.swing.JSeparator();
         NombreDieta = new javax.swing.JTextField();
         jButtoNuevo = new javax.swing.JButton();
-        jButtonSalir = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(5, 47, 46));
+        setClosable(true);
         setTitle("Buscar/Crear dietas");
 
+        jLabel1.setForeground(new java.awt.Color(244, 243, 197));
         jLabel1.setText("Nombre Dieta:");
 
+        jLabel2.setForeground(new java.awt.Color(244, 243, 197));
         jLabel2.setText("Paciente:");
 
+        jComboBox1.setBackground(new java.awt.Color(244, 243, 197));
         jComboBox1.setSelectedItem(null);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,57 +69,80 @@ public class CrearDieta extends javax.swing.JInternalFrame {
             }
         });
 
+        jComboBox2.setBackground(new java.awt.Color(244, 243, 197));
         jComboBox2.setSelectedItem(null);
 
+        jLabel3.setForeground(new java.awt.Color(244, 243, 197));
         jLabel3.setText("Fecha de inicio:");
 
+        jLabel4.setForeground(new java.awt.Color(244, 243, 197));
         jLabel4.setText("Peso inicial:");
 
+        jLabel5.setForeground(new java.awt.Color(244, 243, 197));
         jLabel5.setText("Peso final:");
 
+        jLabel6.setForeground(new java.awt.Color(244, 243, 197));
         jLabel6.setText("Fecha final:");
 
+        PesoInicial.setBackground(new java.awt.Color(244, 243, 197));
+
+        PesoFinal.setBackground(new java.awt.Color(244, 243, 197));
+
+        FechaInicio.setBackground(new java.awt.Color(244, 243, 197));
+
+        FechaFinal.setBackground(new java.awt.Color(244, 243, 197));
+
+        jButtonBuscar.setBackground(new java.awt.Color(106, 188, 80));
+        jButtonBuscar.setForeground(new java.awt.Color(244, 243, 197));
         jButtonBuscar.setText("Buscar");
+        jButtonBuscar.setOpaque(false);
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBuscarActionPerformed(evt);
             }
         });
 
+        jButtonGuardar.setBackground(new java.awt.Color(106, 188, 80));
+        jButtonGuardar.setForeground(new java.awt.Color(244, 243, 197));
         jButtonGuardar.setText("Guardar");
+        jButtonGuardar.setOpaque(false);
         jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGuardarActionPerformed(evt);
             }
         });
 
+        jButtonEliminar.setBackground(new java.awt.Color(106, 188, 80));
+        jButtonEliminar.setForeground(new java.awt.Color(244, 243, 197));
         jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.setOpaque(false);
         jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEliminarActionPerformed(evt);
             }
         });
 
+        jLabel7.setForeground(new java.awt.Color(244, 243, 197));
         jLabel7.setText("Paciente:");
 
+        jLabel8.setForeground(new java.awt.Color(244, 243, 197));
         jLabel8.setText("Nombre Dieta:");
 
+        jComboBox3.setBackground(new java.awt.Color(244, 243, 197));
         jComboBox3.setSelectedItem(null);
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
+        NombreDieta.setBackground(new java.awt.Color(244, 243, 197));
+
+        jButtoNuevo.setBackground(new java.awt.Color(106, 188, 80));
+        jButtoNuevo.setForeground(new java.awt.Color(244, 243, 197));
         jButtoNuevo.setText("Nuevo");
+        jButtoNuevo.setOpaque(false);
         jButtoNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtoNuevoActionPerformed(evt);
-            }
-        });
-
-        jButtonSalir.setText("Salir");
-        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSalirActionPerformed(evt);
             }
         });
 
@@ -131,9 +158,7 @@ public class CrearDieta extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButtonGuardar)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButtonEliminar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonSalir))
+                                .addComponent(jButtonEliminar))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -187,7 +212,7 @@ public class CrearDieta extends javax.swing.JInternalFrame {
                         .addComponent(jButtonBuscar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(NombreDieta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,8 +240,7 @@ public class CrearDieta extends javax.swing.JInternalFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGuardar)
-                    .addComponent(jButtonEliminar)
-                    .addComponent(jButtonSalir))
+                    .addComponent(jButtonEliminar))
                 .addGap(21, 21, 21))
         );
 
@@ -259,11 +283,6 @@ public class CrearDieta extends javax.swing.JInternalFrame {
             jComboBox3.addItem(dd.listarPacienteSinDietas().get(i).toString());
         }
     }//GEN-LAST:event_jButtoNuevoActionPerformed
-
-    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         // TODO add your handling code here:
@@ -358,7 +377,6 @@ public class CrearDieta extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonGuardar;
-    private javax.swing.JButton jButtonSalir;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;

@@ -37,24 +37,47 @@ public class Comidas extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Comidas");
 
-        jDesktopPane1.setBackground(new java.awt.Color(204, 204, 204));
+        jDesktopPane1.setBackground(new java.awt.Color(5, 47, 46));
+        jDesktopPane1.setForeground(new java.awt.Color(244, 243, 197));
 
+        TXTNombre.setForeground(new java.awt.Color(244, 243, 197));
         TXTNombre.setText("Nombre de Comida:");
 
+        TXTDetalle.setForeground(new java.awt.Color(244, 243, 197));
         TXTDetalle.setText("Detalle:");
 
+        TXTCaloria.setForeground(new java.awt.Color(244, 243, 197));
         TXTCaloria.setText("Calorias:");
 
+        ButtonEliminar.setBackground(new java.awt.Color(106, 188, 80));
+        ButtonEliminar.setForeground(new java.awt.Color(244, 243, 197));
         ButtonEliminar.setText("Eliminar");
+        ButtonEliminar.setOpaque(false);
 
+        ButtonEditar.setBackground(new java.awt.Color(106, 188, 80));
+        ButtonEditar.setForeground(new java.awt.Color(244, 243, 197));
         ButtonEditar.setText("Guardar");
+        ButtonEditar.setOpaque(false);
 
+        ButtonGuardar.setBackground(new java.awt.Color(106, 188, 80));
+        ButtonGuardar.setForeground(new java.awt.Color(244, 243, 197));
         ButtonGuardar.setText("Nuevo");
+        ButtonGuardar.setOpaque(false);
 
+        TFNombreComida.setBackground(new java.awt.Color(244, 243, 197));
+
+        TFDetalle.setBackground(new java.awt.Color(244, 243, 197));
+
+        TFCalorias.setBackground(new java.awt.Color(244, 243, 197));
+
+        jLabel1.setForeground(new java.awt.Color(244, 243, 197));
         jLabel1.setText("Buscar comida");
 
+        jComboBox1.setBackground(new java.awt.Color(244, 243, 197));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setOpaque(false);
 
+        jLabel2.setForeground(new java.awt.Color(244, 243, 197));
         jLabel2.setText("________________________________________");
 
         jDesktopPane1.setLayer(TXTNombre, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -96,7 +119,7 @@ public class Comidas extends javax.swing.JInternalFrame {
                             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                                 .addGap(100, 100, 100)
                                 .addComponent(ButtonEditar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                                 .addComponent(ButtonGuardar))))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGap(71, 71, 71)
@@ -120,11 +143,11 @@ public class Comidas extends javax.swing.JInternalFrame {
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TFDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TXTDetalle))
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TFCalorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TXTCaloria))
-                .addGap(53, 53, 53)
+                .addGap(35, 35, 35)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonEliminar)
                     .addComponent(ButtonEditar)

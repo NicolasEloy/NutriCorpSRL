@@ -106,49 +106,88 @@ public class AltaCliente extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Alta Clientes ");
 
-        jDesktopPane1.setBackground(new java.awt.Color(204, 204, 204));
+        jDesktopPane1.setBackground(new java.awt.Color(5, 47, 46));
 
+        TXTnombre.setBackground(new java.awt.Color(108, 187, 80));
+        TXTnombre.setForeground(new java.awt.Color(244, 243, 197));
         TXTnombre.setText("Nombre:");
 
+        TXTapellido.setBackground(new java.awt.Color(108, 187, 80));
+        TXTapellido.setForeground(new java.awt.Color(244, 243, 197));
         TXTapellido.setText("Apellido/s:");
 
+        TXTDNI.setBackground(new java.awt.Color(108, 187, 80));
+        TXTDNI.setForeground(new java.awt.Color(244, 243, 197));
         TXTDNI.setText("DNI:");
 
+        TXTDomicilio.setBackground(new java.awt.Color(108, 187, 80));
+        TXTDomicilio.setForeground(new java.awt.Color(244, 243, 197));
         TXTDomicilio.setText("Domicilio:");
 
+        TXTtelefono.setBackground(new java.awt.Color(108, 187, 80));
+        TXTtelefono.setForeground(new java.awt.Color(244, 243, 197));
         TXTtelefono.setText("Telefono:");
 
+        TFNombre.setBackground(new java.awt.Color(244, 243, 197));
+
+        TFApellido.setBackground(new java.awt.Color(244, 243, 197));
+
+        TFDNI.setBackground(new java.awt.Color(244, 243, 197));
+
+        TFDomicilio.setBackground(new java.awt.Color(244, 243, 197));
+
+        TFTelefono.setBackground(new java.awt.Color(244, 243, 197));
+
+        ButtonAgregar.setBackground(new java.awt.Color(106, 188, 80));
+        ButtonAgregar.setForeground(new java.awt.Color(244, 243, 197));
         ButtonAgregar.setText("Agregar");
+        ButtonAgregar.setOpaque(false);
         ButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonAgregarActionPerformed(evt);
             }
         });
 
+        ButtonBuscar.setBackground(new java.awt.Color(106, 188, 80));
+        ButtonBuscar.setForeground(new java.awt.Color(244, 243, 197));
         ButtonBuscar.setText("Buscar");
+        ButtonBuscar.setOpaque(false);
         ButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonBuscarActionPerformed(evt);
             }
         });
 
+        ButtonModificar.setBackground(new java.awt.Color(106, 188, 80));
+        ButtonModificar.setForeground(new java.awt.Color(244, 243, 197));
         ButtonModificar.setText("Modificar");
+        ButtonModificar.setOpaque(false);
         ButtonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonModificarActionPerformed(evt);
             }
         });
 
+        ButtonEliminar.setBackground(new java.awt.Color(106, 188, 80));
+        ButtonEliminar.setForeground(new java.awt.Color(244, 243, 197));
         ButtonEliminar.setText("Eliminar");
+        ButtonEliminar.setOpaque(false);
         ButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonEliminarActionPerformed(evt);
             }
         });
 
+        jLabel1.setBackground(new java.awt.Color(108, 187, 80));
+        jLabel1.setForeground(new java.awt.Color(244, 243, 197));
         jLabel1.setText("Peso Inicial");
 
+        txtpesoactual.setBackground(new java.awt.Color(244, 243, 197));
+
+        jCheckBox1.setBackground(new java.awt.Color(153, 255, 153));
+        jCheckBox1.setForeground(new java.awt.Color(244, 243, 197));
         jCheckBox1.setText("Estado");
+        jCheckBox1.setOpaque(false);
 
         jDesktopPane1.setLayer(TXTnombre, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(TXTapellido, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -203,7 +242,7 @@ public class AltaCliente extends javax.swing.JInternalFrame {
                                 .addComponent(txtpesoactual)
                                 .addGap(18, 18, 18)
                                 .addComponent(jCheckBox1)))))
-                .addContainerGap())
+                .addGap(35, 35, 35))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

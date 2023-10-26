@@ -32,6 +32,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         escritorio = new javax.swing.JDesktopPane();
+        fondo = new javax.swing.JLabel();
         BarraMenu = new javax.swing.JMenuBar();
         MenuPacientes = new javax.swing.JMenu();
         MenuIPacientes = new javax.swing.JMenuItem();
@@ -56,20 +57,39 @@ public class Principal extends javax.swing.JFrame {
 
         escritorio.setBackground(new java.awt.Color(204, 204, 204));
 
+        fondo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/a.jpg"))); // NOI18N
+        fondo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        escritorio.setLayer(fondo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(fondo)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 622, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(fondo)
+                .addGap(0, 0, 0))
         );
 
+        BarraMenu.setBackground(new java.awt.Color(5, 47, 46));
+        BarraMenu.setForeground(new java.awt.Color(244, 243, 197));
+
+        MenuPacientes.setForeground(new java.awt.Color(244, 243, 197));
         MenuPacientes.setText("Pacientes");
 
+        MenuIPacientes.setBackground(new java.awt.Color(5, 47, 46));
+        MenuIPacientes.setForeground(new java.awt.Color(244, 243, 197));
         MenuIPacientes.setText("Alta Pacientes");
+        MenuIPacientes.setOpaque(true);
         MenuIPacientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MenuIPacientesActionPerformed(evt);
@@ -77,7 +97,10 @@ public class Principal extends javax.swing.JFrame {
         });
         MenuPacientes.add(MenuIPacientes);
 
+        HistorialPeso.setBackground(new java.awt.Color(5, 47, 46));
+        HistorialPeso.setForeground(new java.awt.Color(244, 243, 197));
         HistorialPeso.setText("Historial Peso");
+        HistorialPeso.setOpaque(true);
         HistorialPeso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HistorialPesoActionPerformed(evt);
@@ -85,7 +108,10 @@ public class Principal extends javax.swing.JFrame {
         });
         MenuPacientes.add(HistorialPeso);
 
+        DietaVigente.setBackground(new java.awt.Color(5, 47, 46));
+        DietaVigente.setForeground(new java.awt.Color(244, 243, 197));
         DietaVigente.setText("Dietas Vigentes");
+        DietaVigente.setOpaque(true);
         DietaVigente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DietaVigenteActionPerformed(evt);
@@ -93,8 +119,13 @@ public class Principal extends javax.swing.JFrame {
         });
         MenuPacientes.add(DietaVigente);
 
+        MenuFiltro.setBackground(new java.awt.Color(5, 47, 46));
+        MenuFiltro.setForeground(new java.awt.Color(244, 243, 197));
         MenuFiltro.setText("Filtros");
+        MenuFiltro.setOpaque(true);
 
+        FiltrarClientesporPeso.setBackground(new java.awt.Color(5, 47, 46));
+        FiltrarClientesporPeso.setForeground(new java.awt.Color(244, 243, 197));
         FiltrarClientesporPeso.setText("Filtrar Clientes por Peso");
         FiltrarClientesporPeso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,9 +138,13 @@ public class Principal extends javax.swing.JFrame {
 
         BarraMenu.add(MenuPacientes);
 
+        MenuDietas.setForeground(new java.awt.Color(244, 243, 197));
         MenuDietas.setText("Dietas");
 
+        CrearDietas.setBackground(new java.awt.Color(5, 47, 46));
+        CrearDietas.setForeground(new java.awt.Color(244, 243, 197));
         CrearDietas.setText("Crear Dieta");
+        CrearDietas.setOpaque(true);
         CrearDietas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CrearDietasActionPerformed(evt);
@@ -117,7 +152,10 @@ public class Principal extends javax.swing.JFrame {
         });
         MenuDietas.add(CrearDietas);
 
+        InsertarComidasaDietas.setBackground(new java.awt.Color(5, 47, 46));
+        InsertarComidasaDietas.setForeground(new java.awt.Color(244, 243, 197));
         InsertarComidasaDietas.setText("Insertar Comidas a Dietas");
+        InsertarComidasaDietas.setOpaque(true);
         InsertarComidasaDietas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InsertarComidasaDietasActionPerformed(evt);
@@ -125,7 +163,10 @@ public class Principal extends javax.swing.JFrame {
         });
         MenuDietas.add(InsertarComidasaDietas);
 
+        AgregarComidas.setBackground(new java.awt.Color(5, 47, 46));
+        AgregarComidas.setForeground(new java.awt.Color(244, 243, 197));
         AgregarComidas.setText("Agregar Comidas");
+        AgregarComidas.setOpaque(true);
         AgregarComidas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AgregarComidasActionPerformed(evt);
@@ -133,8 +174,13 @@ public class Principal extends javax.swing.JFrame {
         });
         MenuDietas.add(AgregarComidas);
 
+        Filtros2.setBackground(new java.awt.Color(5, 47, 46));
+        Filtros2.setForeground(new java.awt.Color(244, 243, 197));
         Filtros2.setText("Filtros");
+        Filtros2.setOpaque(true);
 
+        FiltrarComidasporCalorias.setBackground(new java.awt.Color(5, 47, 46));
+        FiltrarComidasporCalorias.setForeground(new java.awt.Color(244, 243, 197));
         FiltrarComidasporCalorias.setText("Filtrar Comidas por Calorias");
         FiltrarComidasporCalorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -278,6 +324,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuIPacientes;
     private javax.swing.JMenu MenuPacientes;
     private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JLabel fondo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

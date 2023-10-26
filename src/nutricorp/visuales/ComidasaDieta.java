@@ -25,8 +25,10 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Agregar Comidas a Dietas");
 
-        jDesktopPane1.setBackground(new java.awt.Color(204, 204, 204));
+        jDesktopPane1.setBackground(new java.awt.Color(5, 47, 46));
+        jDesktopPane1.setForeground(new java.awt.Color(244, 243, 197));
 
+        TXTND.setForeground(new java.awt.Color(244, 243, 197));
         TXTND.setText("Nombre de la Dieta:");
 
         TablaDieta.setModel(new javax.swing.table.DefaultTableModel(
@@ -57,10 +59,13 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
         });
         CuadroDietas.setViewportView(TablaDieta);
 
+        TXTHorario.setForeground(new java.awt.Color(244, 243, 197));
         TXTHorario.setText("Horarios:");
 
         RBComidasAgregadas.setBackground(new java.awt.Color(204, 204, 204));
+        RBComidasAgregadas.setForeground(new java.awt.Color(244, 243, 197));
         RBComidasAgregadas.setText("Comidas Agregadas");
+        RBComidasAgregadas.setOpaque(false);
         RBComidasAgregadas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RBComidasAgregadasActionPerformed(evt);
@@ -68,11 +73,17 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
         });
 
         RBComidasNoAgregadas.setBackground(new java.awt.Color(204, 204, 204));
+        RBComidasNoAgregadas.setForeground(new java.awt.Color(244, 243, 197));
         RBComidasNoAgregadas.setText("Comidas No Agreagadas");
+        RBComidasNoAgregadas.setOpaque(false);
 
+        ButtonAgregar.setForeground(new java.awt.Color(244, 243, 197));
         ButtonAgregar.setText("Agregar");
+        ButtonAgregar.setOpaque(false);
 
+        ButtonEliminar.setForeground(new java.awt.Color(244, 243, 197));
         ButtonEliminar.setText("Eliminar");
+        ButtonEliminar.setOpaque(false);
 
         jDesktopPane1.setLayer(TXTND, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(CuadroDietas, javax.swing.JLayeredPane.DEFAULT_LAYER);
