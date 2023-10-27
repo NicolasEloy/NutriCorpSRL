@@ -7,7 +7,9 @@ package nutricorp.visuales;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultCellEditor;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import nutricorp.AccesoADatos.ComidaData;
 import nutricorp.AccesoADatos.DietaComidaData;
@@ -34,6 +36,10 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
     public ComidasaDieta() {
         initComponents();
         updateCombo();
+        jButtonMod.setEnabled(false);
+        ButtonEliminar.setEnabled(false);
+        ButtonAgregar.setEnabled(false);
+        
     }
 
     /**
@@ -56,6 +62,7 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
         RBComidasNoAgregadas = new javax.swing.JRadioButton();
         ButtonAgregar = new javax.swing.JButton();
         ButtonEliminar = new javax.swing.JButton();
+        jButtonMod = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Agregar Comidas a Dietas");
@@ -117,7 +124,7 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
 
         ButtonAgregar.setBackground(new java.awt.Color(106, 188, 80));
         ButtonAgregar.setForeground(new java.awt.Color(244, 243, 197));
-        ButtonAgregar.setText("Agregar");
+        ButtonAgregar.setText("Guardar");
         ButtonAgregar.setOpaque(false);
         ButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,6 +142,16 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
             }
         });
 
+        jButtonMod.setBackground(new java.awt.Color(106, 188, 80));
+        jButtonMod.setForeground(new java.awt.Color(244, 243, 197));
+        jButtonMod.setText("Modificar");
+        jButtonMod.setOpaque(false);
+        jButtonMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModActionPerformed(evt);
+            }
+        });
+
         jDesktopPane1.setLayer(TXTND, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(CuadroDietas, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(CBNombreDieta, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -144,6 +161,7 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(RBComidasNoAgregadas, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(ButtonAgregar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(ButtonEliminar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jButtonMod, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -152,7 +170,9 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(93, 93, 93)
                 .addComponent(ButtonAgregar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 312, Short.MAX_VALUE)
+                .addGap(116, 116, 116)
+                .addComponent(jButtonMod)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addComponent(ButtonEliminar)
                 .addGap(93, 93, 93))
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
@@ -197,7 +217,8 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonAgregar)
-                    .addComponent(ButtonEliminar))
+                    .addComponent(ButtonEliminar)
+                    .addComponent(jButtonMod))
                 .addGap(35, 35, 35))
         );
 
@@ -217,7 +238,116 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
 
     private void RBComidasAgregadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBComidasAgregadasActionPerformed
         // TODO add your handling code here:
+        tablaAgregada();
+            jButtonMod.setEnabled(true);
+            ButtonEliminar.setEnabled(true);
+            ButtonAgregar.setEnabled(true);
+            ButtonAgregar.setText("Guardar");
+        if(RBComidasNoAgregadas.isSelected()==true){
+            RBComidasNoAgregadas.setSelected(false);
+
+            
+        }
+    }//GEN-LAST:event_RBComidasAgregadasActionPerformed
+
+    private void CBNombreDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBNombreDietaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBNombreDietaActionPerformed
+
+    private void RBComidasNoAgregadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBComidasNoAgregadasActionPerformed
+        // TODO add your handling code here:
+        tablaNoAgregada();
+            jButtonMod.setEnabled(false);
+            ButtonEliminar.setEnabled(false);
+            ButtonAgregar.setEnabled(true);
+            ButtonAgregar.setText("Agregar");
+        if(RBComidasAgregadas.isSelected()==true)
+            RBComidasAgregadas.setSelected(false);
+
+    }//GEN-LAST:event_RBComidasNoAgregadasActionPerformed
+
+    private void ButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAgregarActionPerformed
+        // TODO add your handling code here:
+        if (RBComidasNoAgregadas.isSelected()==true){
+        int fila=TablaDieta.getSelectedRow();
+        int id=Integer.parseInt(String.valueOf(TablaDieta.getValueAt(fila, 0)));
+        cm.setIdComida(id);
+        Object valor=TablaDieta.getValueAt(fila, 3);
+        if(TablaDieta.getValueAt(fila, 3)==null||esNumero(valor)==false){
+            JOptionPane.showMessageDialog(null,"Por favor confirmar el cambio en la tabla presionando la tecla Enter en la casilla modificada y verifica que sea un numero");
+        }else{
+        int porciones=Integer.parseInt(String.valueOf(TablaDieta.getValueAt(fila, 3)));
         dt=(dd.listarDieta().get(CBNombreDieta.getSelectedIndex()));
+        dc.setComida(cm);
+        dc.setDieta(dt);
+        dc.setHorario(dcd.horarios().get(CBHorario.getSelectedIndex()));
+        dc.setPorciones(porciones);
+        dcd.guardarDietaComida(dc);
+        tablaNoAgregada();
+        }
+        }
+        else{
+            int fila=TablaDieta.getSelectedRow();
+            int id=Integer.parseInt(String.valueOf(TablaDieta.getValueAt(fila, 0)));
+            dc=dcd.buscarDietaComida(id);
+            int por=Integer.parseInt(String.valueOf(TablaDieta.getValueAt(fila, 5)));
+            Object valor=TablaDieta.getValueAt(fila, 5);
+            if(por==dc.getPorciones()||esNumero(valor)==false){
+            JOptionPane.showMessageDialog(null,"Por favor confirmar el cambio en la tabla presionando la tecla Enter en la casilla modificada y verifica que sea un numero");
+            }else{
+            por=Integer.parseInt(String.valueOf(TablaDieta.getValueAt(fila, 5)));
+            dc.setPorciones(por);
+            dcd.modificarComida(dc);
+            jButtonMod.setEnabled(true);
+            tablaAgregada();
+            }
+        }
+    }//GEN-LAST:event_ButtonAgregarActionPerformed
+
+    private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
+        // TODO add your handling code here:
+        
+        int fila=TablaDieta.getSelectedRow();
+        int id=Integer.parseInt(String.valueOf(TablaDieta.getValueAt(fila, 0)));
+        dcd.eliminarComidaDieta(id);
+        tablaAgregada();
+    }//GEN-LAST:event_ButtonEliminarActionPerformed
+
+    private void jButtonModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModActionPerformed
+        // TODO add your handling code here:
+        int columnaEditable = 5; // Cambia este valor al índice de la columna que deseas que sea editable
+        TablaDieta.getColumnModel().getColumn(columnaEditable).setCellEditor(new DefaultCellEditor(new JTextField()));//codigo para editar la ultima columna de la tabla
+        jButtonMod.setEnabled(false);
+        
+    }//GEN-LAST:event_jButtonModActionPerformed
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonAgregar;
+    private javax.swing.JButton ButtonEliminar;
+    private javax.swing.JComboBox<String> CBHorario;
+    private javax.swing.JComboBox<String> CBNombreDieta;
+    private javax.swing.JScrollPane CuadroDietas;
+    private javax.swing.JRadioButton RBComidasAgregadas;
+    private javax.swing.JRadioButton RBComidasNoAgregadas;
+    private javax.swing.JLabel TXTHorario;
+    private javax.swing.JLabel TXTND;
+    private javax.swing.JTable TablaDieta;
+    private javax.swing.JButton jButtonMod;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    // End of variables declaration//GEN-END:variables
+private void updateCombo() {
+        int total=dd.listarDieta().size();
+        int total1=dcd.horarios().size();
+        for (int i = 0; i < total; i++) {
+            CBNombreDieta.addItem(dd.listarDieta().get(i).toString());
+        }    
+        for (int i = 0; i < total1; i++) {
+            CBHorario.addItem(dcd.horarios().get(i));
+    }
+    }
+private void tablaAgregada(){
+    dt=(dd.listarDieta().get(CBNombreDieta.getSelectedIndex()));
         dc.setHorario(dcd.horarios().get(CBHorario.getSelectedIndex()));
         dcd.comidasEnDieta(dt.getIdDieta(), dc.getHorario());
         String titulos[]={"IdComidaDieta","NombreDieta"," NombreComida "," IdComida "," Horarios "," Porciones "};
@@ -239,16 +369,11 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
             jtablemod.addRow(vec);
         }
         TablaDieta.setModel(jtablemod);
+        TablaDieta.setDefaultEditor(Object.class, null); //codigo para que no se pueda editar la tabla
         }
-    }//GEN-LAST:event_RBComidasAgregadasActionPerformed
-
-    private void CBNombreDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBNombreDietaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CBNombreDietaActionPerformed
-
-    private void RBComidasNoAgregadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBComidasNoAgregadasActionPerformed
-        // TODO add your handling code here:
-        dt=(dd.listarDieta().get(CBNombreDieta.getSelectedIndex()));
+}
+private void tablaNoAgregada(){
+    dt=(dd.listarDieta().get(CBNombreDieta.getSelectedIndex()));
         cd.comidasSinDieta(dt.getIdDieta());
         String titulos[]={"Id"," Nombre "," CantidadCalorioas"," Porciones"};
         jtablemod=new DefaultTableModel(null,titulos);
@@ -266,53 +391,25 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
             jtablemod.addRow(vec);
         }
         TablaDieta.setModel(jtablemod);
+        int columnaEditable = 3; // Cambia este valor al índice de la columna que deseas que sea editable
+        TablaDieta.getColumnModel().getColumn(columnaEditable).setCellEditor(new DefaultCellEditor(new JTextField()));//codigo para editar la ultima columna de la tabla
         }
-    }//GEN-LAST:event_RBComidasNoAgregadasActionPerformed
+}
+public static boolean esNumero(Object valor) {
+        if (valor instanceof Number) {
+            // Es un número (por ejemplo, Integer, Double, etc.).
+            return true;
+        }
+        if (valor instanceof String) {
+            try {
+                // Intenta convertirlo a un número.
+                Double.parseDouble((String) valor);
+                return true;
+            } catch (NumberFormatException e) {
+                // No se pudo convertir a número.
+            }
+        }
 
-    private void ButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAgregarActionPerformed
-        // TODO add your handling code here:
-        int fila=TablaDieta.getSelectedRow();
-        int id=Integer.parseInt(String.valueOf(TablaDieta.getValueAt(fila, 0)));
-        int porciones=Integer.parseInt(String.valueOf(TablaDieta.getValueAt(fila, 3)));
-        cm.setIdComida(id);
-        dt=(dd.listarDieta().get(CBNombreDieta.getSelectedIndex()));
-        dc.setComida(cm);
-        dc.setDieta(dt);
-        dc.setHorario(dcd.horarios().get(CBHorario.getSelectedIndex()));
-        dc.setPorciones(porciones);
-        dcd.guardarDietaComida(dc);
-    }//GEN-LAST:event_ButtonAgregarActionPerformed
-
-    private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
-        // TODO add your handling code here:
-        int fila=TablaDieta.getSelectedRow();
-        int id=Integer.parseInt(String.valueOf(TablaDieta.getValueAt(fila, 0)));
-        dcd.eliminarComidaDieta(id);
-    }//GEN-LAST:event_ButtonEliminarActionPerformed
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonAgregar;
-    private javax.swing.JButton ButtonEliminar;
-    private javax.swing.JComboBox<String> CBHorario;
-    private javax.swing.JComboBox<String> CBNombreDieta;
-    private javax.swing.JScrollPane CuadroDietas;
-    private javax.swing.JRadioButton RBComidasAgregadas;
-    private javax.swing.JRadioButton RBComidasNoAgregadas;
-    private javax.swing.JLabel TXTHorario;
-    private javax.swing.JLabel TXTND;
-    private javax.swing.JTable TablaDieta;
-    private javax.swing.JDesktopPane jDesktopPane1;
-    // End of variables declaration//GEN-END:variables
-private void updateCombo() {
-        int total=dd.listarDieta().size();
-        int total1=dcd.horarios().size();
-        for (int i = 0; i < total; i++) {
-            CBNombreDieta.addItem(dd.listarDieta().get(i).toString());
-        }    
-        for (int i = 0; i < total1; i++) {
-            CBHorario.addItem(dcd.horarios().get(i));
-        
-    }
+        return false;
     }
 }

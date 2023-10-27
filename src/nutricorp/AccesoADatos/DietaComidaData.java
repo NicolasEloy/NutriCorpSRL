@@ -38,15 +38,44 @@ public class DietaComidaData {
             ps.setInt(4, dietacomida.getPorciones());
             ps.executeUpdate();
 
-            JOptionPane.showMessageDialog(null, "ComidaDieta Guardada");
+            JOptionPane.showMessageDialog(null, "Comida de la Dieta Guardada");
 
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de comidadieta");
         }
     }
+    public DietaComida buscarDietaComida(int id) {
+    DietaComida dc = new DietaComida();
+    String sql = "SELECT * FROM comidadieta WHERE IdComidaDieta = ?";
+    
+    try {
+        connection = CConection.getConexion();
+        ps = connection.prepareStatement(sql);
+        ps.setInt(1, id);
+        rs = ps.executeQuery();
+
+        if (rs.next()) {
+            Dieta dt=new Dieta();
+            Comida cd=new Comida();
+            dc.setId(rs.getInt("IdComidaDieta"));
+            dt.setIdDieta(rs.getInt("IdDieta"));
+            cd.setIdComida(rs.getInt("IdComida"));
+            dc.setDieta(dt);
+            dc.setComida(cd);
+            dc.setHorario(rs.getString("Horarios"));
+            dc.setPorciones(rs.getInt("Porciones"));
+        } else {
+          // JOptionPane.showMessageDialog(null, "No existe esa Dieta Comida");
+        }
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al buscar la Dieta Comida " + ex.getMessage());
+    }
+    return dc;
+}
     public void modificarComida(DietaComida dietacomida) {
-        sql = "UPDATE comidadieta SET IdDieta = ?, IdComida = ?, Horarios = ?, Porciones = ? WHERE IdComidaDieta";
+        sql = "UPDATE comidadieta SET IdDieta = ?, IdComida = ?, Horarios = ?, Porciones = ? WHERE IdComidaDieta=?";
         try {
             connection =  CConection.getConexion(); 
             ps = connection.prepareStatement(sql);
@@ -54,9 +83,10 @@ public class DietaComidaData {
             ps.setInt(2, dietacomida.getComida().getIdComida());
             ps.setString(3, dietacomida.getHorario());
             ps.setInt(4, dietacomida.getPorciones());
+            ps.setInt(5, dietacomida.getId());
             int exito = ps.executeUpdate();
             if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Se modificó la ComidaDieta correctamente");
+                JOptionPane.showMessageDialog(null, "Se modificó la Comida de la Dieta correctamente");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -72,7 +102,7 @@ public class DietaComidaData {
             ps.setInt(1, id);
             int exito = ps.executeUpdate();
             if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "ComidaDieta Eliminada");
+                JOptionPane.showMessageDialog(null, "Comida de la Dieta Eliminada");
             }
             ps.close();
         } catch (SQLException ex) {
