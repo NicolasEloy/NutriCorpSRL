@@ -7,7 +7,9 @@ package nutricorp.visuales;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultCellEditor;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import nutricorp.AccesoADatos.ComidaData;
 import nutricorp.AccesoADatos.DietaComidaData;
@@ -30,10 +32,12 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
     Dieta dt=new Dieta();
     ComidaData cd=new ComidaData();
     Comida cm=new Comida();
-    DefaultTableModel jtablemod;
+    DefaultTableModel jtablemod=new DefaultTableModel();
     public ComidasaDieta() {
         initComponents();
         updateCombo();
+        
+   
     }
 
     /**
@@ -216,9 +220,10 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
             vec[3]=String.valueOf(dietacd.get(i).getComida().getIdComida());
             vec[4]=dietacd.get(i).getHorario();
             vec[5]=String.valueOf(dietacd.get(i).getPorciones());
-            jtablemod.addRow(vec);
+            jtablemod.addRow(vec);   
         }
         TablaDieta.setModel(jtablemod);
+        TablaDieta.setDefaultEditor(Object.class, null);
         }
     }//GEN-LAST:event_RBComidasAgregadasActionPerformed
 
@@ -246,6 +251,10 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
             jtablemod.addRow(vec);
         }
         TablaDieta.setModel(jtablemod);
+        TablaDieta.setDefaultEditor(Object.class, null);
+        int columnaEditable = 3; // Cambia este valor al índice de la columna que deseas que sea editable
+        TablaDieta.getColumnModel().getColumn(columnaEditable).setCellEditor(new DefaultCellEditor(new JTextField()));
+
         }
     }//GEN-LAST:event_RBComidasNoAgregadasActionPerformed
 
@@ -292,7 +301,6 @@ private void updateCombo() {
         }    
         for (int i = 0; i < total1; i++) {
             CBHorario.addItem(dcd.horarios().get(i));
-        
     }
-    }
+    }                
 }
