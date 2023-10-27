@@ -306,24 +306,25 @@ public class AltaCliente extends javax.swing.JInternalFrame {
     boolean estado = jCheckBox1.isSelected();
 
     // Validaciónes
-    if (nombre.isEmpty() || !nombre.matches("^[a-zA-Z]+$")) {
-        JOptionPane.showMessageDialog(this, "Nombre no válido. Debe contener solo letras.");
-        return;
+  if (nombre.isEmpty() || !nombre.matches("^[\\p{L} ]+$")) {
+    JOptionPane.showMessageDialog(this, "Nombre no válido. Debe contener solo letras, espacios y acentos.");
+    return;
+
     }
 
-    if (apellido.isEmpty() || !apellido.matches("^[a-zA-Z]+$")) {
-        JOptionPane.showMessageDialog(this, "Apellido no válido. Debe contener solo letras.");
-        return; 
+    if (apellido.isEmpty() || !apellido.matches("^[\\p{L} ]+$")) {
+    JOptionPane.showMessageDialog(this, "Nombre no válido. Debe contener solo letras, espacios y acentos.");
+    return;
     }
 
     if (telefono.isEmpty() || !telefono.matches("^[0-9]+$")) {
        JOptionPane.showMessageDialog(this, "Teléfono no válido. Debe contener solo números.");
         return; 
     }
-     if (peso.isEmpty() || !peso.matches("^[0-9]+$")) {
-       JOptionPane.showMessageDialog(this, "Peso no válido. Debe contener solo números.");
-        return; 
-    }
+   if (peso.isEmpty() || !peso.matches("^\\d+(,\\d+)?$")) {
+    JOptionPane.showMessageDialog(this, "Peso no válido. Debe contener números o números con coma.");
+    return;
+}
 
    
     Paciente paciente = new Paciente();
@@ -377,15 +378,15 @@ public class AltaCliente extends javax.swing.JInternalFrame {
     boolean estado = jCheckBox1.isSelected();
 
     // Validacións
-    if (nombre.isEmpty() || !nombre.matches("^[a-zA-Z]+$")) {
-        // El nombre está vacío o contiene números u otros caracteres no válidos
-        JOptionPane.showMessageDialog(this, "Nombre no válido. Debe contener solo letras.");
-        return; // Salir del método sin guardar
+    if (nombre.isEmpty() || !nombre.matches("^[\\p{L} ]+$")) {
+    JOptionPane.showMessageDialog(this, "Nombre no válido. Debe contener solo letras, espacios y acentos.");
+    return;
+
     }
 
-    if (apellido.isEmpty() || !apellido.matches("^[a-zA-Z]+$")) {
-        JOptionPane.showMessageDialog(this, "Apellido no válido. Debe contener solo letras.");
-        return;
+    if (apellido.isEmpty() || !apellido.matches("^[\\p{L} ]+$")) {
+    JOptionPane.showMessageDialog(this, "Nombre no válido. Debe contener solo letras, espacios y acentos.");
+    return;
     }
 
     if (telefono.isEmpty() || !telefono.matches("^[0-9]+$")) {
@@ -393,11 +394,10 @@ public class AltaCliente extends javax.swing.JInternalFrame {
         return; 
     }
     
-    if (peso.isEmpty() || !peso.matches("^[0-9]+$")) {
-        JOptionPane.showMessageDialog(this, "Peso no válido. Debe contener solo números.");
-        return;
-    }
-
+    if (peso.isEmpty() || !peso.matches("^\\d+(,\\d+)?$")) {
+    JOptionPane.showMessageDialog(this, "Peso no válido. Debe contener números o números con coma.");
+    return;
+}
   
     Paciente paciente = new Paciente();
     paciente.setApellido(apellido);
