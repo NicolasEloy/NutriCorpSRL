@@ -100,42 +100,32 @@ public class FiltrarporPeso extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Peso Logrado o No Logrado\n");
 
-        jDesktopPane1.setBackground(new java.awt.Color(204, 204, 204));
+        jDesktopPane1.setBackground(new java.awt.Color(5, 47, 46));
 
+        jComboBox1.setBackground(new java.awt.Color(244, 243, 197));
+        jComboBox1.setOpaque(false);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
 
+        jLabel1.setBackground(new java.awt.Color(244, 243, 197));
+        jLabel1.setForeground(new java.awt.Color(244, 243, 197));
         jLabel1.setText("Finalizo con:");
 
+        jTable1.setBackground(new java.awt.Color(5, 47, 46));
+        jTable1.setForeground(new java.awt.Color(244, 243, 197));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Nombre Cliente", "Peso Buscado", "Peso al Finalizar", "Fecha Final"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
+        jTable1.setGridColor(new java.awt.Color(244, 243, 197));
+        jTable1.setOpaque(false);
         jScrollPane1.setViewportView(jTable1);
 
         jDesktopPane1.setLayer(jComboBox1, javax.swing.JLayeredPane.DEFAULT_LAYER);

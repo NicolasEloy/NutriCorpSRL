@@ -89,8 +89,10 @@ public class CrearDieta extends javax.swing.JInternalFrame {
         PesoFinal.setBackground(new java.awt.Color(244, 243, 197));
 
         FechaInicio.setBackground(new java.awt.Color(244, 243, 197));
+        FechaInicio.setOpaque(false);
 
         FechaFinal.setBackground(new java.awt.Color(244, 243, 197));
+        FechaFinal.setOpaque(false);
 
         jButtonBuscar.setBackground(new java.awt.Color(106, 188, 80));
         jButtonBuscar.setForeground(new java.awt.Color(244, 243, 197));

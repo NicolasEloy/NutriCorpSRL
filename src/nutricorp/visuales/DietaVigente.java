@@ -46,8 +46,9 @@ public class DietaVigente extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Dietas");
 
-        jDesktopPane1.setBackground(new java.awt.Color(204, 204, 204));
+        jDesktopPane1.setBackground(new java.awt.Color(5, 47, 46));
 
+        TXTFecha.setForeground(new java.awt.Color(244, 243, 197));
         TXTFecha.setText("Fecha Actual:");
 
         FechaDChooser.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -66,37 +67,24 @@ public class DietaVigente extends javax.swing.JInternalFrame {
             }
         });
 
+        jTable1.setBackground(new java.awt.Color(5, 47, 46));
+        jTable1.setForeground(new java.awt.Color(244, 243, 197));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Paciente", "Dieta", "Inicio", "Finaliza"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jTable1.setEnabled(false);
+        jTable1.setGridColor(new java.awt.Color(244, 243, 197));
         Tabla.setViewportView(jTable1);
 
         RbuttonVigente.setBackground(new java.awt.Color(204, 204, 204));
+        RbuttonVigente.setForeground(new java.awt.Color(244, 243, 197));
         RbuttonVigente.setText("Vigentes");
+        RbuttonVigente.setOpaque(false);
         RbuttonVigente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RbuttonVigenteActionPerformed(evt);
@@ -104,7 +92,9 @@ public class DietaVigente extends javax.swing.JInternalFrame {
         });
 
         RbuttonFinalizados.setBackground(new java.awt.Color(204, 204, 204));
+        RbuttonFinalizados.setForeground(new java.awt.Color(244, 243, 197));
         RbuttonFinalizados.setText("Finalizados");
+        RbuttonFinalizados.setOpaque(false);
         RbuttonFinalizados.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 RbuttonFinalizadosStateChanged(evt);

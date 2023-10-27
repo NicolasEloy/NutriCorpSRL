@@ -60,10 +60,13 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Agregar Comidas a Dietas");
 
-        jDesktopPane1.setBackground(new java.awt.Color(204, 204, 204));
+        jDesktopPane1.setBackground(new java.awt.Color(5, 47, 46));
 
+        TXTND.setForeground(new java.awt.Color(244, 243, 197));
         TXTND.setText("Nombre de la Dieta:");
 
+        TablaDieta.setBackground(new java.awt.Color(5, 47, 46));
+        TablaDieta.setForeground(new java.awt.Color(244, 243, 197));
         TablaDieta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -75,18 +78,27 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
 
             }
         ));
+        TablaDieta.setGridColor(new java.awt.Color(244, 243, 197));
         CuadroDietas.setViewportView(TablaDieta);
 
+        CBNombreDieta.setBackground(new java.awt.Color(244, 243, 197));
+        CBNombreDieta.setOpaque(false);
         CBNombreDieta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CBNombreDietaActionPerformed(evt);
             }
         });
 
+        TXTHorario.setForeground(new java.awt.Color(244, 243, 197));
         TXTHorario.setText("Horarios:");
 
+        CBHorario.setBackground(new java.awt.Color(244, 243, 197));
+        CBHorario.setOpaque(false);
+
         RBComidasAgregadas.setBackground(new java.awt.Color(204, 204, 204));
+        RBComidasAgregadas.setForeground(new java.awt.Color(244, 243, 197));
         RBComidasAgregadas.setText("Comidas Agregadas");
+        RBComidasAgregadas.setOpaque(false);
         RBComidasAgregadas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RBComidasAgregadasActionPerformed(evt);
@@ -94,21 +106,29 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
         });
 
         RBComidasNoAgregadas.setBackground(new java.awt.Color(204, 204, 204));
+        RBComidasNoAgregadas.setForeground(new java.awt.Color(244, 243, 197));
         RBComidasNoAgregadas.setText("Comidas No Agreagadas");
+        RBComidasNoAgregadas.setOpaque(false);
         RBComidasNoAgregadas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RBComidasNoAgregadasActionPerformed(evt);
             }
         });
 
+        ButtonAgregar.setBackground(new java.awt.Color(106, 188, 80));
+        ButtonAgregar.setForeground(new java.awt.Color(244, 243, 197));
         ButtonAgregar.setText("Agregar");
+        ButtonAgregar.setOpaque(false);
         ButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonAgregarActionPerformed(evt);
             }
         });
 
+        ButtonEliminar.setBackground(new java.awt.Color(106, 188, 80));
+        ButtonEliminar.setForeground(new java.awt.Color(244, 243, 197));
         ButtonEliminar.setText("Eliminar");
+        ButtonEliminar.setOpaque(false);
         ButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonEliminarActionPerformed(evt);

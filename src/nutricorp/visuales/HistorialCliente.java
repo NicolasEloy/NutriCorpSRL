@@ -43,47 +43,42 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Historial Pesos del Paciente");
 
-        jDesktopPane1.setBackground(new java.awt.Color(204, 204, 204));
+        jDesktopPane1.setBackground(new java.awt.Color(5, 47, 46));
 
+        jLabel1.setForeground(new java.awt.Color(244, 243, 197));
         jLabel1.setText("Cliente:");
 
+        jComboBox1.setBackground(new java.awt.Color(244, 243, 197));
+        jComboBox1.setOpaque(false);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
 
+        tablaAlumnoFecha.setBackground(new java.awt.Color(5, 47, 46));
+        tablaAlumnoFecha.setForeground(new java.awt.Color(244, 243, 197));
         tablaAlumnoFecha.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "Peso", "Fecha"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
+        tablaAlumnoFecha.setGridColor(new java.awt.Color(244, 243, 197));
+        tablaAlumnoFecha.setOpaque(false);
         jScrollPane1.setViewportView(tablaAlumnoFecha);
 
+        jLabel3.setForeground(new java.awt.Color(244, 243, 197));
         jLabel3.setText("NUEVO PESO");
 
+        TXTNUEVOPESO.setBackground(new java.awt.Color(244, 243, 197));
+
+        jButton1.setBackground(new java.awt.Color(106, 188, 80));
+        jButton1.setForeground(new java.awt.Color(244, 243, 197));
         jButton1.setText("Guardar");
+        jButton1.setOpaque(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -93,8 +88,11 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("_____________________________________________");
 
+        txtidpaciente.setBackground(new java.awt.Color(244, 243, 197));
+        txtidpaciente.setForeground(new java.awt.Color(244, 243, 197));
         txtidpaciente.setText("idpaciente");
 
+        jLabel2.setForeground(new java.awt.Color(244, 243, 197));
         jLabel2.setText("FECHA");
 
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -115,7 +113,7 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
+                        .addGap(35, 35, 35)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
@@ -139,7 +137,7 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGap(254, 254, 254)
                         .addComponent(jButton1)))
-                .addContainerGap())
+                .addGap(35, 35, 35))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,9 +158,9 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addGap(35, 35, 35))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
