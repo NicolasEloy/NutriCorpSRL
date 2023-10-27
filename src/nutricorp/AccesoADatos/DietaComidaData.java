@@ -44,6 +44,26 @@ public class DietaComidaData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de comidadieta");
         }
     }
+    public void modificarComida(DietaComida dietacomida) {
+        sql = "UPDATE comidadieta SET IdDieta = ?, IdComida = ?, Horarios = ?, Porciones = ? WHERE IdComidaDieta=?";
+        try {
+            connection =  CConection.getConexion(); 
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, dietacomida.getDieta().getIdDieta());
+            ps.setInt(2, dietacomida.getComida().getIdComida());
+            ps.setString(3, dietacomida.getHorario());
+            ps.setInt(4, dietacomida.getPorciones());
+            ps.setInt(5, dietacomida.getId());
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Se modificó la Comida de la Dieta correctamente");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de comidadieta" + ex.getMessage());
+        }
+    }
+
     public void eliminarComidaDieta(int id) {
         sql = "DELETE FROM comidadieta WHERE IdComidaDieta = ?";
         try {
