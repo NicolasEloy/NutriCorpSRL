@@ -47,7 +47,7 @@
                   <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                   <Component id="ButtonAgregar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonMod" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="121" max="32767" attributes="0"/>
                   <Component id="ButtonEliminar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
@@ -106,7 +106,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="ButtonAgregar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ButtonEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonMod" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
@@ -246,7 +246,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonEliminarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="jButtonMod">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="50" green="bc" red="6a" type="rgb"/>
@@ -255,9 +255,10 @@
               <Color blue="c5" green="f3" red="f4" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Modificar"/>
+            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonModActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -75,7 +75,7 @@ public class DietaComidaData {
     return dc;
 }
     public void modificarComida(DietaComida dietacomida) {
-        sql = "UPDATE comidadieta SET IdDieta = ?, IdComida = ?, Horarios = ?, Porciones = ? WHERE IdComidaDieta";
+        sql = "UPDATE comidadieta SET IdDieta = ?, IdComida = ?, Horarios = ?, Porciones = ? WHERE IdComidaDieta=?";
         try {
             connection =  CConection.getConexion(); 
             ps = connection.prepareStatement(sql);
@@ -83,6 +83,7 @@ public class DietaComidaData {
             ps.setInt(2, dietacomida.getComida().getIdComida());
             ps.setString(3, dietacomida.getHorario());
             ps.setInt(4, dietacomida.getPorciones());
+            ps.setInt(5, dietacomida.getId());
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Se modificó la Comida de la Dieta correctamente");
