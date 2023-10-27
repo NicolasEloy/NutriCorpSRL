@@ -56,6 +56,7 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
         RBComidasNoAgregadas = new javax.swing.JRadioButton();
         ButtonAgregar = new javax.swing.JButton();
         ButtonEliminar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Agregar Comidas a Dietas");
@@ -117,7 +118,7 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
 
         ButtonAgregar.setBackground(new java.awt.Color(106, 188, 80));
         ButtonAgregar.setForeground(new java.awt.Color(244, 243, 197));
-        ButtonAgregar.setText("Agregar");
+        ButtonAgregar.setText("Guardar");
         ButtonAgregar.setOpaque(false);
         ButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,6 +136,15 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(106, 188, 80));
+        jButton1.setForeground(new java.awt.Color(244, 243, 197));
+        jButton1.setText("Modificar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         jDesktopPane1.setLayer(TXTND, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(CuadroDietas, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(CBNombreDieta, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -144,6 +154,7 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(RBComidasNoAgregadas, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(ButtonAgregar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(ButtonEliminar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -152,7 +163,9 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(93, 93, 93)
                 .addComponent(ButtonAgregar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 312, Short.MAX_VALUE)
+                .addGap(116, 116, 116)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addComponent(ButtonEliminar)
                 .addGap(93, 93, 93))
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
@@ -197,7 +210,8 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonAgregar)
-                    .addComponent(ButtonEliminar))
+                    .addComponent(ButtonEliminar)
+                    .addComponent(jButton1))
                 .addGap(35, 35, 35))
         );
 
@@ -290,6 +304,18 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
         dcd.eliminarComidaDieta(id);
     }//GEN-LAST:event_ButtonEliminarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int fila=TablaDieta.getSelectedRow();
+        int id=Integer.parseInt(String.valueOf(TablaDieta.getValueAt(fila, 0)));
+        int por=Integer.parseInt(String.valueOf(TablaDieta.getValueAt(fila, 5)));
+        dc=dcd.buscarDietaComida(id);
+        dc.setPorciones(por);
+        dcd.modificarComida(dc);
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonAgregar;
@@ -302,6 +328,7 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
     private javax.swing.JLabel TXTHorario;
     private javax.swing.JLabel TXTND;
     private javax.swing.JTable TablaDieta;
+    private javax.swing.JButton jButton1;
     private javax.swing.JDesktopPane jDesktopPane1;
     // End of variables declaration//GEN-END:variables
 private void updateCombo() {
@@ -312,7 +339,6 @@ private void updateCombo() {
         }    
         for (int i = 0; i < total1; i++) {
             CBHorario.addItem(dcd.horarios().get(i));
-        
     }
     }
 }
