@@ -220,7 +220,9 @@ public class Principal extends javax.swing.JFrame {
     private void HistorialPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialPesoActionPerformed
         // TODO add your handling code here:
         HistorialCliente HC = new HistorialCliente();
+        
         HC.setVisible(true);
+        
         escritorio.add(HC);
         escritorio.moveToFront(HC);
     }//GEN-LAST:event_HistorialPesoActionPerformed

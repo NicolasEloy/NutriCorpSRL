@@ -37,7 +37,6 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
         TXTNUEVOPESO = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        txtidpaciente = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -46,6 +45,7 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
         TXTNULL2 = new javax.swing.JLabel();
         TXTNULL3 = new javax.swing.JLabel();
         txtnombre = new javax.swing.JLabel();
+        txtidpaciente = new javax.swing.JLabel();
 
         jLabel5.setText("BUSCAR CLIENTE");
 
@@ -114,9 +114,6 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
         );
 
         setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
         setTitle("Historial Pesos del Paciente");
 
         jDesktopPane1.setBackground(new java.awt.Color(5, 47, 46));
@@ -150,15 +147,15 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel4.setForeground(new java.awt.Color(0, 204, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("_____________________________________________");
-
-        txtidpaciente.setBackground(new java.awt.Color(244, 243, 197));
-        txtidpaciente.setForeground(new java.awt.Color(244, 243, 197));
 
         jLabel2.setForeground(new java.awt.Color(244, 243, 197));
         jLabel2.setText("FECHA");
 
+        jButton2.setBackground(new java.awt.Color(0, 102, 51));
+        jButton2.setForeground(new java.awt.Color(0, 255, 51));
         jButton2.setText("BUSCAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,12 +181,14 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
         txtnombre.setBackground(new java.awt.Color(244, 243, 197));
         txtnombre.setForeground(new java.awt.Color(244, 243, 197));
 
+        txtidpaciente.setBackground(new java.awt.Color(102, 255, 102));
+        txtidpaciente.setForeground(new java.awt.Color(102, 204, 0));
+
         jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(TXTNUEVOPESO, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(txtidpaciente, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jDateChooser1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -198,6 +197,7 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(TXTNULL2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(TXTNULL3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(txtnombre, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(txtidpaciente, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -206,53 +206,55 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(TXTNUEVOPESO, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(254, 254, 254)
-                        .addComponent(jButton1))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addComponent(TXTNULL, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtidpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(TXTNULL3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtPesoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
                                 .addComponent(TXTNULL2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2))
+                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                                .addComponent(TXTNULL, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtidpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2)
-                                .addGap(15, 15, 15)))))
-                .addContainerGap(58, Short.MAX_VALUE))
+                                .addComponent(TXTNULL3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtPesoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28))))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(jLabel3))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(TXTNUEVOPESO, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
+                        .addGap(68, 68, 68)
+                        .addComponent(jButton1))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(0, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtidpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPesoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TXTNULL, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TXTNULL3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(txtPesoInicial, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                    .addComponent(TXTNULL, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                    .addComponent(TXTNULL3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                    .addComponent(txtidpaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(TXTNULL2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -261,17 +263,17 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TXTNUEVOPESO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(TXTNUEVOPESO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                    .addComponent(jButton1)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -296,31 +298,31 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-//        if (TXTNUEVOPESO.getText().isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "El campo peso es obligatorio.");
-//          
-//        } else if (!TXTNUEVOPESO.getText().matches("[0-9]+")) {
-//            JOptionPane.showMessageDialog(this, "Solo se permiten números en el campo peso.");
-//        }
-//
-//        if (jDateChooser1.getDate() == null) {
-//            JOptionPane.showMessageDialog(this, "Debe colocar una fecha.");
-//         }
-//
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//        String fecha = sdf.format(jDateChooser1.getDate());
-//        String sql = "insert into historialpeso (IdPaciente,Fecha,Peso) VALUES ('" + txtidpaciente.getText() + "','" + fecha + "','" + TXTNUEVOPESO.getText() + "')";
-//        System.out.println(jDateChooser1.getDate());
-//        connection = CConection.getConexion();
-//        try {
-//            ps = connection.prepareStatement(sql);
-//            rs = ps.executeQuery();
-//            System.out.println("actualizado el peso del paciente");
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(HistorialCliente.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        llenarTablaHistorial();
+        if (TXTNUEVOPESO.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El campo peso es obligatorio.");
+          
+        } else if (!TXTNUEVOPESO.getText().matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(this, "Solo se permiten números en el campo peso.");
+        }
+
+        if (jDateChooser1.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Debe colocar una fecha.");
+         }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String fecha = sdf.format(jDateChooser1.getDate());
+        String sql = "insert into historialpeso (IdPaciente,Fecha,Peso) VALUES ('" + txtidpaciente.getText() + "','" + fecha + "','" + TXTNUEVOPESO.getText() + "')";
+        System.out.println(jDateChooser1.getDate());
+        connection = CConection.getConexion();
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            System.out.println("actualizado el peso del paciente");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(HistorialCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        llenarTablaHistorial();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -373,7 +375,8 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
         txtidpaciente.setText(jtablesuspendidapaciente.getValueAt(fila, 0).toString());
         txtPesoInicial.setText(jtablesuspendidapaciente.getValueAt(fila, 3).toString());
         txtnombre.setText(jtablesuspendidapaciente.getValueAt(fila, 1).toString());
-        
+        jDialog1.setVisible(false);
+        llenarTablaHistorial();
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -398,28 +401,28 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
     public javax.swing.JTable jtablesuspendidapaciente;
     private javax.swing.JTable tablaAlumnoFecha;
     public javax.swing.JLabel txtPesoInicial;
-    public javax.swing.JLabel txtidpaciente;
+    private javax.swing.JLabel txtidpaciente;
     public javax.swing.JLabel txtnombre;
     // End of variables declaration//GEN-END:variables
 
-//    public void llenarTablaHistorial() {
-//        String sql = "Select Fecha,Peso from historialpeso where IdPaciente='" + txtidpaciente.getText() + "'";
-//        DefaultTableModel modeloT = (DefaultTableModel) tablaAlumnoFecha.getModel();
-//        connection = CConection.getConexion();
-//        try {
-//            modeloT.setRowCount(0);
-//            ps = connection.prepareStatement(sql);
-//            rs = ps.executeQuery();
-//            while (rs.next()) {
-//                modeloT.addRow(new Object[]{
-//                    rs.getString("Peso"),
-//                    rs.getString("Fecha"),});
-//            }
-//            tablaAlumnoFecha.setModel(modeloT);
-//            ps.close();
-//            rs.close();
-//        } catch (Exception e) {
-//            System.out.println("eeror de tipo " + e);
-//        }
-//    }
-//}
+    public void llenarTablaHistorial() {
+        String sql = "Select Fecha,Peso from historialpeso where IdPaciente='"+txtidpaciente.getText()+ "'";
+        DefaultTableModel modeloT = (DefaultTableModel) tablaAlumnoFecha.getModel();
+        connection = CConection.getConexion();
+        try {
+            modeloT.setRowCount(0);
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                modeloT.addRow(new Object[]{
+                    rs.getString("Peso"),
+                    rs.getString("Fecha"),});
+            }
+            tablaAlumnoFecha.setModel(modeloT);
+            ps.close();
+            rs.close();
+        } catch (Exception e) {
+            System.out.println("eeror de tipo " + e);
+        }
+    }
+}
