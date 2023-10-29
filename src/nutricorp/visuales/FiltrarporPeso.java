@@ -124,6 +124,7 @@ public class FiltrarporPeso extends javax.swing.JInternalFrame {
 
             }
         ));
+        jTable1.setEnabled(false);
         jTable1.setGridColor(new java.awt.Color(244, 243, 197));
         jTable1.setOpaque(false);
         jScrollPane1.setViewportView(jTable1);

@@ -101,6 +101,11 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
 
         CBHorario.setBackground(new java.awt.Color(244, 243, 197));
         CBHorario.setOpaque(false);
+        CBHorario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBHorarioActionPerformed(evt);
+            }
+        });
 
         RBComidasAgregadas.setBackground(new java.awt.Color(204, 204, 204));
         RBComidasAgregadas.setForeground(new java.awt.Color(244, 243, 197));
@@ -239,31 +244,43 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
     private void RBComidasAgregadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBComidasAgregadasActionPerformed
         // TODO add your handling code here:
         tablaAgregada();
+        if(jtablemod.getRowCount()==0){
+           RBComidasAgregadas.setSelected(false);
+           RBComidasNoAgregadas.setSelected(false);
+           ButtonAgregar.setEnabled(false);
+        }else{
+            if(RBComidasNoAgregadas.isSelected()==true){
             jButtonMod.setEnabled(true);
             ButtonEliminar.setEnabled(true);
             ButtonAgregar.setEnabled(true);
             ButtonAgregar.setText("Guardar");
-        if(RBComidasNoAgregadas.isSelected()==true){
             RBComidasNoAgregadas.setSelected(false);
-
-            
+        }  
         }
     }//GEN-LAST:event_RBComidasAgregadasActionPerformed
 
     private void CBNombreDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBNombreDietaActionPerformed
         // TODO add your handling code here:
+        RBComidasAgregadas.setSelected(false);
+        RBComidasNoAgregadas.setSelected(false);
     }//GEN-LAST:event_CBNombreDietaActionPerformed
 
     private void RBComidasNoAgregadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBComidasNoAgregadasActionPerformed
         // TODO add your handling code here:
         tablaNoAgregada();
+        if(jtablemod.getRowCount()==0){
+           RBComidasNoAgregadas.setSelected(false);
+           RBComidasAgregadas.setSelected(false); 
+           ButtonAgregar.setEnabled(false);
+        }else{
+            if(RBComidasAgregadas.isSelected()==true){
             jButtonMod.setEnabled(false);
             ButtonEliminar.setEnabled(false);
             ButtonAgregar.setEnabled(true);
             ButtonAgregar.setText("Agregar");
-        if(RBComidasAgregadas.isSelected()==true)
             RBComidasAgregadas.setSelected(false);
-
+        }
+        } 
     }//GEN-LAST:event_RBComidasNoAgregadasActionPerformed
 
     private void ButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAgregarActionPerformed
@@ -321,6 +338,12 @@ public class ComidasaDieta extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jButtonModActionPerformed
 
+    private void CBHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBHorarioActionPerformed
+        // TODO add your handling code here:
+        RBComidasAgregadas.setSelected(false);
+        RBComidasNoAgregadas.setSelected(false);
+    }//GEN-LAST:event_CBHorarioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonAgregar;
@@ -357,6 +380,8 @@ private void tablaAgregada(){
         dietacd=dcd.comidasEnDieta(dt.getIdDieta(), dc.getHorario());
         if(total==0){
             JOptionPane.showMessageDialog(null, "No se encontraron comidas en esta dieta y en este horario");
+            DefaultTableModel jtablemod = (DefaultTableModel) TablaDieta.getModel();
+            jtablemod.setRowCount(0);
         }else{
         String [] vec=new String [6];
         for (int i = 0; i < total; i++) {
@@ -382,6 +407,9 @@ private void tablaNoAgregada(){
         cdl=cd.comidasSinDieta(dt.getIdDieta());
         if(total==0){
             JOptionPane.showMessageDialog(null, "Ya estan todas las comidas en la dieta");
+            jtablemod.setRowCount(0);
+            DefaultTableModel jtablemod = (DefaultTableModel) TablaDieta.getModel();
+            jtablemod.setRowCount(0);
         }else{
         String [] vec=new String [3];
         for (int i = 0; i < total; i++) {

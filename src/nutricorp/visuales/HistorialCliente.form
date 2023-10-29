@@ -223,7 +223,7 @@
                           <Component id="jScrollPane1" min="-2" pref="353" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="0" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -231,7 +231,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="txtPesoInicial" alignment="0" pref="23" max="32767" attributes="0"/>
                       <Component id="TXTNULL" alignment="0" pref="23" max="32767" attributes="0"/>
                       <Component id="TXTNULL3" alignment="0" pref="23" max="32767" attributes="0"/>
@@ -301,6 +301,7 @@
                     </Column>
                   </TableColumnModel>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="c5" green="f3" red="f4" type="rgb"/>
                 </Property>

@@ -128,6 +128,7 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
                 "FECHA", "PESO"
             }
         ));
+        tablaAlumnoFecha.setEnabled(false);
         tablaAlumnoFecha.setGridColor(new java.awt.Color(244, 243, 197));
         tablaAlumnoFecha.setOpaque(false);
         jScrollPane1.setViewportView(tablaAlumnoFecha);
@@ -243,13 +244,13 @@ public class HistorialCliente extends javax.swing.JInternalFrame {
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtPesoInicial, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
                     .addComponent(TXTNULL, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
                     .addComponent(TXTNULL3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
